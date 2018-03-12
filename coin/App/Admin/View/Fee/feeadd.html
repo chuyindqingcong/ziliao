@@ -1,0 +1,56 @@
+<include file="App/Admin/View/Public/left.html"/>
+<!--/sidebar-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">手续费规则</span></div>
+    </div>
+    <div class="result-wrap">
+        <form action="{:U('Fee/feeadd')}" method="post" id="myform" name="myform" enctype="multipart/form-data">
+            <div class="config-items">
+                <div class="config-title">
+                    <h1><i class="icon-font">&#xe00a;</i>规则添加</h1>
+                </div>
+                <div class="result-content">
+                    <table width="100%" class="insert-tab">
+                        <tbody>
+                        <tr>
+                        <input type="hidden" name="member_id" value="{$Think.get.member_id}">
+                            <th width="15%"><i class="require-red">*</i>币种编号</th>
+                            <td><input name="currency_id" type="text" id="currency_id"><span id="showBug" style=" margin-left:10px;color:#FF0000"></span></td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>买入：</th>
+                            <td><input  name="buy" type="text">（百分比）</td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>卖出：</th>
+                            <td><input name="sell" type="text">（百分比）</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="button" onclick="subform()" value="提交" class="btn btn-primary btn6 mr10">
+                                <a href="{:U('Fee/memberfee',array('member_id'=>I('get.member_id')))}"><input type="button" value="返回"  class="btn btn6"></a>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+function subform(){
+	
+		$('#myform').submit();
+}
+</script>
+
+<!--/main-->
+</div>
+</body>
+</html>
+<script>
+$(".sub-menu").eq(3).show();
+$(".sub-menu").eq(3).children("li").eq(0).addClass("on");
+</script>

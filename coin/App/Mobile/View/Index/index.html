@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html style="font-size: 55.2px;" >
+<head>
+	<meta charset="utf-8">
+	<title>{$config.title|default="虚拟币交易网站"}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="__PUBLIC__/new/swiper/css/swiper.min.css">
+	<link rel="shortcut icon" href="/1.ico" />
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap-table.css">
+    <style type="text/css">
+    	.fixed-table-body thead th .th-inner { padding: 8px 3px;  border-left: none;border-right: none; border-bottom:none;font-size: 0.24rem;}
+    	.index_table table thead tr th div{ text-align: center; border: none;font-size: 0.24rem;}
+    	.index_table table tbody tr td{ text-align: center; border-left: none;border-right: none;font-size: 0.24rem;width: 25%;}
+        .index_table table tbody tr td a{ color: #333;width: 100%;height: 100%;float: left;}
+        .index_table table tbody tr td .green { color: #33cc00; }
+        .index_table table tbody tr td .red { color: #f60; }
+    </style>
+</head>
+<body>
+	<div class="container" style="padding: 0;">
+
+<include file="Public/header"/>
+
+        <div class="swiper-container">
+    		<div class="swiper-wrapper">
+                <volist name='flash' id='vo'>
+                    <div class="swiper-slide">
+                    <a href="{$vo.jump_url}"><img src="{$vo.pic}" class="img-responsive"></a>
+                </div>
+                </volist>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="notice">
+            <p><span class="glyphicon glyphicon-volume-up"></span>
+                <a href="{:U('Art/details',array('id'=>$gonggao['article_id']))}">{$gonggao.title|msubstr=0,20}</a>
+                <a href="{:U('Art/art_list')}" style="color: #666;"><b>查看全部</b></a>
+            </p>
+        </div>
+
+        <div style="width: 100%;height: 0.2rem;background-color: #f6f6f6;float: left;">
+            
+        </div>
+
+        <div class="index_table" style="float: left;width: 100%;min-height: 6rem;">
+            <table id="table-custom-sort" data-toggle="table" data-sort-name="price" data-sort-order="desc" data-url="{:U('Index/json_cur')}">
+                <thead>
+                <tr>
+                    <th data-field="st" data-align="center">币种</th>
+                    <th data-field="new_price" data-align="center" data-sortable="true">最新价格</th>
+                    <th data-field="24H_done_money" data-sortable="true">24H成交额</th>
+                    <th data-field="24H_change" data-sortable="true">24H涨跌</th>
+                </tr>
+                </thead>
+            </table>
+            <script>
+                function priceSorter(a, b) {
+                    a = +a.substring(1); // remove $
+                    b = +b.substring(1);
+                    if (a > b) return 1;
+                    if (a < b) return -1;
+                    return 0;
+                }
+            </script>
+        </div>
+	</div>
+
+<include file="Public/footer"/>
+
+<script src="__PUBLIC__/new/js/jquery.min.js"></script>
+<script src="__PUBLIC__/new/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/new/js/bootstrap-table.js"></script>
+<script src="__PUBLIC__/new/swiper/js/swiper.min.js"></script>
+<script>
+var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true
+});
+var cw = document.documentElement.clientWidth;
+if (cw > 1920) {
+    cw = 1920;
+}
+document.getElementsByTagName("html")[0].style.fontSize = 40 * ( cw / 300) + 'px'
+</script>
+</body>
+</html>

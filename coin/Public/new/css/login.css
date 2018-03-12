@@ -1,0 +1,122 @@
+.line { 
+	height: 1px;
+	border-bottom: 1px solid #dddddd;
+	background-color: #f5f5f5;
+}
+.login-body {
+	background-color: #f5f5f5;
+}
+
+.login-900{
+	width: 900px;
+	height: 500px;
+	background-color: #fff;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	-moz-box-shadow: 4px 4px 5px #d5d5d5; /* 老的 Firefox */
+	box-shadow: 4px 4px 5px #d5d5d5;
+}
+
+.login-530{
+	width: 530px;
+	height: 500px;
+	float: left;
+}
+.form-group{
+	margin-bottom: 10px;
+}
+.login-form{
+	margin-top: 80px;
+	padding-left: 30px;
+}
+.login-form input{
+	width: 270px;
+}
+.login-form .login-span{
+	color: #337cbf;
+	font-size: 18px;
+	padding-left: 15px;
+	float: left;
+}
+.login-form .login-a{
+	color: #337cbf;
+	padding-top: 5px;
+	padding-left: 105px;
+	float: left;
+	display: none;
+}
+.login-form .login-a-1{
+	height: 25px;
+	width: 100%;
+	float: left;
+	display: block;
+	color: #337cbf;
+	padding-top: 5px;
+	padding-left: 105px;
+}
+.login-submit{
+	color: #fff;
+	background-color: #337cbf;
+	border-color: #337cbf;
+
+	padding: 10px 120px;
+}
+.login-submit:hover{
+	opacity: 0.8;
+}
+.btn-default:hover{
+	color: #fff;
+	background-color: #337cbf;
+	border-color: #337cbf;
+	opacity: 0.8;
+}
+.btn:hover{
+	opacity: 0.8;
+}
+
+.login-370{
+	width: 370px;
+	height: 500px;
+	float: left;
+	padding-left: 10px;
+	background: url(../images/login-bg.png) no-repeat; 
+}
+.login-370 .login-other{
+	margin-top: 70px;
+	text-align: center;
+	color: #727272;
+}
+.login-370 .login-other-img{
+	margin-top: 30px;
+	text-align: center;
+	margin-bottom: 2px;
+}
+.login-370 .login-other-img img{
+	margin: 0 15px;
+}
+.login-370 .login-other-text{
+	text-align: center;
+	margin-bottom: 30px;
+}
+.login-370 .login-other-text span{
+	margin: 0 27px;
+}
+
+
+/*      用户协议      */
+.reg-body {
+	padding: 25px 20px;
+	background-color: #fff;
+	border: 1px solid #c1c1c1;
+}
+.reg-body .reg-body-title{
+	font-size: 26px;
+	color: #7b7b7b;
+	padding-bottom: 10px;
+	text-align: center;
+}
+.reg-body .reg-body-body{
+	font-size: 16px;
+	color: #7b7b7b;
+	line-height: 31px;
+}

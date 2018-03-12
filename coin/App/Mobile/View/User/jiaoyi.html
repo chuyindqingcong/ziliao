@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html style="font-size: 55.2px;" >
+<head>
+	<meta charset="utf-8">
+	<title>我的账户</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user1.css">
+    <style type="text/css">
+    </style>
+</head>
+<body>
+	<div class="container" style="padding: 0;">
+
+<include file="Public/header"/>
+
+        <div style="width: 100%;height: 0.1rem;background-color: #f6f6f6;float: left;">
+        </div>
+
+        <div class="raise right clearfix">
+        <p class="p1" style="padding-left: 0.3rem;">账户资产总计： <span style="color:#337cbf;">{$u_info['rmb']+$u_info['forzen_rmb']}</span> CNY</p>
+        <p class="p2">
+            <span>名称</span>
+            <span>可用</span>
+            <span>冻结</span>
+        </p>
+        <ul class="ul1" style="padding: 0;">
+            <li>
+                <strong style="width:1.9rem;display:inline-block;margin-left: 0.15rem;"><img src="__PUBLIC__/new/images/RMB.png" style="width:0.35rem; height:0.35rem;margin-right: 0.1rem;">人民币</strong>
+                <span class="span1" style="width: 2rem;padding-left: 0.25rem;">{$member.rmb|default=0.00}</span>
+                <span class="span2" style="margin-left: 0;width: 2rem;padding-left: 0.3rem;">{$member.forzen_rmb|default=0.00}          
+                </span>
+                <i class="bg-click yes1" style="width: 20px;"></i>
+                        <p class="showAndhide" style="display: none">
+                            <a href="{:U('User/pay')}"><span class="icon_cz"></span>充值</a>
+        <!--                    <a href="#" onclick="alert('官方维护，暂停人工充值！');return false;"><span class="icon_cz"></span>充值</a>-->
+                            <a href="{:U('User/draw')}"><span class="icon_tb"></span>提现</a>
+                    <!--            <a href=""><span></span>去交易</a>-->
+                </p><div style="clear: both;"></div>
+                
+                <p></p>
+            </li>
+            <volist name='currency_user' id='vo' >  
+                <li>
+                    <strong style="width:1.9rem;margin-left: 0.15rem;"><img src="{$vo.currency_logo}" style="width:0.35rem; height:0.35rem;margin-right: 0.1rem;"> {$vo.currency_name|default='虚拟币'}</strong>
+                    <span class="span1" style="width: 2rem;padding-left: 0.25rem;">{$vo.num|default=0.00}</span>
+                    <span class="span2" style="margin-left: 0;width: 2rem;padding-left: 0.3rem;">{$vo.forzen_num|default=0.00}</span>
+                    <i class="bg-click yes1" style="width: 20px;"></i>
+                    <p class="showAndhide" style="display: none">
+                    <a href="{:U('Pay/bpay',array('currency_id'=>$vo['currency_id']))}"><span class="icon_cz"></span>充币</a>
+                    <a href="{:U('Pay/tcoin',array('currency_id'=>$vo['currency_id']))}"><span class="icon_tb"></span>提币</a>
+                    <a href="{:U('Order/index',array('currency'=>$vo['currency_mark']))}"><span class="icon_jy"></span>去交易</a>
+                    </p><div style="clear: both;"></div>
+                    <p></p>
+                </li>
+            </volist>
+            </ul>
+            </div>
+	</div>
+<script src="__PUBLIC__/new/js/jquery.min.js"></script>
+<script src="__PUBLIC__/new/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/new/js/fast.js"></script>
+<script>
+
+var cw = document.documentElement.clientWidth;
+if (cw > 1920) {
+    cw = 1920;
+}
+document.getElementsByTagName("html")[0].style.fontSize = 40 * ( cw / 300) + 'px'
+</script>
+<script type="text/javascript">
+         $(function(){
+            FastClick.attach(document.body);
+            $(".showAndhide").hide();
+            $(".ul1 li").click(function(){ 
+                var a_lenght   = $(this).children(".showAndhide");
+                var s_lenght_s = a_lenght.children("a").length;
+                if(s_lenght_s == 2){
+                     $(".ul1 li .showAndhide a").css("width","3.71rem");
+                }  
+                else{
+                     $(".ul1 li .showAndhide a").css("width","2.47rem");
+                }
+                
+                 if($(this).children("i").hasClass('bg-click')){
+                       
+                            $(".ul1 li .showAndhide").hide();
+                            $(".ul1 li i").removeClass('bg-click1').addClass('bg-click');
+                            $(this).children("i").removeClass('bg-click').addClass('bg-click1');
+                            $(this).children("i").siblings('.showAndhide').show();
+                        // $(this).children('em').text("成功").css({"color":"#33cc00"})
+                }else{
+                        $(this).children("i").removeClass('bg-click1').addClass('bg-click');
+                        $(this).children("i").siblings('.showAndhide').hide();
+                        // $(this).children('em').text("等待").css({"color":"#666"})
+                } 
+
+            });
+        }) 
+</script>
+</body>
+</html>

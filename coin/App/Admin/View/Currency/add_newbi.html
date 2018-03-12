@@ -1,0 +1,139 @@
+    <include file="App/Admin/View/Public/left.html"/>
+     <script type="text/javascript" charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/kindeditor/plugins/prettify.js"></script>
+    <!--/sidebar-->
+    <div class="main-wrap">
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">币种设置</span></div>
+        </div>
+        <div class="result-wrap">
+            <form action="__SELF__" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <div class="config-items">
+                    <div class="config-title">
+                        <h1><i class="icon-font">&#xe00a;</i>币种详细信息设置</h1>
+                    </div>
+                    <div class="result-content">
+                        <table width="100%" class="insert-tab">
+                            <tbody>
+                            <tr>
+                                <th width="15%"><i class="require-red">*</i>货币LOGO</th>
+                                <td><img  style="height:150px;"src="{$list.currency_logo}"><input type="hidden" name="currency_logo" value="{$list.currency_logo}" class="common-text"></td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>货币LOGO上传</th>
+                                <td><input type="file" name="Filedata" class="common-text"></td>
+                            </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>货币名称：</th>
+                                    <td><input type="text" id="" value="{$list.currency_name}" size="85" name="currency_name" class="common-text"><input type="hidden" id="" value="{$list.currency_id}" size="85" name="currency_id" class="common-text"></td>
+                                </tr>
+                                 <tr>
+                                    <th><i class="require-red">*</i>英文简称</th>
+                                    <td><input type="text" id="" value="{$list.currency_mark}" size="85" name="currency_mark" class="common-text"></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>英文名称</th>
+                                    <td><input type="text" id="" value="{$list.en_name}" size="85" name="en_name" class="common-text"></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>币种摘要</th>
+                                    <td><input type="text" id="" value="{$list.atter}" size="85" name="atter" class="common-text">
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>币种简介</th>
+                                    <td><textarea type="text" style="width: 535px;height: 100px;" name="currency_content" class="common-text">{$list.currency_content}</textarea></td>
+                                </tr>
+								<tr>
+                                    <th><i class="require-red">*</i>官方网站</th>
+                                    <td><input type="text" id="" value="{$list.web_url}" size="85" name="web_url" class="common-text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>论坛</th>
+                                    <td><input type="text" id="" value="{$list.bbs_url}" size="85" name="bbs_url" class="common-text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>钱包下载</th>
+                                    <td><input type="text" id="" value="{$list.pay_url}" size="85" name="pay_url" class="common-text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>浏览器地址</th>
+                                    <td><input type="text" id="" value="{$list.uix_url}" size="85" name="uix_url" class="common-text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>开发者</th>
+                                    <td><input type="text" id="" value="{$list.developer}" size="85" name="developer" class="common-text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>区块时间</th>
+                                    <td><input type="text" id="" value="{$list.q_time}" size="85" name="q_time" class="common-text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>发布时间</th>
+                                    <td><input type="text" id="" value="{$list.pubdate}" size="85" name="pubdate" class="common-text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>核心算法</th>
+                                    <td><input type="text" id="" value="{$list.core}" size="85" name="core" class="common-text">
+                                    </td>
+                                </tr>
+
+								<tr>
+                                    <th><i class="require-red">*</i>发行总量</th>
+                                    <td><input type="text" id="" value="{$list.currency_all_num}" size="85" name="currency_all_num" class="common-text"><i class="require-red"></i></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>币种图片（最多6张，最少3张:360*320）</th>
+                                    <td>
+                                        <input type="file" name="upload_pic1">
+                                        <input type="file" name="upload_pic2" >
+                                        <input type="file" name="upload_pic3" >
+                                        <input type="file" name="upload_pic4" >
+                                        <input type="file" name="upload_pic5" >
+                                        <input type="file" name="upload_pic6" >
+                                    </td>
+                                </tr>
+								<tr>
+                                    <th><i class="require-red">*</i>是否显示</th>
+                                    <td>
+										显示：<input type="radio" name="status" value="1"  <eq name="list.status" value="1">checked="checked"</eq> />
+									   关闭：<input type="radio" name="status" value="0" <eq name="list.status" value="0">checked="checked"</eq> />
+									</td>
+                                </tr>
+
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <input type="submit" value="提交" class="btn btn-primary btn6 mr10">
+                                        <a href="{:U('Currency/index')}"><input type="button" value="返回"  class="btn btn6"></a>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>
+<script>
+$(".sub-menu").eq(8).show();
+$(".sub-menu").eq(8).children("li").eq(7).addClass("on");
+</script>
+<script>									
+	KindEditor.ready(function(K) {
+		window.editor1 = K.create('#content3');	
+	});
+</script>

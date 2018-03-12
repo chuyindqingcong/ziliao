@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" media="screen and (max-width: 600px)" href="/Public/css/index/emailsig/small.css?v=d41d8cd98f" />
+	<link rel="stylesheet" media="screen and (min-width: 601px) and (max-width: 1000px)" href="/Public/css/index/emailsig/middle.css?v=d41d8cd98f" />
+	<link rel="stylesheet" media="screen and (min-width: 1001px)" href="/Public/css/index/emailsig/pc.css?v=d41d8cd98f" />
+	<link rel="stylesheet" href="/Public/css/comm/comm.css?v=749f7a5439" />
+	<link rel="stylesheet" href="/Public/js/lib/iconfont/iconfont.css" />
+	<link rel="stylesheet" href="/Public/css/index/emailsig/index.css?v=b4f045e67d" />
+</head>
+<body>
+	<include file="App/Home/View/comm/header.html"/>
+	<div class="wraps">
+		<div>
+			<h4>{$Think.lang.reg_openiex}</h4>
+			<div class="divs1">
+				<div>
+					<svg class="icon" aria-hidden="true">
+					  <use xlink:href="#icon-tishi"></use>
+					</svg>
+				</div>
+				<div>
+					{$Think.lang.sign_tip}
+				</div>
+			</div>
+			<input type="email"  placeholder="{$Think.lang.enter_email}" id="email" />
+			<button type="button" id="sendEmail">{$Think.lang.register_now}</button>
+		
+		</div>
+	</div>
+	<div class="foot">
+		OPENIEX @COPYRIGHT 2017
+	</div>
+	<input type="hidden" id="mess" data-error ="{$enter_right_email}" data-ok='{$mail_sending}...'>
+	<script src="/Public/js/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/Public/js/lib/jqueryNanoscroller/jquery.nanoscroller.js"></script>	
+	<script src="/Public/js/lib/iconfont/iconfont.js"></script>
+	<script src="/Public/js/private/comm/comm.js?v=97294199b9"></script>
+	<script src="/Public/js/private/index/emailsig.js?v=282f7750a9"></script>
+	<include file="App/Home/View/comm/count.html"/>
+</body>
+</html>

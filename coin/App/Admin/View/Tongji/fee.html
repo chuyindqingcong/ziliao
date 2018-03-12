@@ -1,0 +1,105 @@
+    <include file="App/Admin/View/Public/left.html"/>
+    <!--/sidebar-->
+    <style type="text/css">
+    	td{
+    		text-align: center;
+    	}
+    </style>
+    <div class="main-wrap">
+		
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">手续费统计</span></div>
+        </div>
+<div class="search-wrap">
+        <div class="search-content">
+             <form action="{:U('Tongji/fee')}" method="GET" id="myForm">
+                <table class="search-tab">
+                    <tr>
+                        <td width="70">开始日期:</td>
+                        <td><input class="common-text" placeholder="开始日期" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$Think.get.start}" name="start"></td>
+                        <td>-</td>
+                        <td><input class="common-text" placeholder="结束日期" name="endtime" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$Think.get.endtime}"></td>
+                       
+                        <td><input class="btn btn-primary btn2"  value="查询" type="submit"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <tr >
+                            <th style="text-align: center;">累计交易手续费（RMB）</th>
+                            <th style="text-align: center;">累计交易手续费（币）</th>
+                            <th style="text-align: center;">累计提现手续费</th>
+                        </tr>
+                        <tr>
+                            <td>{$cfee.invit_rmb|default="0.00"}</td>
+                            <td>{$cfee.invit_coin|default="0.00"}</td>
+                     		<td>{$cfee.withdraw|default="0.00"}</td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>
+
+<script>
+function pass(id){
+	layer.confirm(
+	'确定通过审核', 
+	{btn:['确定','取消']},
+	function(){
+	  $.post("{:U('Pay/payUpdate')}",{"pay_id":id,"status":1},function(data){
+		  if(data.status==0){
+					layer.msg(data['info']);
+					setTimeout("location.reload()",2000);
+				}else{
+					layer.msg(data['info']);
+					setTimeout("location.reload()",2000);
+				}
+		})
+	}
+	),
+	function(){
+		layer.msg('已取消');
+	}
+}
+
+function fail(id){
+	layer.confirm(
+	'确定不通过审核', 
+	{btn: ['确定','取消'],},
+	function(){
+		//href="{:U('Pay/payUpdate',array('pay_id'=>$vo['pay_id'],'status'=>1))}			
+		$.post("{:U('Pay/payUpdate')}",{"pay_id":id,"status":2},function(data){
+				if(data.status == 0){
+					layer.msg(data['info']);
+					setTimeout("location.reload()",2000);
+					
+				}else if(data.status == 2){
+					layer.msg(data['info']);
+					setTimeout("location.reload()",2000);
+				}else{
+					layer.msg(data['info']);
+					setTimeout("location.reload()",2000);
+				}
+		})
+		}
+		),
+	 function(){
+		layer.msg('已取消');
+	}
+}
+</script>
+<script>
+$(".sub-menu").eq(12).show();
+$(".sub-menu").eq(12).children("li").eq(4).addClass("on");
+</script>

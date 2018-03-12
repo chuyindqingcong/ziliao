@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta property="wb:webmaster" content="8af72a3a7309f0ee">
+    <title><notempty name='article'>{$article.title}-</notempty>{$config.title|default="虚拟币交易网站"}</title>
+    <link rel="shortcut icon" href="1.ico" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/index.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/news-list.css">
+<!-- 旧版css -->
+<!--     <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/subpage.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/user.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/coin.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/zcpc.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/iconfont/demo.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/jb_style.css"> -->
+
+    <script src="__PUBLIC__/new/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/new/js/bootstrap.min.js"></script>
+<!-- 旧版js -->
+<!--     <script src="__PUBLIC__/Home/js/hm.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.min.js"></script>
+<!--     <script src="__PUBLIC__/js/messages_zh.min.js"></script>
+    <script src="__PUBLIC__/js/base.js"></script>
+    <script src="__PUBLIC__/Home/js/script.js"></script> -->
+
+</head>
+<body>
+<div class="w-f" style="background-color: #f5f5f5;border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 4px;">
+
+	<div class="col-md-9 safe-body" style="background-color: #fff;min-height: 800px;width: 72%;padding-left: 10px;border:1px solid #e1e1e1;border-radius: 4px;">
+		<div class="safe-name">实名认证</div>
+		<div class="safe-identity">
+			<form class="form-horizontal">
+			  <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-3 control-label">真实姓名:</label>
+			    <div class="col-sm-9 form-input">
+			      <input id="xm" type="text" class="form-control" placeholder="真实姓名">
+			     
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-3 control-label">身份证号:</label>
+			    <div class="col-sm-9 form-input">
+			      <input id="sfzh" type="text" class="form-control" placeholder="身份证号">
+			    </div>
+			  </div>
+			
+			  <div class="form-group">
+			    <div class="col-sm-offset-3 col-sm-9">
+			      <button id="save" type="button" class="btn btn-default form-submit">提交</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+
+
+<script type="text/javascript">
+	
+	var timer="";
+	var nums=60;
+	var validCode=true;//定义该变量是为了处理后面的重复点击事件
+	$("#form-button").on('click',function(){
+	            var phone=$('#phone').val();
+				if(!phone){layer.msg("请填写银行卡预留的手机号");return;}
+	            var code=$(this);
+	            if(validCode){
+	                validCode=false;
+	                timer=setInterval(function(){
+	                    if(nums>0){
+	                        nums--;
+	                        code.text(nums+"秒后重新发送");
+	                        code.addClass("gray-bg");
+	                    }
+	                    else{
+	                        clearInterval(timer);
+	                        nums=60;//重置回去
+	                        validCode=true;
+	                        code.removeClass("gray-bg");
+	                        code.text("获取验证码");
+	            }
+	                },1000)
+	            }
+				
+				$.post("{:U('Common/ajaxSandPhone')}",{'phone':phone},
+                    function(d){
+                       layer.msg(d.info);
+                        if(d.status==1){
+                            nums=60;
+                            
+            	 }
+            });
+	            
+
+	        })
+			
+		$("#save").on('click',function(){
+	            //var phone=$('#phone').val();
+				//var yzm=$('#yzm').val();
+				var sfzh=$('#sfzh').val();
+				//var yh=$('#yh').val();
+				var xm=$('#xm').val();
+				//var yhkh=$('#yhkh').val();
+				
+				if(!xm){layer.msg("请填写姓名");return;}
+				if(!sfzh){layer.msg("请填写身份证号码");return;}
+				//if(!yh){layer.msg("请选择银行");return;}
+				//if(!yhkh){layer.msg("请填写银行卡号");return;}
+				//if(!phone){layer.msg("请填写银行卡预留的手机号");return;}
+				//if(!yzm){layer.msg("请填写获取的手机验证码");return;}
+				
+				
+				
+				
+				
+				$.post("{:U('Safe/shenfen')}",{'sfzh':sfzh,'xm':xm},
+                    function(d){  
+						//alert(d.info);
+                        layer.msg(d.info);
+						if(d.status==1)
+						{
+							window.location.href="{:U('Safe/index')}"; 
+						}
+            });
+	            
+
+	        })
+</script>

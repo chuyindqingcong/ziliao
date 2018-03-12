@@ -1,0 +1,246 @@
+ul li { list-style:none; }
+a:hover { opacity: 0.8;text-decoration:none; }
+p {margin-bottom: 0;}
+body { margin-bottom: 200px; }
+.w-f { width: 100%;float: left; }
+.w-f p { font-size: 14px;font-weight: normal; }
+.container{ padding: 0;width: 1200px; }
+.zhong_container{
+	max-width: 1200px;
+	margin: 30px auto;
+}
+.zhong_container .zhong_article{
+	background-color: #fff;
+}
+.zhong_container .zhong_a_1 .z_c_title{
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.zhong_container .zhong_a_1 .z_c_title span{
+	font-size: 14px;
+	font-weight: normal;
+	color: #172850;
+	float: right;
+	line-height: 26px;
+}
+.zhong_container .zhong_a_1 .z_c_title span a{
+	color: #172850;
+}
+.zhong_container .zhong_a_1 .z_c_ul{
+	padding-left: 0;
+	width: 100%;
+	float: left;
+}
+.zhong_container .zhong_a_1 .z_c_ul li{
+	float: left;
+	margin: 3px 0;
+	width: 100%;
+}
+.zhong_container .zhong_a_1 .z_c_ul li a{
+	color: #000;
+}
+.zhong_container .zhong_a_1 .z_c_ul li span{
+	float: right;
+}
+
+
+.zhong_pro{
+	width: 100%;
+	background-color: #eee;
+	padding: 40px 0;
+}
+.zhong_pro .z_c_title{
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.zhong_pro .z_c_title span{
+	font-size: 14px;
+	font-weight: normal;
+	color: #172850;
+	float: right;
+	line-height: 26px;
+}
+.zhong_pro .z_c_title span a{
+	color: #172850;
+}
+
+.zhong_pro .z_c_img .col-md-4{
+	width: 31%;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding:0;
+	position: relative;
+	background-color: #fff;
+	transition: all .2s ease-in-out;
+	box-shadow: 0 2px 10px 0 rgba(0,0,0,.08);
+}
+.zhong_pro .z_c_img .col-md-4:hover{
+	box-shadow: 0 0 15px rgba(45,50,55,.3);
+	-webkit-transform:translateY(-4px);
+	transform: translateY(-3px);
+}
+.zhong_pro .z_c_img .col-md-4 .ab_p1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 75px;
+	height: 35px;
+	background-color: #ee3431;
+	color: #fff;
+	line-height: 35px;
+	text-align: center;
+}
+.zhong_pro .z_c_img .program_img{
+	height: 220px;
+}
+.zhong_pro .z_c_img .col-md-4 .program_content{
+	float: left;
+	margin-top: 10px;
+	padding:0 20px;
+}
+.zhong_pro .z_c_img .col-md-4 .p_c_title{
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	line-height: 25px;
+	height: 50px;
+}
+.zhong_pro .z_c_img .col-md-4 .p_c_title a{
+	color: #333;
+}
+.zhong_pro .z_c_img .col-md-4 .p_c_attr{
+	font-size: 14px;
+	line-height: 20px;
+	height: 40px;
+}
+.zhong_pro .z_c_img .col-md-4 .program_zhongchou{
+	float: left;
+	margin-top: 15px;
+	width: 100%;
+}
+.zhong_pro .z_c_img .col-md-4 .program_zhongchou p{
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.zhong_pro .z_c_img .col-md-4 .w111{
+	float: left;
+	width: 37%;
+	margin-right: 3%;
+}
+.zhong_pro .z_c_img .col-md-4 .w112{
+	float: left;
+	width: 25%;
+	margin-left: 2%;
+	margin-right: 3%;
+}
+.zhong_pro .z_c_img .col-md-4 .w113{
+	float: left;
+	width: 25%;
+	margin-left: 2%;
+	margin-right: 3%;
+}
+
+.zhong_link .link_five{
+	float: left;
+	width: 20%;
+}
+.zhong_link .link_five .link_li{
+	float: left;
+	margin-bottom: 30px;
+}
+.zhong_link .link_five .link_li p{
+	float: left;
+	margin-right: 30px;
+	border: 2px solid #e5e5e5;
+	transition: all .1s ease-in-out;
+}
+.zhong_link .link_five .link_li p:hover{
+	border: 2px solid #c1c1c1;
+}
+
+
+.ico_title{
+	float: left;
+	padding:20px;
+	background-color: #fff;
+	margin-bottom: 20px;
+	border-radius: 2px;
+}
+.ico_title .ico_img{
+	position: relative;
+	width: 750px;
+	height: 370px;
+	float: left;
+}
+.ico_title .ico_img img{
+	width: 750px;
+	height: 370px;
+}
+.ico_title .ico_img .ab_p1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 75px;
+	height: 35px;
+	background-color: #ee3431;
+	color: #fff;
+	line-height: 35px;
+	text-align: center;
+}
+
+.ico_intro{
+	float: right;
+	width: 390px;
+}
+.ico_intro .intro_title{
+	margin-top: 10px;
+	font-size: 22px;
+	line-height: 32px;
+	height: 64px;
+	margin-bottom: 10px;
+}
+.ico_intro .ico_on{
+	width: 100%;
+	float: left;
+	margin-top: 25px;
+	padding: 10px;
+	font-size: 18px;
+	color: #fff;
+	background-color: #2fd7a3;
+	border-color: #2fd7a3;
+}
+
+.ico_left {
+	width: 770px;
+	float: left;
+}
+.ico_left .ico_content{
+	background-color: #fff;
+	float: left;
+	width: 100%;
+	padding: 20px;
+	border-radius: 2px;
+	min-height: 400px;
+}
+.ico_right {
+	width: 410px;
+	float: right;
+}
+.ico_right .ico_money{
+	background-color: #fff;
+	float: left;
+	width: 100%;
+	padding: 20px;
+	border-radius: 2px;
+}
+.ico_right .ico_tou{
+	background-color: #fff;
+	float: left;
+	width: 100%;
+	padding: 20px;
+	border-radius: 2px;
+	margin-top: 20px;
+}

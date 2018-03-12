@@ -1,0 +1,162 @@
+<!-- footer开始 -->
+<style type="text/css">
+    .right-float .phone{
+    position: relative;
+    float: left;
+    margin-bottom: 4px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+.right-float .phone i{
+    float: left;
+    width: 64px;
+    height: 64px;
+    background: url(__PUBLIC__/new/images/phone-1.png) no-repeat; 
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+}
+.right-float .phone i:hover{
+    background: url(__PUBLIC__/new/images/phone.png) no-repeat; 
+    border: none;
+}
+.qun_cn { background-image:url('__PUBLIC__/new/images/down.png');background-repeat:no-repeat;background-position: 30% 80%;z-index: 89999; float: left;width: 100%;height: 23px;}
+.qun_cn:hover { background-image:url('__PUBLIC__/new/images/up.png');background-repeat:no-repeat;background-position: 30% 80%; color: #337ab7;}
+.qun_cn:hover .qun_cn_1{ color: #337cbf; }
+.qun_cn_n { display: none; position: absolute; top: 25px;left: -5px;width:200px; z-index: 99999;color: #f00;background-color: #fff;border: 1px solid #c1c1c1;padding:0px 0 0 3px;}
+.qun_cn_n p { border-bottom: 1px dashed #c1c1c1;padding: 3px; }
+.qrcode img { float: left; }
+.qrcode p { float: left; width: 100%;text-align: left;margin-top: 2px;line-height: 20px;font-size: 14px;}
+.link_footer { margin-bottom:40px;padding:0 150px; }
+.link_footer a { margin-right: 10px;color: #666; margin-bottom:10px;float: left;}
+</style>
+<div class="w10 all_footer">
+    <div class="w120 container footer-body footer">
+        <div class="col-md-12 link_footer">
+            <volist name = "link_info" id = "vo">
+            <a target="_blank" href="http://{$vo['url']}">{$vo.name}</a>
+            </volist>
+        </div>
+
+        <div class="col-md-2" style="width: 20%;padding-left: 55px;padding-right: 0;">
+            <p style="text-align: center;font-size: 22px;color: #ccdee3;">品牌介绍</p>
+            <a href="#" style="margin-top: 10px;float: left;"><img class="head-logo img-responsive" src="__PUBLIC__/new/images/123456.png" style="padding:0 20px;" /></a>
+        </div>
+
+        <div class="col-md-2" style="width: 20%;">
+            <p style="text-align: center;font-size: 22px;color: #ccdee3;">品牌社群</p>
+            <a style="color: #666;width: 50%;text-align: right;font-size: 18px;float: left;margin-top: 10px;" href="http://weibo.com/u/6305652324"><img src="__PUBLIC__/new/images/wei1.png" class="img-responsive" style="margin:0 auto;"></a>
+            <a style="color: #666;width: 50%;text-align: right;font-size: 18px;float: left;margin-top: 10px;"><img src="{$config.weixin|default="暂无"}" style="padding: 0 17px;" class="img-responsive" ></a>
+        </div>
+
+        <div class="col-md-5" style="margin-bottom: 10px;padding:0 35px;width: 41%;">
+            <p style="font-size: 22px;color: #ccdee3;padding-left: 0px;">联系我们</p>
+            <p style="color: #666;font-size: 14px;width: 50%;float: left;margin-top: 10px;line-height: 23px;">
+                <span style="float: left;color: #a59f9f;">
+                    客服电话：{$config.tel|default="暂无"}
+                </span>
+                <span style="float: left;color: #a59f9f;">
+                    合作邮箱：{$config.business_email|default="暂无"}
+                </span>
+                <span style="float: left;color: #a59f9f;">
+                    官方Q群：{$config.qqqun1|default="暂无"}
+                </span>
+            </p>
+            <p style="color: #666;font-size: 14px;width: 50%;float: left;margin-top: 10px;line-height: 23px;">
+                <span style="float: left;color: #a59f9f;">
+                    客服邮箱：{$config.email|default="暂无"}
+                </span>
+                <span style="float: left;color: #a59f9f;">
+                    举报邮箱：{$config.jb_email|default="暂无"}
+                </span>
+            </p>
+        </div>
+
+        <div class="col-md-2" style="position: relative;padding-top: 15px;">
+            <a href="http://wpa.qq.com/msgrd?v=3&uin={$config.qq1}&site=qq&menu=yes">
+            <img src="__PUBLIC__/new/images/kf111.png" class="img-responsive" ></a>
+        </div>
+
+        <div class="col-md-12" style="margin-top: 15px;">
+            <p class="footer-footer-ve" style="margin-top: 25px;">
+                {$config.copyright|default="暂无"}&nbsp;|&nbsp;<a href="http://www.miibeian.gov.cn" target="_blank" style="color: #999;">{$config.record|default="暂无"}</a>
+            </p>
+        </div>
+    </div>
+</div>
+<a href="http://www.alexa.cn/" hidden="hidden">alexa</a>
+<script type="text/javascript">
+    
+    $(function () {
+        $('.qun_cn').hover(function(){$('.qun_cn_n').show();},function(){$('.qun_cn_n ').hide()});
+    })
+</script>
+<!-- footer结束 -->
+
+<!-- <div class="right-float hide">
+    <div class="qq-ask">
+    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$config.qq1}&site=qq&menu=yes"><i></i></a>
+    </div>
+    <div class="qq-ask-m hide">
+       <img src="__PUBLIC__/new/images/kefu-bg.png">
+       <p>QQ在线客服</p>
+    </div>
+    <div class="phone">
+        <i></i>
+    <div class="phone-m hide">
+       <img src="__PUBLIC__/new/images/kefu-bg.png">
+       <p>{$config.tel|default="暂无"}</p>
+    </div>
+    </div>
+    <div class="weixin">
+        <i></i>
+    <div class="weixin-m hide">
+       <img src="__PUBLIC__/new/images/erweima.png">
+    </div>
+    </div>
+    <div class="back-up">
+        <i></i>
+    <div class="back-up-m hide">
+       <img src="__PUBLIC__/new/images/kefu-bg.png">
+       <p>返回顶部</p>
+    </div>
+    </div>
+</div> -->
+
+<!--     <script type="text/javascript">
+    $(function(){
+        /*右侧滚轮滚动*/
+        $(window).scroll(function(){
+            var topb=$(window).scrollTop();
+                if(topb>260) {
+                    $('.right-float').fadeIn();
+                }else{
+                    $('.right-float').fadeOut();
+                }
+        });
+        $('.right-float .back-up').click(function(){
+            $('html,body').animate({'scrollTop':0},500);
+        }); 
+        $('.qq-ask').mouseover(function(){
+            $('.qq-ask-m').stop().fadeIn();
+        }).mouseout(function(){
+            $('.qq-ask-m').stop().fadeOut();
+        }); 
+        $('.phone').mouseover(function(){
+            $('.phone-m').stop().fadeIn();
+        }).mouseout(function(){
+            $('.phone-m').stop().fadeOut();
+        }); 
+        $('.weixin').mouseover(function(){
+            $('.weixin-m').stop().fadeIn();
+        }).mouseout(function(){
+            $('.weixin-m').stop().fadeOut();
+        }); 
+        $('.back-up').mouseover(function(){
+            $('.back-up-m').stop().fadeIn();
+        }).mouseout(function(){
+            $('.back-up-m').stop().fadeOut();
+        }); 
+    });
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,108 @@
+﻿<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+<style type="text/css">
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+</style>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" style="background-color: #f5f5f5;border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 4px;">
+	<div class="col-md-3" style="background-color: #fff;min-height: 800px;margin-right: 10px;border:1px solid #e1e1e1;border-radius: 2px;">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+				<li class="active safe_8"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+				<li class="safe_9"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+				<li class="safe_10"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+				<li class="safe_11"><span class="span_11"></span><a href="{:U('Fill/index')}">网银支付日志</a></li>
+				<li class="safe_12"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+				<li class="safe_13"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+				<li class="safe_14"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!-- 				<li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+				<li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 safe-body" style="background-color: #fff;min-height: 800px;width: 72%;padding-left: 10px;border:1px solid #e1e1e1;border-radius: 2px;">
+		<div class="safe-name" style="font-size: 18px;margin-bottom:20px;">虚拟币转入</div>
+		<div class="w-f" style="font-size: 16px;line-height: 33px;padding-left: 10px;"><img src="{$currency.currency_logo}" style="width: 33px;height: 33px;margin-right: 5px;">{$currency.currency_name}({$currency.currency_mark})
+<!-- 		<span style="margin-left:50px;">{$currency.currency_name}总计:{$currency.count|default=0.00}</span>
+		<span style="margin-left:50px;">可用{$currency.currency_name}:{$currency.num|default=0.00}</span>
+		<span style="margin-left:50px;">冻结{$currency.currency_name}总计:{$currency.forzen_num|default=0.00}</span> -->
+		</div>
+
+		<div class="w-f" style="padding-left: 10px;margin-top: 35px;font-size: 16px;">
+			<p>这是您的钱包地址，请将您的<span style="color: #337cbf">{$currency.currency_name}</span>转入此地址：</p>
+			<p style="text-align: center;color: #f6c025;margin-top: 15px;">{$list['chongzhi_url']}</p>
+		</div>
+
+		<div class="w-f" style="padding-left: 10px;margin-top: 35px;font-size: 16px;">
+			<p style="line-height: 30px;">转入说明</p>
+			<p style="line-height: 30px;">1. 转入是自动的，转账需要整个网络进行确认，达到2个确认后您的会自动充值到您的账户中</p>
+			<p style="line-height: 30px;">2. 此地址是您的唯一且独自使用的转入地址，您可以同时进行多次充值</p>
+		</div>
+
+		<div class="ybc_list w-f">
+			<div class="ybcoin">
+				<h2 class="left" style="font-size: 16px;">转入记录</h2>
+				<div class="clear"></div>
+			</div>	
+		<table cellspacing="0" cellpadding="0" border="0" class="raise_list" align="center">
+			<thead>
+			<tr style="background-color: #f1f5f9;">
+				<th>记录ID</th>
+				<th>转入钱包地址</th>
+				<!-- <th>数量</th> -->
+				<th>确认数</th>
+				<th>发送时间</th>
+				<th>状态</th>
+			</tr>
+			</thead>
+			<tbody>
+			<volist name="chongzhi" id='vo'>
+            <tr id="btcin_box" class="btcin_new">
+                <td id="btcin_id">{$vo.id}</td>
+                <td id="btcin_wallet">{$vo.url}</td>
+               <!--  <td id="btcin_number">{$vo.num}</td> -->
+                <td id="btcin_created">{$vo.actual}</td>
+				 <td id="btcin_created">{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+                <td class="tableEnd" id="btcin_status"><eq name="vo.status" value='2'>确认中<else/>充值成功</eq></td>
+            </tr>
+			</volist>
+						</tbody>
+		</table>
+				{$page}
+				<input type="hidden" id="currency_id" value="{$currency.currency_id}">
+				<input type="hidden" id="currency_address" value="{$list['chongzhi_url']}">
+	</div>		
+	</div>
+</div>
+</div>
+<script>
+    setInterval("myInterval()",1000);//1000为1秒钟
+       function myInterval()
+       {
+
+	   	var id=$("#currency_id").val();
+		var addurl=$("#currency_address").val();
+		
+		
+           $.post('{:U('Pay/chongzhi_function')}',{currency_id:id,address:addurl},function(data){
+			   
+			   if(data.status==1){
+					
+				   location.reload();     
+			   }
+			})
+        }
+
+</script>
+<!-- body结束 -->
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>

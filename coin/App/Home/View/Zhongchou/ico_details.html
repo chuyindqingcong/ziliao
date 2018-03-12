@@ -1,0 +1,259 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/zhongchou.css">
+<style type="text/css">
+		.nav>li>a{ padding: 10px 35px; }
+		.programinfo { float: left;width: 100%; }
+		.programinfo h2{ margin-bottom:10px;font-size: 20px;margin-top: 0; }
+		.programinfo ins{display:inline-block;width:125px;text-align:right;background-color:#fff;color:#666;padding-right:10px;text-decoration:none;font-size: 14px;}
+		.programinfo .txt-pay-1{width: 80px;height: 26px;}
+		.programinfo .pay-m-1 p{ line-height: 28px;height: 28px; }
+		.programinfo .pay-recharge-btn { background-color: #337ab7;padding:3px 10px;color: #fff;margin-left: 40px;border-radius: 5px;}
+		.programinfo form{ margin-bottom: 0; }
+		.programinfo .btn-play-1{width:150px;height:30px;background-color:#337ab7;color:#fff;border-radius:5px;font-size:14px;display:inline-block;line-height:30px;text-align:center;border: none;margin-top: 15px;margin-left: 75px;}
+		.programinfo .btn-play-11{width:150px;height:30px;background-color:#337ab7;color:#fff;border-radius:5px;font-size:14px;display:inline-block;line-height:30px;text-align:center;border: none;margin-bottom: 10px;margin-top: 15px;}
+		.table>thead>tr>th { color: #fff; }
+		.tab-content img { max-width: 100%;height: auto; display: block}
+		.pay-m-2 { text-align: center; }
+	</style>
+<!-- <div class="w-f" style="border-top: 1px solid #c1c1c1;"></div> -->
+<div style="width: 100%;float: left;background-color: #f5f5f5;padding:20px 0;">
+	<div class="container" style="">
+		<div class="col-md-12 col-xs-12 ico_title">
+			<div class="ico_img">
+				<if condition="$list.status eq 0">
+				<p class="ab_p1">即将开始</p>
+				<elseif condition="$list.status eq 1" />
+				<p class="ab_p1" style="background-color: #32b16c;">进行中</p>
+				<elseif condition="$list.status eq 2" />
+				<p class="ab_p1" style="background-color: #ff0000;">已成功</p>
+				<elseif condition="$list.status eq 3" />
+				<p class="ab_p1" style="background-color: #c9c9c9;">已结束</p>
+				</if>
+				<img src="{$list.url2}">
+			</div>
+			<div class="ico_intro">
+				<p class="intro_title">{$list.title|default='认购项目'}</p>
+				<p style="font-size: 14px;color: #999;margin-bottom: 5px;">已筹到</p>
+				<p style="font-size: 36px;">{$list['num']-$list['deal']}&nbsp;&nbsp;&nbsp;<span>{$list.buy_mark}</span></p>
+				<div class="progress" style="height: 10px;margin-bottom: 12px;">
+					<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: {$list.percent}%;height: 10px;">
+						  	</div>
+				</div>
+				<p style="font-size: 14px;">众筹进度 {$list.percent}%<span style="float: right;"><eq name="vo.buy_sum" value="0">
+							{$vo.p_num}
+							<else />
+							{$vo.buy_sum|default='0'}
+							</eq>名支持者</span></p>
+				<p style="margin-top: 15px;line-height: 22px;height: 44px;">此项目需要在<span style="color: #ee3431;">{$list.end_time|date='Y年m月d日 H:i:s',###}</span>前,获得<span style="color: #ee3431;">{$list.num|default='0.00'}</span>{$list.buy_mark}金额的支持才可成功!</p>
+				<notempty name="list.end_data">
+				<p style="margin-top: 15px;">剩余 <span style="color: #ee3431;">{$list.end_data}</span> 天</p>
+				</notempty>
+				<a href="#ico_money" class="btn btn-default ico_on">我要支持</a>
+			</div>
+		</div>
+
+		<div class="ico_left">
+			<div class="ico_content">
+				<div>
+				  <!-- Nav tabs -->
+				  <ul class="nav nav-tabs" role="tablist">
+				    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">项目介绍</a></li>
+				    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">ICO细则</a></li>
+				    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">团队介绍</a></li>
+				    <li role="presentation"><a href="#baipi" aria-controls="baipi" role="tab" data-toggle="tab">项目白皮书</a></li>
+				  </ul>
+
+				  <!-- Tab panes -->
+				  <div class="tab-content" style="padding: 10px;">
+				    <div role="tabpanel" class="tab-pane active" id="home">
+				    	{$list.info}
+				    </div>
+				    <div role="tabpanel" class="tab-pane" id="profile">
+				    	{$list.rule}
+				    </div>
+				    <div role="tabpanel" class="tab-pane" id="messages">
+				    	{$list.term}
+				    </div>
+				    <div role="tabpanel" class="tab-pane" id="baipi" style="text-align: center;">
+				    	<notempty name="list.wenjian_url"><a  href="{$list.wenjian_url}">
+				    	<input type="button"  value="文件下载"  style="padding:8px 25px;height: 36px; background:#337cbf; color: #fff; border-radius: 5px;margin-top: 30px;border: none;" /></a></notempty>
+				    </div>
+				  </div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="ico_right">
+			<div class="ico_money" id="ico_money">
+	            <eq name='list.status' value='0'>
+	                <div class="programinfo programinfo2">
+	                    <h2>我要投资</h2>
+	                    <div class="pay-m-2">
+	                        <button type="button" class="btn-play-1" disabled="disabled">认购未开始</button>
+	                        <p>该项目已<strong>暂未开放</strong>不支持购买，请关注其他项目</p>
+	                    </div>
+	                </div>
+	            </eq>
+
+	            <eq name='list.status' value='1'>
+	                <notempty name="Think.session.USER_KEY_ID">
+	                    <div class="programinfo programinfo2">
+	                        <h2>我要投资</h2>
+	                        <form action="{:U('Zhongchou/run')}" method="post" id="buy_form">
+	                            <div class="pay-m-1">
+	                                <p>
+	                                    <ins>账户余额：</ins>
+	                                    <span id="myMon">{$buy_num|floatval="###"}</span>{$list.buy_mark}
+	                                    <a href="{:U('User/index')}" class="pay-recharge-btn">充值</a>
+	                                </p>
+	                                <p>
+	                                    <ins>认购数量：</ins>
+	                                      <input value="{$list.min_limit|default='0'}" class="txt-pay-1" id="num" name="num" type="number" onkeyup="sjmoney();"><span style="font-size:14px;color: #999;">&nbsp;&nbsp;个(最多购买{$list.min_limit|number_format=###,0}个)</span> 
+	                                </p>
+	                         
+	                                <p>
+	                                    <ins>实际支付金额：</ins>
+	                                    <span id="manjianhou">{$list['min_limit']*$list['price']|number_format=###,0}</span>{$list.buy_mark}
+	                                </p>
+	                            </div>
+	                            <div class="pay-m-2">
+	                                <input type="button" class="btn-play-1" id="zhongchourun" onclick="zhongchou();" value="众筹">
+	                            </div>
+	                        </form>
+	                    </div>
+	                    <else/>
+	                    <div class="programinfo programinfo2">
+	                        <h2>我要投资</h2>
+	                        <div class="pay-m-1">
+	                            <p style="text-align: center;">
+	                                <!-- <ins>账户余额：</ins> -->
+	                                暂未登录，<a href="{:U('Login/index')}">登录</a> 后查看
+	                            </p>
+	                        </div>
+
+	                    </div>
+	                </notempty>
+	            </eq>
+
+	            <eq name='list.status' value='2'>
+	                <div class="programinfo programinfo2">
+	                    <h2>我要投资</h2>
+	                    <div class="pay-m-2">
+	                        <button type="button" class="btn-play-11" disabled="disabled">认购结束</button>
+	                        <p>该项目已<strong>完成</strong>不支持购买，请关注其他项目</p>
+	                    </div>
+	                </div>
+	            </eq> 
+				<eq name='list.status' value='3'>
+	                <div class="programinfo programinfo2">
+	                    <h2>我要投资</h2>
+	                    <div class="pay-m-2">
+	                        <button type="button" class="btn-play-1" disabled="disabled">认购结束</button>
+	                        <p>该项目已<strong>完成</strong>不支持购买，请关注其他项目</p>
+	                    </div>
+	                </div>
+	            </eq>
+			</div>
+
+			<div class="ico_tou">
+	            <notempty name="Think.session.USER_KEY_ID">
+	                <div class="programinfo programinfo2 jilu">
+	                    <h2>投资记录</h2>
+	                    <table class="table table-hover" style=" width:100%; margin-top:10px;border:1px solid #ddd;">
+	                        <thead>
+	                        <tr style=" height:25px; background-color:#337ab7; color:#FFF;">
+	                            <th>次数</th>
+	                            <th>金钱</th>
+	                            <th>数量</th>
+	                            <th>总金额</th>
+	                        </tr>
+	                        </thead>
+	                        <tbody>
+	                        <volist name='log' id='vo' key='key'>
+	                            <tr>
+	                                <td>{$key}</td>
+	                                <td>{$vo.price|default='0.00'}</td>
+	                                <td>{$vo.num|default='0.00'}</td>
+	                                <td>{$vo.count|default='0.00'}</td>
+	                            </tr>
+	                        </volist>
+	                        </tbody>
+	                    </table>
+	                </div>
+	                <else/>
+	                <div class="programinfo programinfo2">
+	                    <h2>投资记录</h2>
+	                    <p class="pay-m-1" style="text-align:center;">暂未登录，<a href="{:U('Login/index')}">登录</a> 后查看</p>
+	                </div>
+	            </notempty>				
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+    $(".menu6").addClass("uc-current");
+    $(".pcinfotxtnav").children("li").on("click",function(){
+        var n =$(this).index();
+        $(this).addClass("current").siblings().removeClass("current");
+        if(n==0){
+            $("#info_1").show();
+            $("#info_2").hide();
+            $("#info_3").hide();
+        }
+        if(n==1){
+            $("#info_3").show();
+            $("#info_1").hide();
+            $("#info_2").hide();
+        }
+        if(n==2){
+            $("#info_2").show();
+            $("#info_1").hide();
+            $("#info_3").hide();
+        }
+    });
+</script>
+<script>
+    function zhongchou(){
+        var limit = {$list.limit};
+        var deal = {$list.deal};
+        var price = {$list.price};
+        var min_limit = {$list.min_limit};
+        var id={$id};
+        var buy_currency_id = {$list.buy_currency_id};
+        if($("#num").val()<min_limit){
+            layer.msg("认筹数量不能小于最小认筹数量",{offset: '40%'});
+            $("#num").val("");
+        }
+        if($("#num").val()>deal){
+            layer.msg("认筹数量不能超过剩余数量",{offset: '40%'});
+            $("#num").val("");
+        }
+        if($("#num").val()>limit){
+            layer.msg("认筹数量不能超过限购数量",{offset: '40%'});
+            $("#num").val("");
+        }
+       layer.confirm('确定认筹？', {
+  btn: ['确定','取消'], //按钮
+  offset:['30%'],
+  title: '提示'
+}, function(){
+  $.post("{:U('Zhongchou/run')}",{num:$("#num").val(),id:id,buy_currency_id:buy_currency_id},function(data){
+            layer.msg(data.info,{offset: '40%'});
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000);
+        })
+}, function(){
+  layer.msg('已取消',{offset: '40%'});
+});
+    }
+    function sjmoney(){
+        var price = {$list.price};
+        $("#manjianhou").text($("#num").val()*price);
+    }
+</script>
+<!--footer start-->
+<include file="App/Home/View/Public/new_footer.html"/>
+<!--footer end-->
+<!--footer end-->

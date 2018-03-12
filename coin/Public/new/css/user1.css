@@ -1,0 +1,124 @@
+.p1{
+	font-size: 0.28rem;
+	color: #666;
+	height: 0.96rem;
+	line-height: 0.96rem;
+	/*padding-left: 0.3rem;*/
+	border-bottom: 1px solid #dddddd;
+}
+.p2{
+	height: 0.68rem;
+	line-height: 0.68rem;
+	color: #333;
+	font-size: 0.24rem;
+	padding-left: 0.64rem;
+	border-bottom: 1px solid #dddddd;
+	background: #f6f6f6;
+}
+.p2 span{
+	margin-right: 1rem;
+
+}
+.p2 span:last-child{
+	margin-left: 0.8rem;
+}
+.p2 span:last-child{
+	margin-right: 0;
+}
+.ul1 li{
+	font-size: 0.24rem;
+	border-bottom: 1px solid #dddddd;
+	height: 100%
+}
+.ul1 li strong{
+	margin-left: 0.5rem;
+	width: 1.6rem;
+	display: inline-block;
+	padding:0.25rem 0;
+}
+.ul1 li span{
+	display: inline-block;
+	width: 1.5rem;
+	
+}
+.ul1 li span.span2{
+	margin-left: 1rem;
+}
+.ul1 li .bg-click{
+	display: inline-block;
+	width: 50px;
+	height: 7px;
+	background: url(../images/bg-click.png) no-repeat  right 0;
+	float: right;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+.ul1 li .bg-click1{
+	display: inline-block;
+	width: 50px;
+	height: 7px;
+	background: url(../images/bg-click.png) no-repeat right -7px;
+	float: right;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+.ul1 li .showAndhide {
+
+}
+.ul1 li .showAndhide a{
+	font-size: 0.24rem;
+	color: #000;
+	display: inline-block;
+	width: 2.47rem;
+	line-height: 0.86rem;
+	background-color: #f6f6f6;
+	border-right: 1px solid #dddddd;
+	float: left;
+	text-align: center;
+}
+.ul1 li .showAndhide a:first-child span{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	background: url(../images/load.png) no-repeat left center;
+	background-size: 100% 100%;
+	margin-left: 0;
+	vertical-align: middle;
+	margin-right: 0.1rem;
+}
+.ul1 li .showAndhide a:last-child{
+/*	 border: none */
+}
+
+
+.ul1 li .showAndhide a:nth-child(2) span{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	background: url(../images/up_1.png) no-repeat left center;
+	background-size: 100% 100%;
+	margin-left: 0;
+	vertical-align: middle;
+	margin-right: 0.1rem;
+}
+
+.ul1 li .showAndhide a:nth-child(3) span{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	background: url(../images/jiaoyi.png) no-repeat left center;
+	background-size: 100% 100%;
+	margin-left: 0;
+	vertical-align: middle;
+	margin-right: 0.1rem;
+}
+.footer{
+	
+	background: #f6f6f6;
+	font-size: 0.2rem;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+        text-align: center;
+	
+}

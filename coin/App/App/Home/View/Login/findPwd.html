@@ -1,0 +1,97 @@
+﻿<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/subpage.css">
+<style>
+    .top{ border-bottom:0; padding:10px 0;}
+    #main{ padding:0;}
+    .login_tongyi{ width:1000px; margin:0 auto; background-color: #fff;}
+    .ybc_footer{ text-align:center; color:#999; margin:30px 0;}
+	 .loginBox .login label.error{
+         float:inherit;
+         padding-left: 10px;
+     }
+    .error{
+        color: #999;
+    }
+</style>
+<div id="main" style="background-color: #f5f5f5;padding:10px 0;border-top: 1px solid #c1c1c1;">
+    <div class="mainbody login_tongyi">
+
+        <div class="bigcontainer">
+            <div class="left630">
+                <h2 class="user">忘记密码</h2>
+
+                <div class="loginBox">
+                    <form method="post" id="findPwdForm" jump-url="{:U('Index/index')}">
+                        <!-- 电子邮箱 -->
+                        <ul class="login">
+                            <li><label for="email">邮箱/手机号：</label><input type="text" class="loginValue" value="" name="email">
+                            </li>
+                            <li><label>验证码：</label><input class="loginValue" name="captcha" id="captcha">
+                                <img id="captchaimg" src="{:U('Login/showVerify')}">
+                                <a href="#" onclick="$('#captchaimg').attr('src', '{:U(\'Login/showVerify\')}?t='+Math.random())">看不清？</a></li>
+                            <li style="margin-bottom:15px;"><label>&nbsp;</label><input  type="button" value="找回密码" class="tijiao" style="border:0;background-color: #337cbf;"></li>
+                            <li><label>&nbsp;</label>已有账号&nbsp;<a href="{:U('Login/index')}">登录</a><span>没有{$config.name|default='本网站'}账号？&nbsp;<a href="{:U('Reg/reg')}" class="zhuce">注册一个</a></span></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$('.tijiao').click(function(){
+
+    var email=$('.loginValue').val();
+    var yzm=$('#captcha').val();
+    if(!email)
+    {
+        layer.msg("邮箱/手机号不能为空");
+        return false;
+    }
+
+    var myreg1 = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+    var myreg2 = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+    if(myreg1.test(email)||myreg2.test(email))
+    {
+        if(!yzm)
+        {
+            layer.msg("验证码不能为空");
+            return false;
+        }
+
+        $.post("{:U('Login/findpwd')}",{'email':email,'yzm':yzm},
+            function(d){
+               layer.msg(d.info);
+
+               
+                if(d.stauts==1){
+                   
+                   window.location.href="{:U('Index/index')}";
+         }
+         else
+         {
+            
+         }
+        });
+                
+
+    }
+    else
+    {
+        layer.msg("邮箱/手机号格式不准确");
+        return false;
+    }
+
+    
+
+    
+
+
+})
+</script>
+
+<!--footer start-->
+<include file="App/Home/View/Public/new_footer.html"/>

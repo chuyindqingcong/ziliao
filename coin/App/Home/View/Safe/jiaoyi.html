@@ -1,0 +1,120 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" id="main" style="background-color: #f5f5f5;border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 20px;">
+	<div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 600px;margin-right: 16px;border-radius: 2px;">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+				<li><a href="{:U('Safe/index')}">安全中心</a></li>
+				<li><a href="{:U('Safe/shenfen')}">实名认证</a></li>
+				<li><a href="{:U('Safe/d_pass')}">登录密码</a></li>
+				<li><a href="{:U('Safe/j_pass')}">交易密码</a></li>
+				<li><a href="{:U('Safe/phone')}">手机更换</a></li>
+				<!-- <li><a href="{:U('Safe/change_email')}">邮箱更换</a></li>
+				<li><a href="{:U('Safe/email')}">邮件通知</a></li> -->
+				<li class="active"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 600px;width: 72%;padding-left: 10px;border-radius: 2px;">
+		<div class="safe-name">交易密码输入设置</div>
+		<div class="safe-identity">
+			<form class="form-horizontal" id="list">
+			  <div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="rd3" value="3"  >
+				    每次登陆只输入一次交易密码
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="rd1" value="1"  >
+				    每笔交易都输入交易密码
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="optionsRadios" id="rd2" value="2" >
+				    每次交易都不需要输入交易密码
+				  </label>
+				</div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-3 control-label"></label>
+			    <div class="col-sm-9 form-input">
+			      <input id="pwd" type="password" class="form-control" placeholder="请输入交易密码">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-3 col-sm-9">
+			      <button id="save" type="button" class="btn btn-default form-submit" style="margin-left:-20px;">保存设置</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<!-- body结束 -->
+<script type="text/javascript">
+function url_1123(which) {
+  var htmla= $(which).find("a").attr("href");
+  window.location = htmla;
+}
+</script>
+<include file="App/Home/View/Public/id-main-s.html"/>
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+var tag={$jykz};
+if(tag==3)
+{
+	$("#rd3").attr("checked","checked");
+}
+
+if(tag==2)
+{
+	$("#rd2").attr("checked","checked");
+}
+
+if(tag==1)
+{
+	$("#rd1").attr("checked","checked");
+}
+
+
+});
+	
+	$("#save").on('click',function(){
+	            var radionum = document.getElementById("list").optionsRadios;
+ 
+				 for(var i=0;i<radionum.length;i++){
+				 
+					 if(radionum[i].checked){
+					 
+					 optinon = radionum[i].value
+					 
+					 }
+				 }
+				var pwd=$('#pwd').val();
+				
+				$.post("{:U('Safe/jiaoyi')}",{'optinon':optinon,'pwd':pwd},
+                    function(d){  
+						
+                        layer.msg(d.info);
+						if(d.status==1){
+						       
+                        window.location.href="{:U('Safe/index')}";    
+            	 }
+						
+            });
+	            
+
+	        })
+		
+</script>

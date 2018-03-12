@@ -1,0 +1,180 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" id="main" style="background-color: #f5f5f5;border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 20px;">
+	<div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 600px;margin-right: 16px;border-radius: 2px;">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+				<li class="active safe_1" onclick="url_1123(this)"><span class="span_1"></span><a href="{:U('Safe/index')}">安全中心</a></li>
+				<li class="safe_2" onclick="url_1123(this)"><span class="span_2"></span><a href="{:U('Safe/shenfen')}">实名认证</a></li>
+				<li class="safe_5" onclick="url_1123(this)"><span class="span_5"></span><a href="{:U('Safe/d_pass')}">登录密码</a></li>
+				<li class="safe_4" onclick="url_1123(this)"><span class="span_4"></span><a href="{:U('Safe/j_pass')}">交易密码</a></li>
+				<li class="safe_6" onclick="url_1123(this)"><span class="span_6"></span><a href="{:U('Safe/phone')}">手机更换</a></li>
+				<!-- <li class="safe_7"><span class="span_7"></span><a href="{:U('Safe/change_email')}">邮箱更换</a></li> -->
+<!-- 				<li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+				<li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 600px;width: 72%;padding-left: 10px;border-radius: 2px;">
+		<div class="safe-name">安全中心</div>
+		<span class="safe-body-span">ID：{$u_info.member_id}</span>
+		<span class="safe-body-span">姓名：{$u_info.name}</span>
+		<!-- <span class="safe-body-span">邮箱：{$u_info.email}</span> -->
+		<!-- 手机未绑定 -->
+		<!--
+		<div class="col-md-6 safe-four safe-phone">
+			<p>手机未绑定</p>
+			<p><a class="green" href="{:U('Safe/phone')}">立即绑定</a></p>
+			<p>您可以享受手机相关的登陆、安全及提醒服务</p>
+		</div>
+		-->
+		<!-- 手机已绑定 -->
+		 <div class="col-md-6 col-xs-6 safe-four safe-phone-1">
+			<p>手机已绑定<a class="green" style="margin-left:15px;" href="{:U('Safe/phone')}">立即更换</a></p>
+			<p>{$u_info.phone}</p>
+			<p>您可以享受手机相关的登录、安全及提醒服务</p>
+		</div> 
+		<div class="col-md-6 col-xs-6 safe-four safe-pass">
+			<p style="margin-top:10px;"><a class="black" href="{:U('Safe/d_pass')}">修改密码</a></p>
+			<p>您可以通过原始密码修改密码</p>
+		</div>
+		<!-- 邮箱未绑定 -->
+		<empty name="u_info.email">
+		<div class="col-md-6 col-xs-6 safe-four safe-email">
+			<p>邮箱未绑定</p>
+			<p><a class="green" href="{:U('Safe/change_email')}">立即绑定</a></p>
+			<p>绑定后可以使用邮箱登录及保障账号安全</p>
+		</div>
+		<else/>
+	
+		 <div class="col-md-6 col-xs-6 safe-four safe-email-1">
+			<p>邮箱已验证<!-- <a class="green" style="margin-left:15px;" href="{:U('Safe/change_email')}">更换邮箱</a> --></p>
+			<p>{$u_info.email}</p>
+			<p>您可以享受手机相关的登录、安全及提醒服务</p>
+		</div> 
+		
+		</empty>
+		<div class="col-md-6 col-xs-6 safe-four safe-find">
+			<p style="margin-top:10px;"><a class="black" href="{:U('Login/findPwd')}">找回密码</a></p>
+			<p>可以通过邮件/手机找回密码</p>
+		</div>
+
+		<div class="safe-five w-f">
+			<p>Q Q登录<span class="safe-five-span">使用绑定QQ号码一键登录</span>
+				<if condition="$u_info['qqopenid'] eq true">
+					<span class="safe-five-right free" data-type="qqopenid"><a href="javascript:;">解除</a></span>
+					<else/>
+					<span class="safe-five-right qqbing"><a href="javascript:;">绑定</a></span>
+				</if>
+			</p>
+			<p>微信登录<span class="safe-five-span">微信扫码登录</span>
+
+				<if condition="$u_info['openid'] eq true">
+					<span class="safe-five-right free" data-type="openid"><a href="javascript:;">解除</a></span>
+				<else/>
+				<span class="safe-five-right wxbind"><a href="javascript:;">绑定</a></span>
+			</if>
+			</p>
+			<p>登录密码<span class="safe-five-span">登陆账户时所需要的密码</span>
+			<span class="safe-five-right"><a href="{:U('Safe/d_pass')}">修改登录密码</a></span></p>
+			<p>交易密码<span class="safe-five-span">在网站进行交易时所输入的密码</span>
+			<span class="safe-five-right"><a href="{:U('Safe/j_pass')}">修改交易密码</a></span></p>
+			
+			<if condition="$u_info['shenhestatus'] eq 3">
+
+			<p>身份认证<span class="safe-five-span">受国家要求及为了您的资金安全需进行的安全认证</span>
+			<span class="safe-five-right"><a href="{:U('Safe/shenfen')}">认证待审核</a></span></p>
+			
+			</if>
+
+			<if condition="$u_info['shenhestatus'] eq 2">
+
+			<p>身份认证<span class="safe-five-span">受国家要求及为了您的资金安全需进行的安全认证</span>
+			<span class="safe-five-right"><a href="{:U('Safe/shenfen')}">高级认证审核不通过,去认证</a></span></p>
+			
+			</if>
+			<if condition="$u_info['shenhestatus'] eq 0">
+
+			<p>身份认证<span class="safe-five-span">受国家要求及为了您的资金安全需进行的安全认证</span>
+			<span class="safe-five-right"><a href="{:U('Safe/shenfen')}">高级认证</a></span></p>
+			
+			</if>
+			<if condition="$u_info['shenhestatus'] eq 1">
+
+			<p>身份认证<span class="safe-five-span">受国家要求及为了您的资金安全需进行的安全认证</span>
+			<span class="safe-five-right">已认证<a href="{:U('Safe/shenfen_tongguo')}">查看</a></span></p>
+			
+			</if>
+
+			
+			<!-- <p>邮件通知
+			<span class="safe-five-span glyphicon glyphicon-info-sign" style="color:#fe6855;"></span><span style="color:#97929d;margin-left:3px;">登录时邮件通知</span>
+			<span class="safe-five-span glyphicon glyphicon-info-sign" style="color:#fe6855;"></span><span style="color:#97929d;margin-left:3px;">资金转出时邮件通知</span>
+			<span class="safe-five-right"><a href="{:U('Safe/email')}">修改</a></span></p> -->
+			<!--
+			<p>手机绑定<span class="safe-five-span">未绑定手机，为了您的资金安全，建议您立即绑定</span>
+			<span class="safe-five-right"><a href="{:U('Safe/phone')}">绑定</a></span></p>
+			<!-- <p>手机绑定<span class="safe-five-span">已绑定手机：13635222222</span>
+			<span class="safe-five-right"><a href="{:U('Safe/phone')}">去修改</a></span></p> -->
+		</div>
+	</div>
+</div>
+</div>
+<!-- body结束 -->
+<script type="text/javascript">
+function url_1123(which) {
+  var htmla= $(which).find("a").attr("href");
+  window.location = htmla;
+}
+</script>
+<include file="App/Home/View/Public/id-main-s.html"/>
+<!-- footer开始 -->
+<script>
+    var openbakcll;
+    var windowopen=false; //窗口打开状态
+    var freeBindurl="{:U('Safe/freeBind')}";
+	$('.qqbing').click(function () {
+        windowopen=true;
+        var pwidth = window.screen.height/2;//屏幕宽度
+        var pheight = (window.screen.height/4);//屏幕高度获取
+        openbakcll=window.open("{:U('Login/qqlogin',array('bind'=>1))}","TencentLogin","width=450,height=320,menubar=0,scrollbars=1, resizable=1,status=1,titlebar=0,toolbar=0,location=1,left="+pwidth+",top="+pheight);
+	});
+    $('.wxbind').click(function () {
+        windowopen=true;
+        var pwidth = window.screen.height/2;//屏幕宽度
+        var pheight = (window.screen.height/4);//屏幕高度获取
+        openbakcll=window.open("{:U('Login/wxBind')}","TencentLogin","width=480,height=480,menubar=0,scrollbars=1, resizable=1,status=1,titlebar=0,toolbar=0,location=1,left="+pwidth+",top="+pheight);
+    });
+	function closelisten() {
+	    //检测窗口状态
+	    if(windowopen==true)
+	    {
+			if(openbakcll.closed==true)
+			{
+                windowopen=false;
+				window.location="{:U('Safe/index')}";
+			}
+        }
+    }
+    window.setInterval('closelisten()',1000);
+	$('.free').click(function () {
+	    var freetype=$(this).attr("data-type");
+		$.post(freeBindurl,{type:freetype},function (d) {
+			if(d.code==0)
+			{
+			    layer.msg("解除绑定成功！");
+                setTimeout(reboot,3000);
+			}else{
+			    layer.msg(d.error);
+			}
+        });
+    });
+	function reboot() {
+		//刷新当前页面
+        window.location="{:U('Safe/index')}";
+    }
+</script>
+<include file="App/Home/View/Public/new_footer.html"/>

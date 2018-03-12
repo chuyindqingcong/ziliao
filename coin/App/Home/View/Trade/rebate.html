@@ -1,0 +1,175 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+    <link href="__PUBLIC__/new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<style type="text/css">
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+.filtrate { float: left;padding: 6px 10px;background-color: #337cbf;color: #fff;border:none;border-radius: 4px;margin-top: -20px;margin-left:15px; }
+.filtrate:hover{ color: #fff;opacity: 0.8; }
+
+
+</style>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" style="border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 4px;">
+	<div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 600px;margin-right: 10px;border:1px solid #e1e1e1;">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;">
+				<li class="safe_8"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+				<li class="safe_9"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+				<li class="safe_10"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+				<li class="safe_11"><span class="span_11"></span><a href="{:U('User/cart_man')}">银行卡管理</a></li>
+				<li class="safe_12"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+				<li class="safe_13"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+				<li class="active safe_14"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!-- 				<li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+				<li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 600px;width: 72%;padding-left: 10px;border:1px solid #e1e1e1;">
+		<div class="safe-name" style="font-size: 16px;">收益记录</div>
+
+		<div class="right w-f">
+			<form id="cx" action="{:U('Trade/rebate')}" method="get" style="margin-top: 10px;padding-left: 10px;">
+                <!-- <select id="coninname" name="currency" style="height: 30px;">
+                    <volist name="culist" id="vo">		    
+                    <option value="{$vo['currency_id']|default=""}">{$vo['currency_id']|getCurrencynameByCurrency=###}对{$vo['trade_currency_id']|getCurrencynameByCurrency=###}</option>
+                    </volist> 
+                </select> -->
+               	<div class="form-group w-f" style="margin-top: 10px;">
+                <div class="input-group date form_date col-md-5 col-xs-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 240px;float: left;margin-right: 20px;">
+                    <input class="form-control" size="16" type="text" name="start" value="" readonly placeholder="请选择开始日期">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <div class="input-group date form_date col-md-5 col-xs-5" data-date="{$Think.get.endtime}" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 240px;float: left;">
+                    <input class="form-control" size="16" type="text" name="endtime" value="" readonly placeholder="请选择结束日期">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+				<input type="hidden" id="maimai" name="maimai" value="" />
+				<input value="提交" class="filtrate" type="submit">
+            </div>
+                
+			</form>
+        </div>
+
+		<table class="raise_list" align="center" border="0" cellpadding="0" cellspacing="0">
+	 		<thead>
+				<tr style="background-color: #f1f5f9;">
+					<!-- <th>订单号</th> -->
+					<th>用户</th>
+					<th>交易类型</th>
+					<th>成交时间</th>
+					<th>收益类型</th>
+					<th>成交数量</th>
+					<th>手续费</th>
+					<th>收益</th>
+					<th>状态</th>
+				</tr>
+				</thead>
+				<tbody>
+					<foreach name="list" item="vo">
+						<tr>
+							<!-- <td>{$vo.trade_no}</td> -->
+							<td>{$vo.member_id_bottom}</td>
+							<if condition="$vo['order_type'] eq 'buy'">
+                            <td style="color:green;">买入</td>
+                         <else/>
+                            <td style="color:red;">卖出</td>
+                        </if>
+							<td>{$vo.ctime|date='Y-m-d H:i:s',###}</td>
+							<td>
+							<if condition="$vo['order_type'] eq 'buy'">
+								 {$vo.currency_mark}
+                        	 	<else/>
+                           		￥
+                        	</if>
+							</td>
+							<td>{$vo.num}</td>
+							<td>{$vo.cfee}</td>
+							<td>{$vo.rebate}</td>
+							<td>
+								<if condition="$vo['status'] eq 1">
+                                <span style="color: green;">已到账</span>
+                                <else/>
+                                <span style="color: gray;text-align:center;">待审核</span>
+                            </if>
+							</td>
+							</tr>
+					</foreach>
+			<tbody>
+              </table>
+          <div class="page" style="width:100%; float:left;text-align: center;margin: 10px 0;">
+                    {$page}
+          </div>
+	</div>
+</div>
+</div>
+<!-- body结束 -->
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+<script>
+$(".menu2").addClass("uc-current");
+</script>
+<script>
+	function cexiao(_this){
+		layer.confirm('确定撤销委托？', {
+	  btn: ['确定','取消'], //按钮
+	  title: '撤销委托'
+	}, function(){
+	  $.post('{:U('Entrust/cancel')}',{status:-1,order_id:_this},function(data){
+				   if(data['status'] == 1){
+					   layer.msg(data['info']);
+					   setTimeout(window.location.reload(),1000);
+				   }else{
+					   layer.msg(data['info']);
+				   }
+			})
+	}, function(){
+	  layer.msg('已取消');
+	});
+
+	}
+</script>
+<script type="text/javascript" src="__PUBLIC__/new/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="__PUBLIC__/new/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        format: "yyyy-mm-dd ",
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+
+
+$(document).on("change",'select#status',function(){
+    var type=$(this).val();
+
+    $('#maimai').val(type);
+
+    $('#cx').submit();
+
+
+
+
+
+
+   
+ });
+
+</script>

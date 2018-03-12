@@ -1,0 +1,104 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<!-- 头部结束 -->
+
+<!-- body开始 -->
+<div class="w10" style="background-color: #f5f5f5;">
+<div class="w120 container" style="background-color: #fff;border:1px solid #d1d1d1;border-radius: 5px;margin: 12px auto;">
+  <div class="row" style="margin: 0;">
+    <div class="col-md-8">
+      <div class="news-list-banner">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <else />
+                    <li data-target="#carousel-example-generic" data-slide-to="{$i-1}"></li>
+                </if>
+            </volist>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                <div class="item active">
+                    <a href="http://{$vo.jump_url|default='#'}" target="_blank"><img src="{$vo.pic}" alt="{$vo.title}-{$i}" style="height:260px;"></a>
+                </div>
+                <else />
+                <div class="item">
+                    <a href="http://{$vo.jump_url|default='#'}" target="_blank"><img src="{$vo.pic}" alt="{$vo.title}" style="height:260px;"></a>
+                </div>
+                </if>
+            </volist>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-body">
+        <p class="news-list-po">您的位置：<a href="{:U('Index/index')}">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('Art/index',array('id'=>$cate['id']))}">{$cate.name}</a></p>
+        <div class="news-list-tab">
+          <a <if condition="$id eq 101">class="active"</if> href="{:U('Art/index',array('id'=>'101'))}">行业资讯</a>
+          <a <if condition="$id eq 102">class="active"</if> href="{:U('Art/index',array('id'=>'102'))}">币种动态</a>
+          <a <if condition="$id eq 103">class="active"</if> href="{:U('Art/index',array('id'=>'103'))}">平台公告</a>
+          <a <if condition="$id eq 104">class="active"</if> href="{:U('Art/index',array('id'=>'104'))}">最新政策</a>
+        </div>
+        <div class="news-list-eight w-f">
+        <volist name="list" id="vo">
+          <if condition="$vo.pic1 eq ''">
+          <div class="new-list-text w-f">
+            <p class="news-list-title"><a target="_blank" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,30}</a></p>
+            <div class="new-list-text-ten">
+              <p>{$vo.content|msubstr=0,90}</p>
+              <p class="news-list-num">
+              <span style="float:left;"><img src="__PUBLIC__/new/images/hangyenew-time.png">{$vo.add_time|date='Y-m-d',###}</span>
+              <span style="width:115px;"><img src="__PUBLIC__/new/images/views.jpg">阅读：{$vo.views}</span>
+              <span style="float:right;"><a target="_blank" href="{:U('Art/details',array('id'=>$vo['article_id']))}">阅读详情</a></span>
+              </p>
+            </div>
+          </div>          
+          <else />
+          <div class="new-list-img w-f">
+            <p class="news-list-title"><a target="_blank" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,30}</a></p>
+            <div class="new-list-img-two">
+            <img src="{$vo.pic1}" class="img-thumbnail" style="width:170px;height:130px;">
+            </div>
+            <div class="new-list-img-eight">
+              <p>{$vo.content|msubstr=0,90}</p>
+              <p class="news-list-num">
+              <span style="float:left;"><img src="__PUBLIC__/new/images/hangyenew-time.png">{$vo.add_time|date='Y-m-d',###}</span>
+              <span style="width:115px;"><img src="__PUBLIC__/new/images/views.jpg">阅读：{$vo.views}</span>
+              <span style="float:right;"><a target="_blank" href="{:U('Art/details',array('id'=>$vo['article_id']))}">阅读详情</a></span>
+              </p>
+            </div>
+          </div>
+          </if>
+        </volist>
+          <div class="news-page w-f">
+            {$page}
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div class="col-md-4">
+      <div class="news-list-ad w-f">
+        <a href="http://{$flash1.jump_url|default='#'}"><img src="{$flash1.pic}" class="img-responsive" alt="{$flash1.title}"></a>
+      </div>
+      <div class="news-list-hot w-f">
+        <p>热门文章</p>
+        <ul class="hot-news">
+          <volist name="hot" id="vo">
+          <li><a target="_blank" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,18}</a><span>{$vo.add_time|date='Y/m/d',###}</span></li>
+          </volist>
+        </ul>
+      </div>
+      <div class="news-list-ad w-f">
+        <a href="http://{$flash2.jump_url|default='#'}"><img src="{$flash2.pic}" class="img-responsive" alt="{$flash2.title}"></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- body结束 -->
+<!--footer start--> 
+<include file="App/Home/View/Public/new_footer.html"/>

@@ -1,0 +1,68 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+<style type="text/css">
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+</style>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" style="background-color: #f5f5f5;border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 4px;">
+	<div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 600px;margin-right: 10px;border:1px solid #e1e1e1;border-radius: 4px;">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+				<li class="safe_8"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+				<li class="safe_9"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+				<li class="safe_10"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+				<li class="active safe_11"><span class="span_11"></span><a href="{:U('Fill/index')}">网银支付日志</a></li>
+				<li class="safe_12"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+				<li class="safe_13"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+				<li class="safe_14"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!-- 				<li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+				<li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 safe-body col-xs-9" style="background-color: #fff;min-height: 600px;width: 72%;padding-left: 10px;border:1px solid #e1e1e1;border-radius: 4px;">
+		<div class="safe-name">第三方支付日志</div>
+
+		<div>
+			<table class="raise_list" id="Transaction" align="center" border="0" cellpadding="0" cellspacing="0">
+			<thead>
+			<tr style="background-color: #f1f5f9;">
+				<th>订单号</th>
+				<th>金额(rmb)</th>
+				<th>状态</th>
+				<th>充值时间</th>
+			
+			</tr>
+			</thead>
+			<tbody>
+			<volist name="list" id="vo">
+			<tr>
+				<td>{$vo.tradeno}</td>
+				<td>{$vo.num}</td>
+				<td><eq name="vo.status" value="1"><span style="color:#393">成功</span><else/><span style="color:#e55600">失败</span></eq></td>
+				<td>{$vo.ctime|date="Y-m-d H:i:s",###}</td>
+			
+			</tr>
+			</volist>
+			</tbody>
+									
+		</table>
+		<div class="page" style=" min-width:200px !important; float:right;">
+                    {$page}
+              </div>
+		</div>
+	</div>
+</div>
+</div>
+<!-- body结束 -->
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>

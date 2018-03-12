@@ -1,0 +1,259 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" id="main" style="background-color: #f5f5f5;border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 20px;">
+	<div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 800px;margin-right: 16px;border-radius: 2px;">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+				<li class="safe_1" onclick="url_1123(this)"><span class="span_1"></span><a href="{:U('Safe/index')}">安全中心</a></li>
+				<li class="active safe_2" onclick="url_1123(this)"><span class="span_2"></span><a href="{:U('Safe/shenfen')}">实名认证</a></li>
+				<li class="safe_5" onclick="url_1123(this)"><span class="span_5"></span><a href="{:U('Safe/d_pass')}">登录密码</a></li>
+				<li class="safe_4" onclick="url_1123(this)"><span class="span_4"></span><a href="{:U('Safe/j_pass')}">交易密码</a></li>
+				<li class="safe_6" onclick="url_1123(this)"><span class="span_6"></span><a href="{:U('Safe/phone')}">手机更换</a></li>
+				<!-- <li class="safe_7"><span class="span_7"></span><a href="{:U('Safe/change_email')}">邮箱更换</a></li> -->
+<!-- 				<li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+				<li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 800px;width: 72%;padding-left: 10px;border-radius: 2px;">
+
+		<div class="safe-name">实名认证:<span style="color:#ef4949;font-size:16px;margin-left: 8px;">已完成初级认证</span></div>
+		<div class="safe-identity">
+		<p style="margin-bottom: 30px;color: #999;margin-left: 80px;font-size: 16px;"><span style="border:1px solid #337cbf;padding:4px 12px;margin-right: 15px;color: #337cbf;border-radius: 4px;">高级认证</span>完成高级认证后，人民币每日提取上限提高至100万，可提币</p>
+			<form class="form-horizontal" id="shenfen">
+			  <div class="form-group" style="margin:0;padding-left: 50px;">
+			        <label style="border: 1px dashed #e6e6e6; overflow: hidden; position: relative; display: inline-block; width: 227px; height: 137px;margin-right: 25px;">
+					    <input type="file"  id="f1" style="display: none;" name="pic1" onchange="change1()" />
+						<img id="preview1" alt="" name="pic1" style="width: 100%;height: 100%" src="__PUBLIC__/new/images/zheng.jpg" />
+					</label>
+					<label style="border: 1px dashed #e6e6e6; overflow: hidden; position: relative; display: inline-block; width: 227px; height: 137px;margin-right: 25px;">
+					    <input type="file"  id="f2" style="display: none;" name="pic2" onchange="change2()" />
+						<img id="preview2" alt="" name="pic2" style="width: 100%;height: 100%" src="__PUBLIC__/new/images/fan.jpg" />
+					</label>
+					<label style="border: 1px dashed #e6e6e6; overflow: hidden; position: relative; display: inline-block; width: 227px; height: 137px;margin-right: 25px;">
+					    <input type="file"  id="f3" style="display: none;" name="pic3" onchange="change3()" />
+						<img id="preview3" alt="" name="pic3" style="width: 100%;height: 100%" src="__PUBLIC__/new/images/shou.jpg" />
+					</label>
+<!-- 			   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-3 control-label"></label>
+			    <div class="col-sm-9 form-input">
+					<label style="border: 1px solid #337cbf; overflow: hidden; position: relative; display: inline-block; width: 400px; height: 200px;margin-left: 7px;">
+					    <input type="file"  id="f2" style="display: none;" name="pic2" onchange="change2()" />
+						<img id="preview2" alt="" name="pic2" style="width: 100%;height: 100%" src="__PUBLIC__/new/images/fan.jpg" />
+					</label>
+			    </div>
+			   </div> -->
+			 <div style="margin-left: 60px;">
+			<p style="margin-top: 40px;">认证规范:</p>
+			<p style="color: red">手持证件照要求:手持身份证照片,五官清晰,证件信息清晰无遮挡,不可自拍!</p>
+			<p style="">证件上传要求:必须是彩色,证件文字清晰可见,可以是扫描件或者数码拍摄照片.</p>
+			<p style="">请上传格式为jpg、jpeg、png的照片，照片大小不超过2M.</p>
+			<p style="">高级实名认证审核需要1-3个工作日完成,请耐心等待.</p>
+			</div>
+
+			  <div class="form-group">
+			    <div class="col-sm-offset-3 col-sm-9" style="margin-left: 38%;">
+			      <button id="save" type="button" class="btn btn-default form-submit">提交</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<include file="App/Home/View/Public/id-main-s.html"/>
+<!-- body结束 -->
+<script type="text/javascript">
+function url_1123(which) {
+  var htmla= $(which).find("a").attr("href");
+  window.location = htmla;
+}
+</script>
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+<script type="text/javascript">
+	var zm='';
+	var fm='';
+	var shou='';
+	
+		$("#save").on('click',function(){
+
+
+	          
+			
+				if(!zm){layer.msg("请上传身份证正面");return;}
+				if(!fm){layer.msg("请上传身份证反面");return;}
+				if(!shou){layer.msg("请上传手持身份证正面");return;}
+
+				$.post("{:U('Safe/shenfen')}",{'zm':zm,'fm':fm,'shou':shou},
+                    function(d){  
+						
+                        layer.msg(d.info);
+						if(d.status==1)
+						{
+							window.location.href="{:U('Safe/index')}"; 
+						}
+            });
+	            
+
+	        })
+
+
+
+	function change1() {
+     var pic = document.getElementById("preview1");
+     var file = document.getElementById("f1");
+
+    var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+
+     // gif在IE浏览器暂时无法显示
+     if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
+         alert("图片的格式必须为png或者jpg或者jpeg格式！"); 
+         return;
+     }
+     var isIE = navigator.userAgent.match(/MSIE/)!= null,
+         isIE6 = navigator.userAgent.match(/MSIE 6.0/)!= null;
+
+     if(isIE) {
+        file.select();
+        var reallocalpath = document.selection.createRange().text;
+
+        // IE6浏览器设置img的src为本地路径可以直接显示图片
+         if (isIE6) {
+            pic.src = reallocalpath;
+         }else {
+            // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+             pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+             // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+             pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+         }
+     }else {
+        html5Reader1(file);
+     }
+    
+
+    
+
+}
+
+ function html5Reader1(file){
+     var file = file.files[0];
+
+     if(file.size>2*1024*1024)
+     {
+     	alert('上传图片不能大于2M');
+     	return false;
+     }
+     var reader = new FileReader();
+
+
+     reader.readAsDataURL(file);
+     reader.onload = function(e){
+         var pic = document.getElementById("preview1");
+         pic.src=this.result;
+
+         zm=pic.src;
+     }
+     
+ }
+
+ function change2() {
+    var pic = document.getElementById("preview2"),
+        file = document.getElementById("f2");
+
+    var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+
+     // gif在IE浏览器暂时无法显示
+     if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
+         alert("图片的格式必须为png或者jpg或者jpeg格式！"); 
+         return;
+     }
+     var isIE = navigator.userAgent.match(/MSIE/)!= null,
+         isIE6 = navigator.userAgent.match(/MSIE 6.0/)!= null;
+
+     if(isIE) {
+        file.select();
+        var reallocalpath = document.selection.createRange().text;
+
+        // IE6浏览器设置img的src为本地路径可以直接显示图片
+         if (isIE6) {
+            pic.src = reallocalpath;
+         }else {
+            // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+             pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+             // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+             pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+         }
+     }else {
+        html5Reader2(file);
+     }
+}
+
+ function html5Reader2(file){
+     var file = file.files[0];
+     if(file.size>2*1024*1024)
+     {
+     	alert('上传图片不能大于2M');
+     	return false;
+     }
+     var reader = new FileReader();
+     reader.readAsDataURL(file);
+     reader.onload = function(e){
+         var pic = document.getElementById("preview2");
+         pic.src=this.result;
+         fm=this.result;
+     }
+ }
+
+ function change3() {
+    var pic = document.getElementById("preview3"),
+        file = document.getElementById("f3");
+
+    var ext=file.value.substring(file.value.lastIndexOf(".")+1).toLowerCase();
+
+     // gif在IE浏览器暂时无法显示
+     if(ext!='png'&&ext!='jpg'&&ext!='jpeg'){
+         alert("图片的格式必须为png或者jpg或者jpeg格式！"); 
+         return;
+     }
+     var isIE = navigator.userAgent.match(/MSIE/)!= null,
+         isIE6 = navigator.userAgent.match(/MSIE 6.0/)!= null;
+
+     if(isIE) {
+        file.select();
+        var reallocalpath = document.selection.createRange().text;
+
+        // IE6浏览器设置img的src为本地路径可以直接显示图片
+         if (isIE6) {
+            pic.src = reallocalpath;
+         }else {
+            // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+             pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" + reallocalpath + "\")";
+             // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+             pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+         }
+     }else {
+        html5Reader3(file);
+     }
+}
+
+ function html5Reader3(file){
+     var file = file.files[0];
+     if(file.size>2*1024*1024)
+     {
+     	alert('上传图片不能大于2M');
+     	return false;
+     }
+     var reader = new FileReader();
+     reader.readAsDataURL(file);
+     reader.onload = function(e){
+         var pic = document.getElementById("preview3");
+         pic.src=this.result;
+         shou=this.result;
+     }
+ }
+</script>

@@ -1,0 +1,146 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/bootstrap.css">
+<script src="__PUBLIC__/Home/js/jquery-1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/echarts.js"></script>
+<style type="text/css">
+    a:hover { text-decoration:none; }
+
+    .table>.buy_table>tr>td{
+        border:none;
+    }
+
+    .table>tbody>tr>td{
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    .table>tbody>tr>td>a{
+        font-size: 14px;
+    }
+    .weituo-table>tbody>tr>td{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .record-table>tbody>tr>td{
+        padding-top: 7px;
+        padding-bottom: 7px;
+        text-align: center;
+    }
+    .record-table>thead>tr>th{
+        text-align: center;
+    }
+    .bi-name {
+        height: 583px;
+        border:1px solid #ebebeb;
+        background-color: #fff;
+        border-radius: 4px;
+        margin-left: 10px;
+        padding: 0 5px;
+        float: left;
+    }
+    .k_img{
+        border:none;
+        padding-top: 0px;
+    }
+    .weituo-table>thead>tr>th{
+        font-size: 14px;
+        color:#666;
+    }
+    .record-table>thead>tr>th{
+        font-size: 14px;
+        color:#666;
+    }
+    .mine-table>thead>tr>th{
+        font-size: 14px;
+        color:#666;
+        text-align: center;
+    }
+    .mine-table>tbody>tr>td{
+        padding-top: 6px;
+        padding-bottom: 6px;
+        text-align: center;
+    }
+
+    #zw{
+        visibility:hidden;
+    }
+    .line-select{
+        background-color:#21202d;
+        height: 40px;
+        padding-left: 5px;
+    }
+    .line-select button{
+        background-color:#000000;
+        color: #bbb;
+        height: 30px;
+        width: 71px;
+        border: 0;
+        border-left: 1px solid #282828;
+        border-top: 1px solid #282828;
+        margin-top: 5px;
+    }
+    .line-select .btn-select{
+        color: #418dcf;
+    }
+    .show-data{
+        color:white;
+        height: 20px;
+    }
+    .line-more{
+        display: inline-block;
+        background-color:#000000;
+        border-left: 1px solid #282828;
+        border-top: 1px solid #282828;
+        color: #bbb;
+    }
+    .maxall{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+   </style>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<input type="hidden" id="currency_id" value="{$Think.get.currency}">
+    <div class="container-fluid maxall">
+            <div class="col-md-12 maxall">
+                <div class="line-select maxall list-inline">
+                    <button data-time="kline_1m" class="">1分钟</button><button data-time="kline_3m">3分钟</button><button data-time="kline_5m">5分钟线</button><button data-time="kline_15m">15分钟线</button><button data-time="kline_30m">30分钟线</button><button data-time="kline_1h" class="btn-select">1小时线</button><button data-time="kline_8h">8小时线</button><button data-time="kline_1d">日线</button><button id="standard-line" class="btn-select">标线</button>
+                </div>
+
+                <div class="show-data line-select maxall">
+                    <div class="col-md-2">开盘：<span id="openmoney">0.00</span></div>
+                    <div class="col-md-2">收盘：<span id="closemoney">0.00</span></div>
+                    <div class="col-md-2">最高：<span id="heightmoney">0.00</span></div>
+                    <div class="col-md-2">最低：<span id="lowmoney">0.00</span></div>
+                    <div class="col-md-4">成交量：<span id="coinmember">0.00</span></div>
+                </div>
+            </div>
+    <div class="col-md-12 maxall">
+        <div id="container" style="height: 100%; min-width: 460px;">
+    </div>
+    </div>
+</div>
+<script src="__PUBLIC__/Home/js/echarts/columnar2.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.sidetool').hide();
+    });
+    var standard=1;
+    $('#standard-line').click(function () {
+        delete option['dataZoom'][0]['end'];
+        delete option['dataZoom'][0]['start'];
+        delete option['dataZoom'][1]['start'];
+        delete option['dataZoom'][1]['end'];
+        if(standard==1)
+        {
+            standard=0;
+            $('#standard-line').removeClass("btn-select");
+            option['legend']['selected']['MA10']=false;
+            myChart.setOption(option);
+        }else{
+            $('#standard-line').addClass("btn-select");
+            standard=1;
+            option['legend']['selected']['MA10']=true;
+            myChart.setOption(option);
+        }
+    });
+</script>

@@ -1,0 +1,385 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+      <script type="text/javascript" src="__PUBLIC__/home/js/ajax.js"></script> 
+      <script type="text/javascript" src="__PUBLIC__/home/js/Fnc.js"></script> 
+      <script type="text/javascript" src="__PUBLIC__/home/js/inputFormat.js"></script>
+ <style>
+ .pass_ybc{ min-height:400px !important;}
+ .my_add{ width: 100%;float: left;margin-bottom:15px;}
+ .my_add thead th{ text-align: center; padding: 10px 0;color: #333;}
+ .my_add tbody tr td{ text-align: center; padding: 12px 0;color: #333;}
+/* .btc_new,.btc_new td {background: #DDFFDD !important;}*/#cb_msg_box{background:#B50000;color:#FFF;display:none;text-align:center;padding:0px;}
+ .btn_turn{
+    padding:5px 20px;
+    background-color: #337cbf;
+    color: #fff;
+    border-radius:4px;
+    margin-top: 15px;
+    margin-left:35px;
+}
+.btn_turn:hover{
+    opacity: 0.8;
+    color: #fff;
+}
+.addition{
+    padding:5px 10px;
+    background-color: #337cbf;
+    color: #fff;
+    border-radius:4px;
+    margin-top: 15px;
+    margin-left:135px;
+    border:none;
+}
+.addition:hover{
+    opacity: 0.8;
+    color: #fff;
+}
+#rmb_out_ok{
+  padding-left: 150px;
+}
+#rmb_out_ok label{
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+}
+#rmb_out_ok input{
+  width:260px;
+  height: 30px;
+  border:1px solid #e1e1df;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+#rmb_out_ok select{
+  width:260px;
+  height: 30px;
+  border-radius: 5px;
+}
+#rmb_out_ok .form-group{
+  float: left;
+  width: 100%;
+}
+.inout_porm{
+  padding-left: 150px;
+}
+.inout_porm input{
+  width: 200px;
+  height: 30px;
+  float: left;
+}
+.inout_porm label{
+  width: 200px;
+  padding-top:0;
+  color: #ff0000;
+  height: 30px;
+  line-height: 30px;
+  
+}
+.inout_porm span{
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+}
+.inout_porm .con_confirm{
+  position: absolute;
+  top: 0;
+  right: 140px;
+  width: 100px;
+  text-align: center;
+  margin-left:10px;
+  padding:4px 8px;
+  background-color: #fff;
+  color: #337cbf;
+  border: 1px solid #337cbf;
+  border-radius: 4px;
+}
+.inout_porm .tianjia{
+  position: absolute;
+  top: 0;
+  right: 140px;
+    height: 25px;
+  line-height: 25px;
+  margin-left:10px;
+  padding:4px 8px;
+  color: #337cbf;
+  border-radius: 4px;
+}
+.inout_porm .tianjia img {
+  margin-right: 5px;
+  margin-top: -2px;
+}
+.inout_porm .con_confirm:hover{
+  opacity: 0.8;
+  color: #337cbf;
+  text-decoration:none;
+}
+.inout_porm .con_confirm_2{
+  float: left;
+  height: 36px;
+  margin-left:200px;
+  margin-top: 25px;
+  padding:4px 25px;
+  background-color: #337cbf;
+  color: #fff;
+  border: 1px solid #337cbf;
+  border-radius: 4px;
+}
+.inout_porm .con_confirm_2:hover{
+  opacity: 0.8;
+  color: #fff;
+}
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+
+ </style>
+
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" id="main" style="border-top:1px solid #c1c1c1;background-color: #f5f5f5;">
+<div class="w120 container" style="margin-top: 20px;">
+  <div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 1000px;margin-right: 16px;border-radius:2px;">
+    <div class="safe-ul w-f">
+      <ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+        <li class="safe_8" onclick="url_1123(this)"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+        <li class="safe_9" onclick="url_1123(this)"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+        <li class="active safe_10" onclick="url_1123(this)"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+        <li class="safe_11" onclick="url_1123(this)"><span class="span_11"></span><a href="{:U('User/cart_man')}">银行卡管理</a></li>
+        <li class="safe_12" onclick="url_1123(this)"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+        <li class="safe_13" onclick="url_1123(this)"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+        <li class="safe_14" onclick="url_1123(this)"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!--        <li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+        <li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 1000px;width: 72%;padding-left: 10px;padding-right: 10px;border-radius:2px;">
+    <div class="safe-name" style="font-size: 16px;">人民币CNY提现</div>
+        <div id="tagContent" class="passContent w-f">
+          <div class="tagContent selectTag" id="tagContent0">
+
+          <div class="w-f" style="background-color: #f3f7fa;margin:10px 0;padding:10px 20px;">
+             <p style="color: #337cbf;line-height: 30px;">提现须知：</p>
+             <p style="color: #999;line-height: 30px;">1.到账时间：银行卡提现24小时内到帐，周末及法定节假日申请提现，顺延至下一个工作日到账，在已汇出24小时后仍未收到款项，请及时联系客服。</p>
+             <p style="color: #999;line-height: 30px;">2.费率标准：提现手续费费率0.5 %，每笔提现最低收费2元；</p>
+             <p style="color: #999;line-height: 30px;">3.提现金额：单笔提现不低于￥100。单笔提现限额5万元；单日最大提现限额500000元。 </p>
+          </div>
+           
+           <form action="{:U('User/withdraw')}" method="post" id="drawform" jump-url="{:U('User/draw')}" class="form-horizontal inout_porm">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label" style="padding-top: 0;">提现银行卡：</label>
+                    <div class="col-sm-8" style="position: relative;">
+                      <select class="form-control" name="select_bank" id="select_bank" style="width: 200px;">
+                          <volist name="bank_info" id="vo">
+                            <option value="{$vo.id}">{$vo.bankname}:{$vo.cardnum|substr=0,4}****{$vo.cardnum|substr=-4,4}</option>
+                          </volist>                          
+                      </select>
+                      <a href="{:U('User/cart_man')}" class="tianjia" ><img src="__PUBLIC__/new/images/chilun.png" />银行卡管理</a>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label" style="padding-top: 0;">可用人民币：</label>
+                    <div class="col-sm-8">
+                      <span>￥<b style="color:#337cbf ">{$rmb.rmb}</b>元</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label" style="padding-top: 0;">提款金额(元)：</label>
+                    <div class="col-sm-8">
+                      <input style="display:none">
+                      <!-- for disable autocomplete on chrome -->
+                      <input class="sum form-control" name="money" id="money"  autocomplete="off" type="text" onkeyup="value=value.replace(/[^\d]/g,'');sjdz();">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label" style="padding-top: 0;">实际到帐(元)：</label>
+                    <div class="col-sm-8">
+                      <input class="sum form-control" id="true_daozhang" disabled="disabled" type="text">
+                      <!-- <span style="color:#f60;">手续费{$config.fee}%</span> -->
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label" style="padding-top: 0;">交易密码：</label>
+                    <div class="col-sm-8">
+                      <input class="sum form-control" name="pwdtrade" id="pwdtrade" autocomplete="off" type="password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label" style="padding-top: 0;">验证码：</label>
+                    <div class="col-sm-8" style="position: relative;">
+                      <input style="display:none" type="password">
+                      <!-- for disable autocomplete on chrome -->
+                      <input class="sum form-control" name="code" id="code" autocomplete="off" type="password">
+                      <input href="javascript:void(0)" class="confirm con_confirm"  value="获取验证码" id="msgt" data-key='off' onclick="sandPhone()" />
+                    </div>
+                  </div>
+                  <input style=" float:left; margin-right:103px;" class="con_confirm_2"  value="确认提交" type="submit">
+            </form>
+<script type="text/javascript">
+function url_1123(which) {
+  var htmla= $(which).find("a").attr("href");
+  window.location = htmla;
+}
+</script>
+<include file="App/Home/View/Public/id-main-s.html"/>
+            <script>
+        $("#drawform").validate({
+        rules: {
+          money:{
+            required: true,
+            min: 100,
+            max: 50000,
+            }, 
+          pwdtrade:"required", 
+          code:"required", 
+        },
+        messages: {
+          money:{
+            required: "请填写提现金额",
+            min: "提现金额最小100",
+            max: "提现金额最大50000",
+            },
+          
+          pwdtrade:"请填写交易密码",
+          code:"请填写验证码",
+        },
+        submitHandler:function(form){
+          ajax_submit_form(form)
+          return false;
+        },
+        invalidHandler: function() {  //不通过回调
+          return false;
+        }
+      });
+      function sjdz(){
+        var fee = {$config.fee};
+        var m ;
+        
+          m = $("#money").val()-$("#money").val()*fee*0.01;
+        
+        $("#true_daozhang").val(m);
+      }
+      </script>
+
+            <h2 class="choose_one">{$art.title}</h2>
+          </div>
+    </div>
+
+
+    <div class="ybc_list w-f">
+      <div class="ybcoin">
+        <h2 class="left" style="font-size: 14px;">提现记录</h2>
+        <div class="clear"></div>
+      </div>
+      <table class="raise_list" align="center" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+          <tr style="background-color: #f1f5f9;">
+            <th>记录ID</th>
+            <th>转入账户</th>
+            <th>转出数量</th>
+            <th>实际到账</th>
+            <th>操作时间</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <volist name="draw_info" id="vo">
+          <tr id="btc_box" class="btc_new" >
+            <td id="btc_id">{$vo.withdraw_id}</td>
+            <td id="btc_wallet">{$vo.cardnum}</td>
+            <td id="btc_number">{$vo.all_money}</td>
+            <td id="btc_fee">{$vo.money}</td>
+            <td id="btc_created">{$vo.add_time|date='Y-m-d H:i:s',###}</td>
+            <td class="tableEnd" id="btc_status"><eq name="vo.status" value="1">未通过<else/><eq name="vo.status" value="2">通过<else/>审核中</eq></eq></td>
+            <td><eq name="vo.status" value="3"><a href="javascript:void(0);" onclick="chexiao({$vo.withdraw_id});">撤销</a></eq></td>
+          </tr>
+          </volist>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+<!-- body结束 -->
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+<script>
+$("document").ready(function(){
+    //initProvinceCity($("#p1"),$("#c1"));
+    //$('#account').inputFormat('account');
+    // $('#money_rmb').inputFormat('amount');
+});
+</script> 
+
+  </div>
+  <div class="clear"></div>
+</div>
+<script>
+    $(".menu14").addClass("uc-current");
+
+    function showTips(id,msg){
+        var tips = layer.tips(msg, id, {
+            tips: [1, '#fff8db'],
+            area: ['400px', '35px']
+        });
+        $(id).on('mouseout', function(){
+            layer.close(tips);
+        });
+    }
+</script>
+<script>
+function chexiao(id){
+    layer.confirm(
+    '确定撤销', 
+    {btn:['确定','取消']},
+    function(){
+      $.post("/Home/User/chexiaoByid",{"id":id},function(data){
+        if(data.status==0){
+            layer.msg(data['info']);
+            window.location.reload();
+          }else{
+            layer.msg(data['info']);
+            window.location.reload();
+          }
+      })
+    }
+    ),
+    function(){
+      layer.msg('已取消');
+    }
+    
+}
+function sandPhone(){
+    var phone="{$member.phone}";
+    
+    var i=120;
+        var tid2;
+        tid2=setInterval(function(){
+            if($("#msgt").attr("data-key")=='off'){
+                $("#msgt").attr("disabled",true);
+                $("#msgt").attr("style","width:150px;right:100px;");
+                i--;
+                $("#msgt").val(i+"秒后可重新发送");
+                if(i<=0){
+                    $("#msgt").removeAttr("disabled").val("重新发送验证码");
+                    $("#msgt").attr("data-key","on");
+                }
+            }
+        },1000);
+        
+            $.post("{:U('Common/ajaxSandPhone')}",{'phone':phone},
+                    function(d){
+                       layer.msg(d.info);
+                        if(d.status==1){
+                            i=120;
+                            $("#msgt").attr("data-key","off");
+               }
+            });
+    }
+  
+  </script>

@@ -1,0 +1,158 @@
+<include file="App/Admin/View/Public/left.html"/>
+<!-- <script type="text/javascript" charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/kindeditor/plugins/prettify.js"></script> -->
+ <link href="__PUBLIC__/ueditor/themes/default/css/ueditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+
+<script>
+	function checkForm(){
+		var name = document.getElementById('title').value;
+
+		if(name != ""){
+			document.getElementById('myform').submit();
+		}else{
+			alert('请填写标题');
+		}
+	}
+</script>
+<style type="text/css">
+  .insert-tab tr { line-height: 20px; }
+</style>
+<div class="main-wrap">
+  <div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font"></i><a href=":U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="javascript:void(0)" onclick="history.go(-1)">文章管理</a><span class="crumb-step">&gt;</span><span>新增文章</span></div>
+  </div>
+  <div class="result-wrap">
+    <div class="result-content">
+      <form action="{:U('Art/insert')}" method="post" id="myform" name="myform" enctype="multipart/form-data" >
+        
+        <table class="insert-tab" width="100%">
+          <tbody>
+            <tr>
+              <th width="120"><i class="require-red">*</i>分类：</th>
+              <td>
+              <eq name="category[0]['parent_id']" value="6">
+              	<select name="category_id" id="category_id" class="required" >
+                  <volist name="category" id="vo">
+                   <option value="{$vo.id}" <eq name="vo.id" value="$list.position_id">selected="selected"</eq>> {$vo.name}</option>
+                  </volist>
+                </select>           
+                <else />
+                {$category[0]['name']}
+                </eq>
+                </td>
+            </tr>
+            <input type="hidden" id="article_category_id" name="article_category_id" value="{$Think.get.article_category_id}">
+            <tr>
+              <th><i class="require-red">*</i>标题：</th>
+              <td><input class="common-text required" id="title" name="title" size="50" value="{$list.title}" type="text"></td>
+            </tr>
+             <tr>
+              <th>SEO关键字：</th>
+              <td><input class="common-text" id="seo" name="seo" size="50" value="{$list.seo}" type="text">**请使用英文","分割</td>
+            </tr>
+           
+		   <tr>
+              <th><i class="require-red"></i>图片：</th>
+              <td><input class="common-text required" id="picture" name="picture" size="50"  type="file"></td>
+            </tr>
+			
+			
+            <tr>
+            <th>是否标红</th>
+            <td>
+            <label><input type="radio" name="sign" value="1"/> 是</label>
+            <label><input type="radio" name="sign" value="0" checked="checked" /> 否</label>
+            </td>
+            </tr>
+
+            <tr>
+            <th>首页显时间</th>
+            <td>
+            <label>
+            <empty name="list.showdate">
+            <input type="date" name="showdate" value="" />
+            <else/>
+            <input type="date" name="showdate" value="{$list.showdate|date='Y-m-d',###}" />
+
+            </empty>
+
+
+            
+            </label>
+           
+            </td>
+            </tr>
+
+
+            
+            <tr>
+              <th>内容：</th>
+              <input type="hidden" value="{$list.article_id}" name="article_id">
+              <td>
+
+              <script type="text/plain" name="content" id="myEditor" style="width:1000px;height:240px;">
+                {:html_entity_decode($list['content'])}
+              </script>
+            </td>
+            </tr>
+            <tr>
+              <th></th>
+              <!--确定文章的类型-->
+              
+               <!--确定后台成功返回的url-->
+               <eq name="category[0]['parent_id']" value="6">
+               <!-- <input type="hidden" id="article_category_id" value="{$article_category['id']}"> -->
+               <input type="hidden" name="url" value="{:U('Art/helpindex')}">
+               <else />
+               <input type="hidden" name="category_id" value="{$category[0]['id']}">
+               <input type="hidden" name="url" value="{:U('Art/index',array('article_category_id'=>$category[0]['id']))}">
+               </eq>
+              <td><input class="btn btn-primary btn6 mr10" value="提交"  type="button" onclick="checkForm()" >
+                <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button"></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<!--/main-->
+
+</div>
+</body></html>
+<script>
+$(".sub-menu").eq(9).show();
+$("#myform").ready(function(e) {
+	var num = parseInt($("#article_category_id").val());
+	switch(num){
+		case 101:
+			$(".sub-menu").eq(9).children("li").eq(0).addClass("on");
+			break;
+		case 102:
+			$(".sub-menu").eq(9).children("li").eq(1).addClass("on");
+			break;
+		case 6:
+			$(".sub-menu").eq(9).children("li").eq(2).addClass("on");
+			break;
+      case 7:
+      $(".sub-menu").eq(9).children("li").eq(3).addClass("on");
+      break;
+      case 103:
+      $(".sub-menu").eq(9).children("li").eq(4).addClass("on");
+      break;
+      case 104:
+      $(".sub-menu").eq(9).children("li").eq(5).addClass("on");
+      break;
+		// default:
+		// 	$(".sub-menu").eq(9).children("li").eq(1).addClass("on");
+		}
+});
+var ue = UE.getEditor('myEditor');
+</script>

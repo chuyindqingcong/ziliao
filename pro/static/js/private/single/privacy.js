@@ -1,0 +1,1 @@
+var project={},objs=new obje;project.init=function(){},project.init();

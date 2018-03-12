@@ -1,0 +1,27 @@
+	<footer>
+			<div class="upfot">
+				<p>Copyright @ OPENIEX.INC</p>
+			</div>
+			<empty name="user_id">
+
+				<else/>
+					<div class="upfot2">
+						<if condition ="(LANG_SET eq 'en-us')">
+							<if condition ="(LANG_SET eq 'en-us')">
+								<i>{$Think.lang.english}</i>
+							<else/>
+								<i>{$Think.lang.chinese}</i>
+							</if>
+							<div class="language">
+								<i class="langs" data-lang='zh-cn'>中文</i>
+								<i class="langs" data-lang='en-us'>English</i>
+							</div>
+						<!-- <div class="sjx">
+
+						</div> -->
+					</div>
+				</empty>
+				 <span class="botSpan">{$Think.lang.total_btc}：<o class="userCount1">10000</o></span>
+				 <span class="botSpan"> 1TBC=$ <o class="userCount2">6300</o></span>
+				<span class="botSpan">{$Think.lang.user_online}：<o class="userCount"></o> </span>
+		</footer>

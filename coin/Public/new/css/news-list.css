@@ -1,0 +1,155 @@
+.w-f{ width: 100%;float: left; }
+.hwh-page-info a{color: #CCC;}.hwh-page-info a em{font-style: normal;margin: 0 2px;}
+.line { 
+	height: 1px;
+	border-bottom: 1px solid #dddddd;
+	
+}
+
+.news-list-body{
+	width: 100%;
+	float: left;
+	padding-right: 30px;
+}
+.news-list-body {
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+.news-list-po{
+	width: 100%;
+	float: left;
+	padding: 15px 0;
+	color: #707070;
+}
+.news-list-po a{
+	color: #707070;
+}
+.news-list-tab {
+	width: 100%;
+	float: left;
+	border-top: 1px solid #dddddd;
+}
+.news-list-tab a{
+	float: left;
+	font-size: 16px;
+	color: #707070;
+	padding: 10px 0px;
+	margin: 0 20px;
+}
+.news-list-tab .active{
+	color: #337cbf;
+	border-top: 2px solid #337cbf;
+	margin-top: -1px;
+}
+.news-list-eight{
+	padding-left: 15px;
+}
+.news-list-title{
+	float: left;
+	width: 100%;
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.new-list-img {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #dddddd;
+}
+.new-list-img-two {
+	width: 25%;
+	float: left;
+}
+.new-list-img-eight {
+	width: 75%;
+	float: left;
+}
+.new-list-img-eight p{
+	padding-top: 10px;
+	line-height: 22px;
+	color: #797979;
+}
+.news-list-num {
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+}
+.news-list-num span{
+	margin-right: 15px;
+}
+.news-list-num span img{
+	margin-bottom: 6px;
+	margin-right: 5px;
+}
+.news-list-num span a{
+	color: #797979;
+}
+.news-list-title a{
+	color: #333;
+}
+.new-list-text {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #dddddd;
+}
+.new-list-text-ten p{
+	padding-top: 10px;
+	line-height: 22px;
+	color: #797979;
+	float: left;
+	height: 54px;
+}
+
+.news-list-hot{
+	margin: 15px 0;
+	padding: 0 10px;
+}
+.news-list-hot p{
+	font-size: 16px;
+	color: #337cbf;
+	line-height: 35px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.hot-news {
+	padding: 0;
+}
+.hot-news li{
+	padding: 10px 0;
+	color: #666666;
+	border-bottom: 1px solid #dddddd;
+}
+
+.hot-news li a{
+	color: #666666;
+}
+.hot-news li span{
+	float: right;
+}
+.news-page{
+	text-align: center;
+}
+
+
+/*      内容页         */
+.news-con-body {
+	margin-bottom: 20px;
+}
+.con-po {
+	border-bottom: 1px solid #dddddd;
+}
+.con-mian .news-con-title{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 15px 0;
+}
+.con-con{
+	margin-top: 20px;
+}
+.next p {
+	margin-top: 10px;
+	font-size: 14px;
+}
+.next p a{
+	color: #29ace2;
+}

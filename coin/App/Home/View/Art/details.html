@@ -1,0 +1,80 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<style type="text/css">
+.bd_weixin_popup .bd_weixin_popup_foot { line-height: 15px; }
+.bd_weixin_popup .bd_weixin_popup_main { padding: 7px 10px; }
+.top-img { float: left;width: 100%;height: 90px;margin-bottom: 10px; background-color: #337cbf;}
+/*.con-con p {line-height: 25px;}
+.con-con p span { font-size: 14px;line-height: 25px; }*/
+/*.con-con p { text-indent:28px }*/
+</style>
+<!-- 头部结束 -->
+
+<!-- body开始 -->
+<div class="w10" id="main" style="background-color: #f5f5f5;border-top: 1px solid #c1c1c1;padding-top: 20px;">
+<div class="w120 container">
+  <div class="row" style="margin: 0;">
+    <div class="col-md-12 col-xs-12" style="padding:0px 0px 5px 0px;background-color: #fff;border-radius: 2px;margin-bottom:25px;">
+      <div class="news-con-body" style="padding:20px;float: left;">
+        <p class="news-list-po">您的位置：<a href="{:U('Index/index')}">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="{:U('Art/index',array('id'=>$cate['id']))}">{$cate.name}</a></p>
+        <div class="w-f con-mian">
+          <p class="news-con-title">{$art_one.title}</p>
+          <empty name="art_one.showdate">
+          <p style="padding-bottom:15px;border-bottom: 1px solid #dddddd;">发布时间：{$art_one.add_time|date='m-d',###}<!-- <span style="margin-left:20px;">浏览次数：{$art_one.views}</span> --></p>
+          <else/>
+           <p style="padding-bottom:15px;border-bottom: 1px solid #dddddd;">发布时间：{$art_one.showdate|date='m-d',###}<!-- <span style="margin-left:20px;">浏览次数：{$art_one.views}</span> --></p>
+          </empty>
+          <div class="con-con">
+            {$art_one.content}
+          </div>
+         <!--  <div class="w-f" style="margin-top:15px;">
+            <div class="bdsharebuttonbox"><span style="float:left;line-height:33px;font-size:16px;">分享：</span><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>
+            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"{$art_one.title}-{$config.title}","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["sqq","weixin","tsina","tqq"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+           -->
+          <div class="bdsharebuttonbox"><span style="float:left;line-height:33px;font-size:16px;">分享：</span>
+            <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友" style="background:url(__PUBLIC__/new/images/z_qq.png) no-repeat;width: 20px;height: 20px;"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background:url(__PUBLIC__/new/images/z_weixin.png) no-repeat;width: 20px;height: 20px;"></a>
+            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background:url(__PUBLIC__/new/images/z_kongjian.png) no-repeat;width: 20px;height: 20px;"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background:url(__PUBLIC__/new/images/z_weibo.png) no-repeat;width: 20px;height: 20px;"></a>
+            <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣" style="background:url(__PUBLIC__/new/images/z_duban.png) no-repeat;width: 20px;height: 20px;"></a>
+          </div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+        </div>
+          <div class="w-f next">
+              <notempty name="art_list">
+              <p><span>上一篇：</span><a href="{:U('Art/details',array('id'=>$art_list['article_id']))}">{$art_list.title}</a></p>
+              </notempty>
+              <notempty name="art_list1">
+              <p><span>下一篇：</span><a href="{:U('Art/details',array('id'=>$art_list1['article_id']))}">{$art_list1.title}</a></p>
+              </notempty>
+          </div>
+        </div>
+      </div>
+    </div>  
+<!--     <div class="col-md-4">
+      <div class="news-list-ad w-f">
+        <a href="http://{$flash1.jump_url|default='#'}"><img src="{$flash1.pic}" class="img-responsive" alt="{$flash1.title}"></a>
+      </div>
+      <div class="news-list-hot w-f">
+        <p>热门文章</p>
+        <ul class="hot-news">
+          <volist name="hot" id="vo">
+          <li><a target="_blank" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,18}</a><span>{$vo.add_time|date='Y/m/d',###}</span></li>
+          </volist>
+        </ul>
+      </div>
+      <div class="news-list-ad w-f">
+        <a href="http://{$flash2.jump_url|default='#'}"><img src="{$flash2.pic}" class="img-responsive" alt="{$flash2.title}"></a>
+      </div>
+    </div> -->
+</div>
+</div>
+<include file="App/Home/View/Public/id-main-s.html"/>
+<!-- <script type="text/javascript">
+    $(function () {
+        $('.con-con p span').removeAttr('style');
+    })
+</script> -->
+<!-- body结束 -->
+<!--footer start--> 
+<include file="App/Home/View/Public/new_footer.html"/>

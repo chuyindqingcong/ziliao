@@ -1,0 +1,14 @@
+<div class="container" style="padding:8px 10px;border-bottom: 1px solid #c1c1c1;">
+    <a href="#" style="width: 30%;float: left;"><img src="{$config.logo}" class="img-responsive"></a>
+    <div class="head_right">
+    <a href="{:U('Index/index')}" <if condition="$h_status eq 1">class="blue"</if>>货币交易</a>
+    
+    <empty name="session">
+        <a href="{:U('Login/index')}">登录</a>
+        <a href="{:U('Register/index')}">注册</a>              
+    <else />
+        <a href="{:U('User/jiaoyi')}" style="margin-right: 0.2rem;" <if condition="$h_status eq 2">class="blue"</if>>我的帐户</a>
+        <a href="{:U('User/memberCenter')}" <if condition="$h_status eq 3">class="blue"</if>>个人中心</a>
+    </empty>
+    </div>
+</div>

@@ -1,0 +1,460 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+      <script type="text/javascript" src="__PUBLIC__/home/js/ajax.js"></script> 
+      <script type="text/javascript" src="__PUBLIC__/home/js/Fnc.js"></script> 
+      <script type="text/javascript" src="__PUBLIC__/home/js/inputFormat.js"></script>
+ <style>
+ .pass_ybc{ min-height:400px !important;}
+ .my_add{ width: 100%;float: left;margin-bottom:15px;}
+ .my_add thead th{ text-align: center; padding: 10px 0;color: #333;}
+ .my_add tbody tr td{ text-align: center; padding: 12px 0;color: #333;}
+ .btc_new,.btc_new td {background: #DDFFDD !important;}#cb_msg_box{background:#B50000;color:#FFF;display:none;text-align:center;padding:0px;}
+ .btn_turn{
+    padding:5px 20px;
+    background-color: #337cbf;
+    color: #fff;
+    border-radius:4px;
+    margin-top: 15px;
+    margin-left:35px;
+}
+.btn_turn:hover{
+    opacity: 0.8;
+    color: #fff;
+}
+.addition{
+    padding:5px 10px;
+    background-color: #337cbf;
+    color: #fff;
+    border-radius:4px;
+    margin-top: 15px;
+    margin-left:10px;
+    border:none;
+}
+.addition:hover{
+    opacity: 0.8;
+    color: #fff;
+}
+#rmb_out_ok{
+  padding-left: 100px;
+}
+#rmb_out_ok label{
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+  width: 150px;
+}
+#rmb_out_ok input{
+  width:260px;
+  height: 30px;
+  border:1px solid #e1e1df;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+#rmb_out_ok select{
+  width:260px;
+  height: 30px;
+  border-radius: 5px;
+}
+#rmb_out_ok .form-group{
+  float: left;
+  width: 100%;
+}
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+
+.mine{ margin-top: 20px;padding: 15px 25px; border-radius: 5px;position: relative;margin-bottom: 10px;border:2px solid #fff;}
+.mine .delete { display: none;position: absolute;top: 10px;right: 15px; }
+.mine:hover{ border:2px solid #3b81c1;}
+.mine:hover .delete { display: block;}
+.de_a { color: #5c96cc;border-color: #5c96cc; }
+.de_a:hover { color: #fff;border-color: #5c96cc;background-color: #5c96cc; }
+
+.de_form input { width: 220px; }
+.delete_cart { background-color: #337cbf;border-color: #337cbf;color: #fff; width: 200px;margin-left: 50px;}
+.delete_cart:hover { background-color: #337cbf;border-color: #337cbf;color: #fff;opacity: 0.8;}
+
+.de_form .con_confirm{
+  position: absolute;
+  top: 0;
+  right: 30px;
+  width: 100px;
+  text-align: center;
+  margin-left:10px;
+  padding:4px 8px;
+  background-color: #fff;
+  color: #337cbf;
+  border: 1px solid #337cbf;
+  border-radius: 4px;
+}
+.de_form .con_confirm:hover{
+  opacity: 0.8;
+  color: #337cbf;
+  text-decoration:none;
+}
+ </style>
+
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" style="border-top:1px solid #c1c1c1;background-color: #f5f5f5;">
+<div class="w120 container" style="margin-top: 20px;">
+  <div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 1000px;margin-right: 16px;border-radius:2px;">
+    <div class="safe-ul w-f">
+      <ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+        <li class="safe_8" onclick="url_1123(this)"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+        <li class="safe_9" onclick="url_1123(this)"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+        <li class="safe_10" onclick="url_1123(this)"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+        <li class="active safe_11" onclick="url_1123(this)"><span class="span_11"></span><a href="{:U('User/cart_man')}">银行卡管理</a></li>
+        <li class="safe_12" onclick="url_1123(this)"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+        <li class="safe_13" onclick="url_1123(this)"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+        <li class="safe_14" onclick="url_1123(this)"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 1000px;width: 72%;padding-left: 10px;border-radius:2px;">
+    <div class="safe-name" style="font-size: 16px;">银行卡管理</div>
+        <div id="tagContent" class="passContent w-f" style="margin-top: 30px;">
+          <div class="tagContent selectTag" id="tagContent0">
+          <p style="color: #ff0000;text-align: center;margin-bottom: 15px;">该银行卡将用于您的人民币提现，为保证您的财政安全，请绑定本人的银行卡</p>
+           <table id="addNewAddr" class="add_list w-f" border="0" cellpadding="0" cellspacing="0" style="display:block"> 
+              <tbody>
+                <tr>
+                 <form action="{:U('User/insert')}" method="post" id="bankform" class="form-horizontal">
+                  <td colspan="4" id="newAddress" style="">
+                  <div id="rmb_out_ok">
+                        <!-- <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">新标签：</label>
+                          <div class="col-sm-9">
+                            <input name="new_label" id="new_label" placeholder="例：提现卡01" type="text">
+                            <span class="note">个人备注信息</span>
+                          </div>
+                        </div> -->
+                        <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">开户姓名：</label>
+                          <div class="col-sm-9">
+                            <input name="name" id="name" value="{$auth}" class="loginValue" disabled="disabled" type="text">
+                           <span class="false" id="accountmsg">与实名认证信息一致不可修改</span> </li>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">银行名称：</label>
+                          <div class="col-sm-9">
+                          <select name="bank" id="bank" class="loginValue" style="width:264px; border:1px solid #e1e1df;">
+                            <option selected="selected" value="">请选择银行</option>
+                            <!-- <option value="支付宝">支付宝</option> -->
+                            <option value="工商银行">工商银行</option>
+                            <option value="建设银行">建设银行</option>
+                            <option value="农业银行">农业银行</option>
+                            <option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+                            <option value="交通银行">交通银行</option>
+                            <option value="中国银行">中国银行</option>
+                            <option value="光大银行">光大银行</option>
+                            <option value="中信银行">中信银行</option>
+                            <option value="招商银行">招商银行</option>
+                            <option value="民生银行">民生银行</option>
+                            <option value="兴业银行">兴业银行</option>
+                            <option value="平安银行">平安银行</option>
+                            <option value="广发银行">广发银行</option>
+                            <option value="北京银行">北京银行</option>
+                            <option value="华夏银行">华夏银行</option>
+                            <option value="上海浦东发展银行">上海浦东发展银行</option>
+                            <option value="渤海银行">渤海银行</option>
+                            <option value="浙商银行">浙商银行</option>
+                            <option value="宁波银行">宁波银行</option>
+                            <option value="恒丰银行">恒丰银行</option>
+                            <option value="农村商业银行">农村商业银行</option>
+                            <option value="其它银行">其它银行</option>
+                            <option value="中国农业发展银行">中国农业发展银行</option>
+                          </select>
+                          </div>
+                          <span class="rePWB" id="bankmsg"></span> 
+                        </div>
+                        <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">银行卡所在地：</label>
+                          <div class="col-sm-9">
+                            <select  id="p1" style="width:130px; border:1px solid #e1e1df;">
+                            <option selected="selected" value="">省份</option>
+                            <volist name="areas" id='row'> 
+                            <option value="{$row['area_id']}" 
+                              <eq name="row.area_id" value="$list.province">selected="selected"</eq>>
+                              {$row['area_name']}
+                              </option>
+                            </volist>
+                          </select>
+                          <select id="c1" style="width:130px; border:1px solid #e1e1df;" onchange="city();">
+                            <option selected="selected" value="">城市</option>
+                          </select>
+                          <input type="hidden" name="shi" id="shi">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">开户支行：</label>
+                          <div class="col-sm-9">
+                            <input name="bank_branch" id="bank_branch" class="loginValue" style="font-size:14px;font-weight:bold;" type="text">
+                            <span class="false" style="color:#f00;">不能为空,如果没有请填"无"</span> </li>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="kh" class="col-sm-2 control-label">银行卡号：</label>
+                          <div class="col-sm-9">
+                            <input onkeyup="value=value.replace(/[^\d]/g,'')" name="account" id="account" class="loginValue" style="font-size:14px;font-weight:bold;" type="text">
+                            <span class="false" id="accountmsg" style="color:#f00;">银行卡号和开户姓名必须一致</span>
+                          </div>
+                        </div>
+                        <div class="form-group" id="yes_add">
+                          <label>&nbsp;</label>
+                          <input class="addition" onclick="checkform()" value="确认添加" type="button">
+ <script type="text/javascript">
+function url_1123(which) {
+  var htmla= $(which).find("a").attr("href");
+  window.location = htmla;
+}
+</script>                      
+<script>
+  function city(){
+    $("#shi").val($("#c1").val());
+  }
+  $("#p1").change(function(){
+  $.post("{:U('User/getCity')}",{'id':$("#p1").val()},function(data){
+    $("#c1").empty();
+    var area=new Option("请选择","");
+    $("#c1").append(area);
+    if(data.length>0){
+      for(var i=0;i<data.length;i++){
+        var option = new Option(data[i]["area_name"], data[i]["area_id"]);  
+        $("#c1").append(option);    
+    }
+    }else{
+      $("#c1").append("<option value='0'>没有相应城市信息</option>");
+    }
+    });         
+  });
+
+</script> 
+<script>
+function zfb(){
+  if($('#bank').val()=="支付宝"){
+    $('#kh').html('支付宝卡号：');
+    $('#accountmsgs').html('支付宝卡号和姓名必须一致，否则无法到账。');
+  }else{
+    $('#kh').html('银行卡号：');
+    $('#accountmsgs').html('银行卡号和开户姓名必须一致，否则无法到账。');
+  }
+}
+</script>
+                          
+<script>
+    $("#bankform").validate({
+        rules: {
+      new_label:"required",
+      
+      bank:"required",
+      
+      province:"required",
+      
+      city:"required",
+      bank_branch:"required",
+      account:{required:true,
+           rangelength:[16,19]
+           }
+        },
+        messages: {
+      
+      new_label:"请填写标签",
+      
+      bank:"请选择银行",
+      
+      province:"请选择有效省份",
+      
+      city:"请选择有效城市/区",
+      bank_branch:"请填写开户支行",
+      account:{required:"请输入银行卡号",
+           rangelength:"请输入有效卡号"}
+        },
+      submitHandler:function(form){
+            form.submit();
+            return false;
+        },
+        invalidHandler: function() {  //不通过回调
+            return false;
+        }
+    });
+</script>
+                          
+                          <span id="showMsg_address" style="color:red;">最多添加10条提款地址</span>
+                          </div>
+                      
+                  </div>
+                  </td>
+                  </form>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+    </div>
+
+
+<div class="w-f" style="margin-top: 20px;">
+    <div class="col-md-12"><p style="font-size: 16px;">我的银行卡<a class="btn btn-default de_a" href="{:U('User/cart_man')}" style="float: right;">+添加银行卡</a></p></div>
+    <volist name="bank" id="vo">
+      <div class="col-md-4 mine">
+          <a href="javascript:void(0)" class="delete" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" onclick="checkSuccess({$vo.id})"><img src="__PUBLIC__/new/images/delete1.png"></a>
+          <p style="font-size: 16px;margin-bottom: 20px;padding-left:5px;">{$vo.bname}-{$vo.bankname}</p>
+          <p style="font-size: 14px;padding-left:5px;margin-bottom: 4px;">卡号：{$vo.cardnum|substr=0,4}****{$vo.cardnum|substr=-4,4}</p>
+          <p style="font-size: 14px;padding-left:5px;margin-bottom: 4px;">户名：{$vo.cardname}</p>
+          <p style="font-size: 14px;padding-left:5px;margin-bottom: 4px;">城市：{$vo.aarea_name}-{$vo.barea_name}</p>
+          <p style="font-size: 14px;padding-left:5px;margin-bottom: 4px;">支行：{$vo.bank_branch}</p>
+      </div>
+    </volist>
+</div>
+
+  </div>
+</div>
+</div>
+<!-- body结束 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">删除银行卡</h4>
+      </div>
+      <div class="modal-body">
+          <form class="form-horizontal de_form" action="{:U('User/delete')}" method="post">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-3 control-label">真实姓名</label>
+              <div class="col-sm-8">
+                <input value="" type="text" class="form-control" id="d_name" name="name" placeholder="真实姓名" disabled>
+                <input type="hidden" class="form-control" id="d_id" name="id">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-3 control-label">银行卡卡号</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="d_cardsum" name="cardsum" placeholder="银行卡卡号" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-3 control-label">交易密码</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="d_password" name="password" placeholder="交易密码">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-3 control-label">认证手机号</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="phone" value="{$u_info.phone}" name="phone" placeholder="认证手机号" >
+              </div>
+            </div>
+            <div class="form-group" style="position: relative;">
+              <label for="inputPassword3" class="col-sm-3 control-label">手机验证码</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="code" name="code" placeholder="手机验证码">
+                <input href="javascript:void(0)" class="confirm con_confirm"  value="获取验证码" id="msgt" data-key='off' onclick="sandPhone()" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default delete_cart">删除该卡</button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+<script>
+        function checkSuccess(_this){
+            var id = _this;
+            $.post("{:U('User/ajaxBank')}",{'id':id},
+                    function(d){
+                        if(d.d_status==0){
+                            layer.msg(d.cardname);
+                        }else if (d.d_status==1) {
+                            $("#d_name").val(d.cardname);
+                            $("#d_cardsum").val(d.d_card);
+                            $("#d_id").val(d.id);
+                        }
+            });
+      }
+</script> 
+
+  </div>
+  <div class="clear"></div>
+</div>
+<script>
+    $(".menu14").addClass("uc-current");
+
+    function showTips(id,msg){
+        var tips = layer.tips(msg, id, {
+            tips: [1, '#fff8db'],
+            area: ['400px', '35px']
+        });
+        $(id).on('mouseout', function(){
+            layer.close(tips);
+        });
+    }
+</script>
+<script>
+function sandPhone(){
+    var phone= $('#phone').val();
+    if (phone!='') {
+    var i=120;
+        var tid2;
+        tid2=setInterval(function(){
+            if($("#msgt").attr("data-key")=='off'){
+                $("#msgt").attr("disabled",true);
+                $("#msgt").attr("style","width:150px;right:0px;");
+                i--;
+                $("#msgt").val(i+"秒后可重新发送");
+                if(i<=0){
+                    $("#msgt").removeAttr("disabled").val("重新发送验证码");
+                    $("#msgt").attr("data-key","on");
+                }
+            }
+        },1000);
+        
+            $.post("{:U('Common/ajaxSandPhone')}",{'phone':phone},
+                    function(d){
+                       layer.msg(d.info);
+                        if(d.status==1){
+                            i=120;
+                            $("#msgt").attr("data-key","off");
+               }
+            });
+      }else{
+        layer.msg("请填写手机号码");
+      }
+    }
+  
+  </script>
+
+  <script>
+function checkform(){
+
+        
+         
+        
+      
+       $.post("{:U('User/insert')}", $("#bankform").serialize(),function(data){
+           if(data.status==1){
+            layer.msg(data['info']);  
+            window.location.href="{:U('User/index')}"
+           }else{
+               // $('#tips').text(data['info']);
+              layer.msg(data['info']);
+               }
+        })
+
+
+     }
+
+
+</script>

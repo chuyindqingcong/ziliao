@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" media="screen and (max-width: 600px)" href="/Public/css/wallet/small.css?v=1bc5d4adfb" />
+	    <link rel="stylesheet" media="screen and (min-width: 601px) and (max-width: 1000px)" href="/Public/css/wallet/middle.css?v=fa400a1069" />
+	    <link rel="stylesheet" media="screen and (min-width: 1001px)" href="/Public/css/wallet/pc.css?v=f0e0db9ef7" />
+	    <link rel="stylesheet" href="/Public/css/comm/comm.css?v=749f7a5439" />
+	    <link rel="stylesheet" href="/Public/js/lib/iconfont/iconfont.css" />
+	    <link rel="stylesheet" href="/Public/js/lib/jqueryNanoscroller/nanoscroller.css" />
+	    <link rel="stylesheet" type="text/css" href="/Public/css/wallet/index.css?v=17383e735c"/>
+	</head>
+	<body>
+		<include file="App/Home/View/comm/header.html"/>
+		<input type="hidden" id="fees">
+		<div class="wrap">
+			<div class="mark">
+				<div class="tabH2">
+					<h2 class="tabColors">{$Think.lang.assets}</h2>
+					<h2>{$Think.lang.my_order}</h2>
+					<h2>{$Think.lang.my_trade_record}</h2>
+				</div>
+				<div class="tabcont">
+					<div class="amdwid">
+						<div class="amdLeft">
+							<div id="abut" class="nano1 nano">
+								<div class="nano-content midcli">
+									
+								</div>
+							</div>
+						</div>
+						<div class="amdRight">
+							<div class="smalld">
+								<span class="spsd">
+									<svg class="icon" aria-hidden="true">
+									  <use xlink:href="#icon-xiala1-copy"></use>
+									</svg>
+								</span>
+								<img src="/Public/img/coin001.png" alt="" class="odb3"/>
+								<h5><o class="odb1">BTC</o>钱包</h5>
+								<p><span class="odb2">0.0003</span> <o  class="odb1"></o></p>
+								<div class="divbut">
+									<span class="czz" data-status="0">{$Think.lang.deposit}</span>
+									<span class="txx tyso" data-status="0">{$Think.lang.withdrawal}</span>
+								</div>
+							</div>
+							<div>
+								<h6>{$Think.lang.recent_record}</h6>
+								<div class="qhs">
+									<svg class="icon iconc" aria-hidden="true" title="充值记录">
+									  <use xlink:href="#icon-iconfontyuan"></use>
+									</svg>
+									<svg class="icon" aria-hidden="true" title="提现记录">
+									  <use xlink:href="#icon-iconfontyuan"></use>
+									</svg>
+								</div>
+							</div>
+							<div class="abuts">
+								<div id="abut2" class="nano">
+										<div class="nano-content">
+											
+										</div>
+								</div>
+								<div id="abut3" class="nano" style="display: none;">
+										<div class="nano-content">
+											
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="display: none;">
+						<div class="btcsc">
+								<ul>
+									<li>{$Think.lang.date}</li>
+									<li class="iClickIcon" data-status = 0>{$Think.lang.price}(<o>BTC</o>)
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-xialajiantou"></use>
+										</svg>
+										<div class="icorDiv" id="coin1">
+											<ul>
+												
+											</ul>
+										</div>
+									</li>
+									<li>{$Think.lang.volume}</li>
+									<li>{$Think.lang.total}</li>
+									<li>{$Think.lang.cancel}</li>
+								</ul>
+								<div id="abut1" class="nano">
+									<div class="nano-content">
+										
+									</div>
+								</div>
+							</div>
+					</div>
+					<div style="display: none;">
+						<div class="btcsc">
+								<ul>
+									<li>{$Think.lang.date}</li>
+									<li class="iClickIcon" data-status = 0>{$Think.lang.price}(<o>BTC</o>)
+										<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-xialajiantou"></use>
+										</svg>
+										<div class="icorDiv" id="coin2">
+											<ul>
+
+											</ul>
+										</div>
+									</li>
+									<li>{$Think.lang.volume}</li>
+									<li>{$Think.lang.total}</li>
+									<li></li>
+								</ul>
+								<div class="nano" id="abut4">
+									<div class="nano-content">
+										
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hideDiv">
+			<div>
+				<div class="chong" style="display: none;">
+					<div class="typ">
+						<div class="czdz">
+							<span class="coinname">BTC</span> {$Think.lang.wallet_address}
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-guanbi"></use>
+							</svg>
+						</div>
+						<div class="czdzImg">
+							<div id="qrcode" class="qrcode"></div>
+						</div>
+						<div class="cop"><input type="text" id="aa" value="12ykhUFIASDHIADHAKDHKAHDUIAHDIUH29137"><span id="copy">
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-fuzhi"></use>
+							</svg>
+						</span></div>
+					</div>
+					<div class="tmc">
+						<div>
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-tishi1"></use>
+							</svg>
+						</div>
+						<h6>{$Think.lang.only_send} <o class="coinname">BTC</o> {$Think.lang.to_address}</h6>
+						<!--<span>发送非<o class="coinname">BTC</o>充值到<o class="coinname">BTC</o>地址后不可找回！</span>-->
+						<span>{$Think.lang.will_loss}</span>
+						<button type="button" id="shouch">{$Think.lang.show_address}</button>
+					</div>
+				</div>
+				<div class='tx <if condition="($is_bind eq 0)"><else/> ttpl </if>' style="display: none;">
+					<div class='typ'>
+						<div class="czdz">
+							<if condition ="(LANG_SET eq 'en-us')">
+								{$Think.lang.send_coin} <span class="coinName">BTC</span>
+							<else/>
+								<span class="coinName">BTC</span> {$Think.lang.send_coin}
+							</if>
+
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-guanbi"></use>
+							</svg>
+						</div>
+						<div class='txs'>
+							<label for="">{$Think.lang.recipient}:<span></span></label>
+							<div class="txsSave">
+								<input type="text" id="senInput"/>
+								<span id="addres">+</span>
+								<svg class="icon iconft" aria-hidden="true">
+								  <use xlink:href="#icon-xialajiantou"></use>
+								</svg>
+							</div>
+							<div class="ulisadd">
+									<ul>
+										
+									</ul>
+								</div>
+							<label for="">{$Think.lang.volume}:</label>
+							<div class="txtc">
+								<input type="text" id="chanCoin" />
+							</div>
+							<if condition="($is_bind eq 0)">
+							<else/>
+								<label style="color: red;font-size: 12px">通过输入您的谷歌验证代码,您申请的提现将立即将处理。</label>
+								<div class="txtc">
+									<input type="text" id="googles1" placeholder="输入谷歌验证码">	
+								</div>
+							</if>
+							<div class="txjs" style="margin-top: 16px">
+								<label for="">{$Think.lang.fees}</label>
+								<div>
+									<span class="fee">000000</span>
+									<span class="coinName">BTC</span>
+								</div>
+							</div>
+							<div class="txjs">
+								<label for="">{$Think.lang.total}:</label>
+								<div>
+									<span class="zjs">000000</span>
+									<span class="coinName">BTC</span>
+								</div>
+							</div>
+							<button type="button" class="utx">{$Think.lang.confirm}</button>
+						</div>
+					</div>
+				</div>
+				<div class="czzt" style="display: none;">
+					<div class="typ">
+						<div class="czdz">
+							<span class="coinname">充值详情
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-guanbi"></use>
+							</svg>
+						</div>
+						<div class="czxq">
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-xiazai"></use>
+							</svg>
+							<span>+<o class="czt1">0.52154000</o> BTC</span>
+						</div>
+						<div class="xqad">
+							<div>
+								<span>Address</span>
+								<p class="czt2">asdasdjkzckxzbckxzkcghsajgdjqw</p>
+							</div>
+							<div>
+								<span>Confirmations</span>
+								<p class="czt3">941</p>
+							</div>
+							<div>
+								<span>TxId</span>
+								<a href="" class="czt4">View Transaction</a>
+							</div>
+						</div>
+						<div class="xqad-time">
+								<p class="czt5">2017-07-21 13:51:50</p>
+						</div>
+					</div>
+				</div>
+				<div class="txzt" style="display: block;">
+					<div class="typ">
+						<div class="czdz">
+							<span class="coinname">提现详情
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-guanbi"></use>
+							</svg>
+						</div>
+						<div class="czxq">
+							<svg class="icon" aria-hidden="true">
+							  <use xlink:href="#icon-xiazai"></use>
+							</svg>
+							<span>-<o class="txt1">0.52154000</o> BTC</span>
+						</div>
+						<div class="xqad">
+							<div>
+								<span>Seed</span>
+								<p class="txt2">asdasdjkzckxzbckxzkcghsajgdjqw</p>
+							</div>
+							<div>
+								<span>To</span>
+								<p class="txt3">asdasdjkzckxzbckxzkcghsajgdjqw</p>
+							</div>
+							<div>
+								<span>Confirmations</span>
+								<p class="txt4">941</p>
+							</div>
+							<div>
+								<span>Fee</span>
+								<p class="txt5">941</p>
+							</div>
+							<div>
+								<span>TxId</span>
+								<a href="" class="txt6">View Transaction</a>
+							</div>
+						</div>
+						<div class="xqad-time">
+								<p class="txt7">2017-07-21 13:51:50</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hidebg">
+				
+			</div>
+		</div>
+		<input type="hidden" id="mess" data-cz="{$deposit}" data-tx="{$withdrawal}" data-qb="{$wallet}" data-dzzt="{$address_state}" data-copyOK="{$copy}" data-copyErr="{$copy_failed}" data-nodz = '地址未填写' data-nonum = '数值未填写'>
+		<include file="App/Home/View/comm/footer.html"/>
+		<script src="/Public/js/lib/jquery/jquery-3.2.1.min.js"></script>
+		<script src="/Public/js/lib/jqueryNanoscroller/jquery.nanoscroller.js"></script>
+		<script src="/Public/js/lib/iconfont/iconfont.js"></script>
+		<script src="/Public/js/lib/qrcode/jquery.qrcode.min.js"></script>
+		<script src="/Public/js/private/comm/comm.js?v=97294199b9"></script>
+		<script src="/Public/js/private/wallet/index.js?v=f305fbbc2d"></script>
+		<include file="App/Home/View/comm/count.html"/>
+	</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta property="wb:webmaster" content="8af72a3a7309f0ee">
+    <title><notempty name='article'>{$article.title}-</notempty>{$config.title|default="虚拟币交易网站"}</title>
+    <meta name="keywords" content="{$keywords}">
+    <meta name="description" content="{$description}">
+    <link rel="shortcut icon" href="/1.ico" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/index.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/news-list.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/app.css">
+    <!-- 旧版css -->
+    <!--     <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/subpage.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/user.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/coin.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/zcpc.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/iconfont/demo.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/iconfont/iconfont.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/jb_style.css"> -->
+
+    <script src="__PUBLIC__/new/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/new/js/bootstrap.min.js"></script>
+    <!-- 旧版js -->
+    <!--     <script src="__PUBLIC__/Home/js/hm.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.min.js"></script>
+    <script language="javascript" src="__PUBLIC__/js/alert.js"></script>
+
+    <!--
+<script src="__PUBLIC__/js/messages_zh.min.js"></script>
+
+    <script src="__PUBLIC__/js/base.js"></script>
+    <script src="__PUBLIC__/Home/js/script.js"></script> -->
+
+</head>
+<style type="text/css">
+    .page a{ padding: 4px 8px; background-color: #fff;color: #337ab7; border-radius: 3px;margin-right:4px;border:1px solid #e1e1e1;}
+    .page span{ padding:4px 8px; background-color: #fff;color: #337ab7;  border-radius: 3px;margin-right:4px;border:1px solid #e1e1e1;}
+    .page .current { background-color: #337ab7;color: #fff; border:none;}
+    .hover_user { float: left;text-align: center; border:1px solid #fff;border-bottom: none;background-image:url('__PUBLIC__/new/images/down.png');background-repeat:no-repeat;background-position: right;z-index: 1000;width: 126px;padding-top:2px;}
+    .asss:hover a{ border:1px solid #c1c1c1;border-bottom: 1px solid #fff; background-image:url('__PUBLIC__/new/images/up.png');background-repeat:no-repeat;background-position: right;background-color: #fff;}
+
+    .active_mon { display: none; position: absolute; top: 22px;right: 34px;width:400px; max-height: 260px;border:1px solid #c1c1c1;z-index: 100;background-color: #fff;border-top: none;background-image:url('__PUBLIC__/new/images/active_bg.png');background-repeat:no-repeat;padding-left: 15px;padding-bottom: 15px;font-size: 12px;}
+    .active_mon .mon_span { float: left;width: 100%; }
+    .active_mon .mon_span span{ float: left;width: 48%; line-height: 20px;height: 20px;margin:4px 0;}
+    .active_mon .mon_span img{ margin:0px 5px 0 0;float: left;}
+    .active_mon .mon_span b { font-weight: normal;width: 60px; float: left;}
+    .active_mon .mon_a_list{ float: left;width: 100%; margin-top: 10px;}
+    .active_mon .mon_a_list .mon_a { padding:3px 6px; background-color: #fff;color: #337ab7;border-radius: 3px;border-color: #337ab7 ; float: left;margin-right: 20px;background-image:none;width: 70px;text-align: center;}
+    .active_mon .mon_a_list .mon_a:hover { background-color: #337ab7;color: #fff;border-color: #337ab7 ; }
+
+    .con-deal { background-image:url('__PUBLIC__/new/images/down.png');background-repeat:no-repeat;background-position: right;z-index: 89999; }
+    .con_sss:hover .con-deal{ background-image:url('__PUBLIC__/new/images/up.png');background-repeat:no-repeat;background-position: right; color: #337ab7;}
+    .con_deal_n { display: none; position: absolute; top: 72px;left: 105px;width:150px; z-index: 99999;color: #f00;background-color: #fff;border: 1px solid #eee;border-top:2px solid #337ab7;}
+    .sjjj {display: inline-block;width: 0;height: 0;margin-left: 66px;vertical-align: middle;border-bottom: 6px solid #337ab7;border-right: 6px solid transparent;border-left: 6px solid transparent;position: absolute;top: -6px;cursor: pointer;}
+    .con_deal_n a { width: 100%;float: left;margin:0; font-size: 12px;border-bottom: 1px solid #eee;border-radius: 0;}
+    .con_deal_n a p img{ margin-right:5px;}
+
+    .nammer-isuser-content{
+        float: left;
+        position: absolute;
+        top: 25px;
+        left: 50%;
+        margin-left: 360px;
+        color: #333;
+        height: 250px;
+        width: 230px;
+        padding:15px 15px;
+        border:1px solid #d1d1d1;
+        border-radius: 5px;
+        background-color:rgba(255,255,255,0.6);
+    }
+    .nammer-isuser-content span{ line-height: 25px; }
+    .nammer-account-admin a{
+        float: left;
+        /*width: 50px;*/
+        width: 28%;
+        margin-right: 2%;
+        text-align: center;
+        color: #337cbf;
+        border-radius:3px; ;
+        line-height:30px;
+        background-color:white ;
+        border: 1px solid #337cbf;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .nammer-account-admin a:hover{
+        background-color:#337cbf;
+        color: white;
+    }
+    .orange{
+        color: #337cbf;
+    }
+    .contact_index a:hover{ opacity: 1.0; }
+
+    .table>tbody>tr>td { font-size: 12px;border:none; }
+</style>
+<body style="background-color: #fff;">
+<!-- 头部 -->
+
+<!-- 头部导航 -->
+<div class="w120 container" style="position: relative;padding-top: 10px;background-color: #fff;">
+    <div class="row" style="margin:0;">
+        <div class="col-md-3">
+            <a href="{:U('Index/index')}"><img class="head-logo img-responsive" src="{$config.logo}" /></a>
+        </div>
+        <div class="col-md-6" style="float: right;width: 530px;margin-right:10px;position: relative;">
+            <div class="head-nav">
+                <a href="{:U('Index/index')}">首页</a>
+                <!-- <a href="{:U('Index/aboutus')}">关于我们</a> -->
+                <div class="con_sss" style="float: left;"><a href="{:U('Orders/currency_trade')}" class="con-deal" style="padding-right: 16px;">交易中心
+                </a>
+                    <div class="con_deal_n">
+                        <div class="sjjj"></div>
+                        <volist name="currency_all" id="vo">
+                            <a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}" style="text-align: left;"><p><img src="{$vo.currency_logo}" style="width:25px; height:25px;">{$vo.currency_name|default='虚拟币'}({$vo.currency_mark|default=''})</p></a>
+                        </volist>
+                    </div>
+                </div>
+                <a href="{:U('User/index')}">财务中心</a>
+                <a href="{:U('Safe/index')}">安全中心</a>
+                <a href="{:U('Help/index')}">帮助中心</a>
+            </div>
+        </div>
+    </div>
+
+    <empty name="user_id">
+        <div class="head_kefu">
+            <!--  <a href="#" class="about_us_a">关于我们</a> -->
+            <a href="{:U('Reg/reg')}" class="btn btn-default head_kefu_a_1">注册</a>
+            <a href="{:U('Login/index')}" class="btn btn-default head_kefu_a_2">登录</a>
+        </div>
+        <else />
+        <div class="head_kefu" style="height: 26px;">
+            <div class="asss" style="float: left;margin-left: 40px;">
+                <a href="{:U('User/index')}" class="hover_user">您好，{$us_name}</a>
+                <div class="active_mon">
+                    <div class="mon_span" style="margin-top: 10px;">
+                        <span style="padding-left: 10px;">可用余额</span>
+                        <span style="padding-left: 10px;">委托冻结</span>
+                    </div>
+                    <div class="mon_span">
+                        <span><img src="__PUBLIC__/new/images/RMB.png" style="width:20px; height:20px;"><b>人民币</b>：<strong style="font-weight:normal;color: green;">{$member.rmb|default=0.00}</strong></span>
+                        <span><img src="__PUBLIC__/new/images/RMB.png" style="width:20px; height:20px;"><b>人民币</b>：<strong style="font-weight:normal;color: #337cbf;">{$member.forzen_rmb|default=0.00}</strong></span>
+                    </div>
+                    <volist name="currency_user" id="vo">
+                        <div class="mon_span">
+                            <span><img src="{$vo.currency_logo}" style="width:20px; height:20px;"><b>{$vo.currency_name|default='虚拟币'}</b>：<strong style="font-weight:normal;color: green;">{$vo.num|default=0.00}</strong></span>
+                            <span><img src="{$vo.currency_logo}" style="width:20px; height:20px;"><b>{$vo.currency_name|default='虚拟币'}</b>：<strong style="font-weight:normal;color: #337cbf;">{$vo.forzen_num|default=0.00}</strong></span>
+                        </div>
+                    </volist>
+                    <div class="mon_a_list">
+                        <a href="{:U('User/pay')}" class="mon_a">充值</a>
+                        <a href="{:U('User/draw')}" class="mon_a">提现</a>
+                        <a href="{:U('Entrust/manage')}" class="mon_a">委托管理</a>
+                        <a href="{:U('Trade/myDeal')}" class="mon_a">成交查询</a>
+                    </div>
+                </div>
+            </div>
+            <!--         <span>(UID: <b style="color: #337ab7;font-weight: normal;">{$Think.session.USER_KEY_ID}</b> )</span> -->
+
+            <!-- <a href="{:U('User/index')}" style="margin-left:15px;">财务中心</a> -->
+            <a href="{:U('Login/loginOut')}" style="float: left;line-height: 27px;">退出</a>
+
+        </div>
+    </empty>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        $('.asss').hover(function(){$('.active_mon').show();},function(){$('.active_mon ').hide()});
+        $('.con_sss').hover(function(){$('.con_deal_n').show();},function(){$('.con_deal_n').hide()});
+    })
+</script>
+
+<!-- 头部轮播 -->
+<div class="w10 banner">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <else />
+                    <li data-target="#carousel-example-generic" data-slide-to="{$i-1}"></li>
+                </if>
+            </volist>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                    <div class="item active">
+                        <a href="{$vo.jump_url|default='javascript:;'}"><img src="{$vo.pic}" alt="{$vo.title}-{$i}" style="height:300px;"></a>
+                    </div>
+                    <else />
+                    <div class="item">
+                        <a href="{$vo.jump_url|default='javascript:;'}" ><img src="{$vo.pic}" alt="{$vo.title}" style="height:300px;"></a>
+                    </div>
+                </if>
+            </volist>
+        </div>
+    </div>
+
+    <!--     <div class="banner-numble">
+            <p><img src="__PUBLIC__/new/images/num-person.png" />有超过<span>8</span><span>0</span><span>9</span><span>8</span><span>0</span><span>9</span>人正在操盘</p>
+        </div> -->
+    <!-- 登录框 -->
+    <empty name="user_id">
+        <div class="banner-input">
+            <form name="signupForm" method="post"  action="{:U('Login/checkLog')}">
+                <p>登录</p>
+                <span class="input-phone">
+                <img src="__PUBLIC__/new/images/input-phone.png">
+                <input type="" id="email" placeholder="请输入手机号" />
+                <span class="glyphicon glyphicon-remove-circle e_tips"></span>
+            </span>
+                <span class="input-pas">
+                <img src="__PUBLIC__/new/images/input-pas.png">
+                <input type="password"  id="password" placeholder="请输入密码" />
+                <span class="glyphicon glyphicon-remove-circle p_tips"></span>
+            </span>
+                <input type="button" onclick="checkform()" class="btn form-submit" value="登录"/>
+               <!--  <span class="form-three"><a class="form-new" href="{:U('Reg/reg')}">新用户注册</a><a href="{:U('Login/findPwd')}">忘记密码?</a></span> -->
+            </form>
+            <div class="form-other">
+                <span>
+                <a class="other-qq" href="{:U('Login/qqlogin')}"></a>
+                <a class="other-weixin" href="{:U('Login/wxLogin')}"></a>
+                <a style="float: right;color: #666;font-size: 12px;" href="{:U('Login/findPwd')}">忘记密码?</a>
+                </span>
+            </div>
+        </div>
+        <else/>
+        <div class="nammer-isuser-content" style="opacity: 1;">
+            <h4 style="text-align: left;margin-top: 5px;">欢迎使用第九交易网</h4>
+            <span>您正在使用的帐号为：</span>
+            <br />
+            <if condition="session('user.email') eq true">
+                <span class="orange">{$Think.session.user.email}</span>
+                <else/>
+                <span class="orange">{$Think.session.user.phone}</span>
+            </if>
+            <br />
+
+            <span>UID：</span> <span class="orange">{$Think.session.user.member_id}
+<!--              <if condition="session('user.cmoney') egt 2000000">
+            &nbsp<img src="__PUBLIC__/Home/images/vip.gif" alt="">
+            </if> -->
+            </span>
+            <br />
+            <span>总资产：</span> <span class="orange">￥{$Think.session.user.rmb|default="0.00"}</span>
+            <div class="nammer-account-admin" style="float: left;width: 100%;margin-top: 0px;">
+                <a href="{:U('User/pay')}" class="">充值</a>
+                <a href="{:U('User/draw')}" class="">提现</a>
+                <a href="{:U('Entrust/manage')}" class="" style="width: 70px;">委托管理</a>
+            </div>
+            <a href="{:U('User/index')}" class="btn btn-warning col-xs-12" style="background: #337cbf;border-color: #337cbf;">财务中心</a>
+        </div>
+    </empty>
+</div>
+<script type="text/javascript">
+$('#carousel-example-generic').carousel({
+    interval: 10000
+})
+</script>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w10" style="background-color: #f5f5f5;">
+    <div class="w120 container body" style="margin-top: 25px;margin-bottom: 15px;">
+        <div class="row" style="margin:0;">
+            
+            <div class="col-md-4" style="padding:0px;background-color: #fff;border:1px solid #f1f1f1;margin-right: 17px;width: 411px;border-radius: 2px;padding-bottom: 5px;">
+                <div class="col-md-5 hangye" style="width: 411px;">
+                    <p class="new_title">
+                        <span style="border-color: #08bd29;">行业资讯</span>
+                        <b></b>
+                        <a href="{:U('Art/index',array('id'=>'101'))}">更多></a>
+                    </p>
+                    <volist name="news" id="vo" offset="0" length='3'>
+                        <div class="new-first">
+                            <a style="float: left;width: 100%;color: #000;font-size: 16px;font-weight: bold;padding: 6px 0;" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,22}</a>
+                            <div class="bizhong-first-three">
+                                <img src="{$vo.pic2}">
+                            </div>
+                            <div class="bizhong-first-seven">
+                                <span class="bizhong-first-body col-xs-12">{$vo.art_sub}...</span>
+                            <p class="new-num" style="text-align: right;padding-right: 5px;">
+                            <span style="color: #999;"><img src="__PUBLIC__/new/images/hangyenew-time.png" style="margin-right: 5px;margin-bottom: 5px;">
+
+                            <empty name="vo.showdate">
+                                    {$vo.add_time|date='m/d',###}
+                                    <else/>
+                                    {$vo.showdate|date='m/d',###}
+                                    </empty>
+
+                            </span>
+                            </p>
+                            </div>
+                        </div>
+                    </volist>
+                    <div class="hangye-six">
+                        <ul class="hangye-ul">
+                            <volist name="news" id="vo" offset="3" length='10'>
+                                <li>
+
+                                <if condition="$vo['sign'] eq 1">
+                                    <a style="color: red" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,23}</a>
+                                    <else/>
+                                         <a href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,23}</a>
+                                    </if>
+
+
+                                
+                                <span>
+                                <empty name="vo.showdate">
+                                    {$vo.add_time|date='m/d',###}
+                                    <else/>
+                                    {$vo.showdate|date='m/d',###}
+                                    </empty>
+                                </span></li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>                
+            </div>
+
+            <div class="col-md-9" style="padding-left:6px;padding-right:6px;background-color: #fff;border:1px solid #f1f1f1;width: 448px;border-radius: 2px;padding-bottom: 5px;">
+                <div class="col-md-7 bizhong" style="float: left;width: 100%;padding-left: 0px;">
+                    <div class=" ">
+                        <p class="new_title">
+                            <span style="border-color: #08bd29;">币种动态</span>
+                            <b></b>
+                            <a  href="{:U('Art/index',array('id'=>'102'))}">更多></a>
+                        </p>
+                        <volist name="bizhong" id="vo" offset="0" length='1'>
+                        <div class="new-first">
+                            <a style="float: left;width: 100%;color: #000;font-size: 16px;font-weight: bold;padding: 6px 0;" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,23}</a>
+                            <div class="bizhong-first-three">
+                                <img src="{$vo.pic2}">
+                            </div>
+                            <div class="bizhong-first-seven">
+                                <span class="bizhong-first-body col-xs-12">{$vo.art_sub}...</span>
+                            <p class="new-num" style="text-align: right;padding-right: 0px;">
+                            <span style="color: #999;"><img src="__PUBLIC__/new/images/hangyenew-time.png" style="margin-right: 5px;margin-bottom: 5px;">
+
+                            <empty name="vo.showdate">
+                                    {$vo.add_time|date='m/d',###}
+                                    <else/>
+                                    {$vo.showdate|date='m/d',###}
+                                    </empty>
+
+                            </span>
+                            </p>
+                            </div>
+                        </div>
+                        </volist>
+                        <div class="bizhong-six">
+                            <ul class="bizhong-six-ul" >
+                                <volist name="bizhong" id="vo" offset="1" length='8'>
+                                    <li>
+                                    <if condition="$vo['sign'] eq 1">
+                                        <a style="color: red" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,22}</a>
+                                    <else/>
+                                        <a href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,22}</a>
+                                    </if>
+
+                                    
+                                    <span>
+                                    <empty name="vo.showdate">
+                                    {$vo.add_time|date='m/d',###}
+                                    <else/>
+                                    {$vo.showdate|date='m/d',###}
+                                    </empty>
+
+                                    </span></li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class=" ">
+                        <p class="new_title">
+                            <span style="border-color: #08bd29;">最新政策</span>
+                            <b></b>
+                            <a href="{:U('Art/index',array('id'=>'104'))}">更多></a>
+                        </p>
+                        <div class="bizhong-six">
+                            <ul class="bizhong-six-ul" style="border-bottom: none;padding-bottom: 1px;">
+                                <volist name="zhengce" id="vo">
+                                    <li>
+
+                                    <if condition="$vo['sign'] eq 1">
+                                     <a  style="color: red" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,22}</a>
+                                    <else/>
+                                         <a  href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,22}</a>
+                                    </if>
+
+
+                    
+                                   <span>
+
+                                    <empty name="vo.showdate">
+                                    {$vo.add_time|date='m/d',###}
+                                    <else/>
+                                    {$vo.showdate|date='m/d',###}
+                                    </empty>
+
+                                    </span></li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-3 bi" style="margin-left: 17px;width: 305px;">
+                <div class="bi-name" style="height: 431px;border: none;margin-bottom: 17px;background-color: #fff;border-radius: 2px;border:1px solid #f1f1f1;">
+                    <p class="new_title">
+                        <span>资产行情</span>
+                        <b></b>
+                    </p>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr style="background-color: #fff;">
+                            <th width="140" style="text-align: center;">币种名称</th>
+                            <th width="75">现价</th>
+                            <th width="80">24H涨跌</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name='currency' id='vo' empty='$empty'>
+                            <!-- <tr><td><img src="{$vo.currency_logo}" style="width:25px; height:25px;"><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}">{$vo.currency_name|default='虚拟币'}{$vo.currency_mark|default=''}</a></td>
+                            <eq name='vo.new_price_status' value='0'>
+                                <td class="dayred">{$vo.new_price|default='暂无'}↓</td>
+                            <else/>
+                                <td class="daygreen">{$vo.new_price|default='暂无'}↑</td>
+                            </eq>
+                            <gt name='vo.24H_change' value='0'>
+                                <td class="daygreen">{$vo.24H_change|default='0'}%↑</td>
+                            <else/>
+                                <td class="dayred">{$vo.24H_change|default='0'}%↓</td>
+                            </gt>
+                            </tr> -->
+
+
+                            <tr data-id="{$vo['currency_mark']}"><td><img src="{$vo.currency_logo}" style="width:25px; height:25px;"><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}"><!-- {$vo.currency_name|default='虚拟币'} -->{$vo.currency_mark|default=''}</a></td>
+                            <eq name='vo.new_price_status' value='0'>
+                                <td class="dayred">{$vo.new_price|default='暂无'}↓</td>
+                            <else/>
+                                <td class="daygreen">{$vo.new_price|default='暂无'}↑</td>
+                            </eq>
+                            <gt name='vo.24H_change' value='0'>
+                                <td class="daygreen">{$vo.24H_change|default='0'}%↑</td>
+                            <else/>
+                                <td class="dayred">{$vo.24H_change|default='0'}%↓</td>
+                            </gt>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="w-f index_ads_1" style="height: 340px;margin-bottom: 15px;">
+                    <p class="new_title">
+                        <span>平台公告</span>
+                        <b></b>
+                        <a href="{:U('Art/index',array('id'=>'103'))}">更多></a>
+                    </p>
+                    <div class="w-f" style="">
+                        <ul class="gonggao_ul" style="border-bottom: none;">
+                            <volist name="gonggao" id="vo">
+                                <li><a  href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,25}</a><span>{$vo.add_time|date='m/d',###}</span></li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+<!--                 <div class="w-f index_ads_1 contact_index" style="height: 317px;">
+                    <div class="contact_i">
+                        <p style="margin-top: 62px;font-size: 36px;text-align: center;">{$config.tel|default="暂无"}</p>
+                        <p style="margin-top: 12px;font-size: 16px;padding-left: 20px;">工作日:9点-19点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;节假日:9点-18点</p>
+                        <p style="margin-top: 4px;font-size: 16px;padding-left: 20px;">客服邮箱：{$config.email|default="暂无"}</p>
+                        <p style="margin-top: 4px;font-size: 16px;padding-left: 20px;">合作邮箱：{$config.email|default="暂无"} </p>
+                        <p style="margin-top: 4px;font-size: 16px;padding-left: 20px;">合作电话：{$config.tel|default="暂无"}</p>
+                        <p style="margin-top: 4px;font-size: 16px;padding-left: 20px;">举报邮箱：{$config.business_email|default="暂无"}</p>
+                        <p style="margin-top: 4px;font-size: 16px;padding-left: 20px;">举报电话：{$config.tel|default="暂无"}</p>
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$config.qq1}&site=qq&menu=yes" style="margin-bottom: 10px;float: left;"><img src="__PUBLIC__/new/images/QQ-kefu.png" style="width: 100px;height: 28px;float: left;margin-left: 20px;margin-top: 5px;"></a>
+                    </div>
+                </div> --> 
+<!--                 <div class="w-f index_ads_1">
+                    <p class="new_title">
+                        <span>活动</span>
+                    </p>
+                    <div style="float: left;width: 100%;">
+                        <div class="slider">
+
+                            <div class="slider-img">
+                                <ul class="slider-img-ul">
+                                    <li><img src="__PUBLIC__/new/images/slider-5.jpg"></li>
+                                    <li><img src="__PUBLIC__/new/images/slider-1.jpg"></li>
+                                    <li><img src="__PUBLIC__/new/images/slider-2.jpg"></li>
+                                    <li><img src="__PUBLIC__/new/images/slider-3.jpg"></li>
+                                    <li><img src="__PUBLIC__/new/images/slider-4.jpg"></li>
+                                    <li><img src="__PUBLIC__/new/images/slider-5.jpg"></li>
+                                    <li><img src="__PUBLIC__/new/images/slider-1.jpg"></li>
+                                </ul>
+                            </div>
+
+                        </div>                                               
+                    </div>
+                </div> -->
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- body结束 -->
+
+<!-- part-link开始 -->
+<!-- <div class="w120 container part">
+    <div class="part-body">
+        <p><img src="__PUBLIC__/new/images/part-bg.jpg" /></p>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+    </div>
+</div> -->
+<!-- <div class="w120 container link">
+    <div class="link-body">
+        <p><img src="__PUBLIC__/new/images/link-bg.jpg" /></p>
+        <volist name = "link_info" id = "vo">
+            <a target="_blank" href="http://{$vo['url']}">{$vo.name}</a>
+        </volist>
+    </div>
+</div> -->
+<!-- part-link结束 -->
+<script>
+    $('tbody tr').click(function () {
+       var currency=$(this).attr("data-id");
+       window.location='/Home/Orders/index/currency/'+currency;
+    });
+    function checkform(){
+
+
+        if($('#email').val()==""){
+            $('#email').focus();
+            return false;
+        }
+        if( $('#password').val()==''){
+            $('#password').focus();
+            return false;
+        }
+        var username=$('#email').val();
+        var passwd=$('#password').val();
+
+//        return true;
+        $.post("{:U('Login/checkLog')}", {'email':username,'pwd':passwd},function(data){
+            if(data.status==1){
+                //layer.msg(data['info']);
+                window.location.href="{:U('Index/index')}"
+            }else{
+                layer.alert(data['info'], {icon: 5});
+                $('.e_tips').fadeIn();
+                $('.p_tips').fadeIn();
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+    function timer(opj){
+        $(opj).find('ul').animate({
+            marginTop : "-3.5rem"
+        },500,function(){
+            $(this).css({marginTop : "0"}).find("li:first").appendTo(this);
+        })
+    }
+    $(function(){
+        var num = $('.notice_active').find('li').length;
+        if(num > 1){
+            var time=setInterval('timer(".notice_active")',3500);
+        }
+
+
+    });
+</script>
+<script type="text/javascript">
+(function($){
+
+  var xSlider = function(el, userConfig) {
+
+    var _this = this
+    this.el = el
+
+    // 参数配置
+    this.userConfig = userConfig
+    this.config = {
+      w: this.el.width(),
+      current: 0,
+      speed: 500,
+      intervalTime: 5000
+    }
+    if(userConfig != null) {
+      $.extend(this.config,this.userConfig);
+    }
+
+    // 保存查找dom元素
+    var slider_img = this.el.children('.slider-img')
+    var slider_img_ul = slider_img.children('ul')
+    var slider_img_ul_li = slider_img_ul.children('li')
+
+    // 初始化左右按钮
+    this.el.append('<a href="javascript:" class="slider-btn slider-btn-left">&lt;</a>')
+    this.el.append('<a href="javascript:" class="slider-btn slider-btn-right">&gt;</a>')
+    var slider_btn_left = this.el.children('.slider-btn-left')
+    var slider_btn_right = this.el.children('.slider-btn-right')
+
+    // 初始化圆点
+    this.el.append('<div class="slider-dot"><ul></ul></div>')
+    var slider_dot = this.el.children('.slider-dot')
+    var slider_dot_ul = slider_dot.children('ul')
+    var slider_img_length = slider_img_ul_li.length
+    for (var i = 0; i < slider_img_length - 2; i++) {
+      if(i === this.config.current){
+        slider_dot_ul.append('<li class="active"></li>')
+      } else {
+        slider_dot_ul.append('<li></li>')
+      }
+    }
+    var slider_dot_ul_li = slider_dot_ul.children('li')
+
+    // 初始化默认显示图片位置
+    slider_img_ul.css('left', - this.config.w * this.config.current - this.config.w)
+
+    // 圆点切换点亮
+    var active = function(i) {
+      slider_dot_ul_li.removeClass('active')
+      slider_dot_ul_li.eq(i).addClass('active')
+    }
+
+    // 右点击事件
+    slider_btn_right.on('click', function(event) {
+      event.preventDefault()
+      if(_this.config.current < slider_img_length - 2){
+        toggleInterval ()
+        _this.config.current ++
+        if(_this.config.current != slider_img_length - 2) {
+          slider_img_ul.stop(true, false).animate({left: - _this.config.w * _this.config.current - _this.config.w}, _this.config.speed, function () {
+            active(_this.config.current)
+          })
+        }
+        if (_this.config.current === slider_img_length - 2) {
+          slider_img_ul.stop(true, false).animate({left: - _this.config.w * _this.config.current - _this.config.w}, _this.config.speed, function() {
+            slider_img_ul.css('left', - _this.config.w)
+            _this.config.current = 0
+            active(_this.config.current)
+          })
+        }
+      }
+    })
+
+    // 左点击事件
+    slider_btn_left.on('click', function(event) {
+      event.preventDefault()
+      if(_this.config.current > -1){
+        toggleInterval ()
+        _this.config.current --
+        if(_this.config.current != -1){
+          slider_img_ul.stop(true, false).animate({left: - _this.config.w * _this.config.current - _this.config.w}, _this.config.speed, function() {
+            active(_this.config.current)
+          })
+        }
+        if(_this.config.current === -1){
+          slider_img_ul.stop(true, false).animate({left: 0}, _this.config.speed, function() {
+            slider_img_ul.css('left', - _this.config.w * (slider_img_length - 2))
+            _this.config.current = slider_img_length - 3
+            active(_this.config.current)
+          })
+        }
+      }
+    })
+
+    // dot点击事件
+    slider_dot_ul_li.on('click', function(event) {
+      event.preventDefault()
+      toggleInterval ()
+      var index = $(this).index()
+      active(index)
+      slider_img_ul.stop(true, false).animate({left: - _this.config.w * index - _this.config.w}, _this.config.speed, function() {
+        _this.config.current = index
+      })
+    })
+
+    // 自动切换
+    var sliderInt = setInterval(sliderInterval, _this.config.intervalTime)
+    // 判断图片切换
+    function sliderInterval() {
+      if (_this.config.current < slider_img_length - 2) {
+        _this.config.current ++
+        slider_img_ul.stop(true, false).animate({left: - _this.config.w * _this.config.current - _this.config.w}, _this.config.speed, function() {
+          active(_this.config.current)
+          if (_this.config.current === slider_img_length - 2) {
+            slider_img_ul.css('left', - _this.config.w)
+            _this.config.current = 0
+            active(_this.config.current)
+          }
+        })
+      }
+    }
+    // 重置计时器
+    function toggleInterval () {
+      clearInterval(sliderInt)
+      sliderInt = setInterval(sliderInterval, _this.config.intervalTime)
+    }
+
+  } // --end-- xSlider
+
+  $.fn.extend({
+    xSlider: function() {
+      new xSlider($(this))
+    }
+  })
+
+})(jQuery)
+
+var config = {
+  current: 0,
+  speed: 500,
+  intervalTime: 2000
+}
+$('.slider').xSlider(config);    
+</script>
+<include file="App/Home/View/Public/new_footer.html"/>

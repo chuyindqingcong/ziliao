@@ -1,0 +1,608 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/Home/css/layer.css">
+<script src="__PUBLIC__/Home/js/base64.js"></script>
+<script src="__PUBLIC__/Home/js/Fnc.js"></script>
+<style>
+.zzzn a{ display:block; float:right; margin:20px; padding:8px 20px; color:#fff; background:#82b52d; font-size: 20px; border-radius:30px; text-decoration:none;}
+.zzzn a:hover{ background:#90c13e;}
+.ul_recharge_padding{padding:20px 0 0px 120px;}
+.ul_recharge_padding li{
+    float: left;
+    width: 100%;
+    height: 45px;
+}
+.ul_recharge_padding li input{
+    width: 200px;
+    float: left;
+}
+.ul_recharge_padding li span{
+    line-height: 35px;
+}
+
+.btn_turn{
+    padding:10px 44px;
+    background-color: #337cbf;
+    color: #fff;
+    border-radius:4px;
+    margin-left:105px;
+}
+.btn_turn:hover{
+    opacity: 0.8;
+    color: #fff;
+}
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+
+.recharge_tips{color:#f00; line-height:40px; margin:0;}
+.recharge_left_input{margin-left:16px;}
+.help_link{ line-height:40px; color:#2471cb; text-decoration:underline; font-size:14px;}
+.help_link:hover{ color:#f30;}
+.help_link1{ color:#;}
+.ebank_pay{font-family: Arial,"微软雅黑"; width:260px; height:40px; color:#fff; font-size:16px; line-height: 40px; text-align: center; margin:0 auto; background:#f60; display: block; text-decoration: none; border: 0;}
+.ebank_pay:hover{ background: #f70; color:#fff; text-decoration: none; cursor: pointer;}
+
+.box_close{ height:24px; line-height:24px; width:24px; text-align:center; font-size:14px; color:#999; border-radius:20px; position:absolute; top:10px; right:10px; text-decoration:none; font-family:Arial;}
+.box_close:hover{ color:#fff; background:#f00; text-decoration:none;}
+.choice_ebank .note1{ width:100px; text-align:right; display:block; float:left; margin-right:5px; line-height:40px;}
+.layui-layer-content{text-align:center; margin-top:0px;font-size: 20px;color: #666;text-align: center;}
+.layui-layer-content .yes {
+    width: 160px;
+    height: 40px;
+    margin-top:80px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    background: #4b7100;
+    color: #fff;
+    border:none;
+    text-decoration: none;}
+.fkbtn{
+    width: 80px;
+    height: 30px;
+    color: #f60;
+    border:1px #f60 solid;
+    border-radius: 3px;
+    font-size: 12px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+}
+.fkbtn:hover{ color:#f60 !important;}
+
+</style>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" style="border-top:1px solid #c1c1c1;background-color: #f5f5f5;">
+<div class="w120 container" style="margin-top: 20px;">
+    <div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 1000px;margin-right: 16px;border-radius:2px;">
+        <div class="safe-ul w-f">
+            <ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+                <li class="safe_8" onclick="url_1123(this)"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+                <li class="active safe_9" onclick="url_1123(this)"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+                <li class="safe_10" onclick="url_1123(this)"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+                <li class="safe_11" onclick="url_1123(this)"><span class="span_11"></span><a href="{:U('User/cart_man')}">银行卡管理</a></li>
+                <li class="safe_12" onclick="url_1123(this)"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+                <li class="safe_13" onclick="url_1123(this)"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+                <li class="safe_14" onclick="url_1123(this)"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!--                <li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+                <li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 1000px;width: 72%;padding-left: 10px;padding-right: 10px;border-radius:2px;">
+        <div class="ybcoin clearfix" style="margin-bottom: 10px;">
+            <h2 style="font-size:16px;" class="left">充值人民币CNY[<span style="color:red">谨防诈骗</span>]</h2>
+        </div>
+        <name id="realname" data="{$member['name']|default='暂无'}"></name>
+        <div>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">转账充值</a></li>
+           <!--  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">在线网银</a></li> -->
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">支付宝充值</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">微信支付</a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div id="tagContent" class="passContent" >
+
+                    <!-- bank/alipay -->
+                    <div class="tagContent selectTag" id="tagContent0">
+                       <ul class="ybc_optimize_con ul_recharge_padding" id="rollout2" style="margin-top:30px;float: left;">
+                            <li style="margin-top:0; position:relative;" class="choice_ebank">
+                                <span class="note1" style="color:#666;font-size:14px;">金额：</span>
+                                <input style="width:158px;border-radius: 0;" name="number" id="over_num" class="money num_three form-control" onkeyup="onkeynum();" autocomplete="off" maxlength="10" type="text" placeholder="支持{$config['pay_min_money']|default='0'}元以上">
+                                <div class="input-group-addon" style="width: 42px;line-height: 20px;float: left;border-radius:4px;border-top-left-radius:0;border-bottom-left-radius:0;" id="keynum">.00</div>
+                                <span style="color:#fd7700;float: left;margin-left:20px;">请严格按照汇款金额汇款</span>
+                                <input id="rand_num" value="0" type="hidden" >
+                            </li>
+
+                            <li style="margin-top:10px; position:relative;" class="choice_ebank">
+                                <span class="note1" style="color:#666;font-size:14px;" id="recharge_name">汇款人姓名：</span>
+                                <input style="width:200px;" id="recharge_name_yes" class="money num_three form-control" value="{$member['name']|default='暂无'}" autocomplete="off" readonly="readonly" type="text">
+                                <span class="note" style="margin-left: 10px;line-height:40px;">请确保汇款人姓名与此一致</span>
+                            </li>
+
+                            <li style="color:#f00; font-size:16px; margin-top:20px; margin-left:99px;" class="choice_ebank"></li>
+
+                            <li>
+                            <a href="javascript:void(0);" onclick="recharge()" class="btn_turn" id="choice_submit">生成汇款订单</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div role="tabpanel" class="tab-pane" id="messages" style="padding-top: 0px;padding-bottom: 100px;">
+               <ul class="ybc_optimize_con ul_recharge_padding" id="rollout2" style="margin-top:30px;float: left;">
+                    <li style="margin-top:0; position:relative;" class="choice_ebank">
+                        <span class="note1" style="color:#666;font-size:14px;">金额：</span>
+                        <input style="width:158px;border-radius: 0;" name="zhi_num" id="zhi_num" class="money num_three form-control" onkeyup="onkeynum1();" autocomplete="off" maxlength="10" type="text" placeholder="支持{$config['pay_min_money']|default='0'}元以上">
+                        <div class="input-group-addon" style="width: 42px;line-height: 20px;float: left;border-radius:4px;border-top-left-radius:0;border-bottom-left-radius:0;" id="keynum1">.00</div>
+                        <span style="color:#fd7700;float: left;margin-left:20px;">请严格按照汇款金额汇款</span>
+                        <input id="t_zhi_num" value="0" type="hidden">
+                    </li>
+
+                    <li style="margin-top:10px; position:relative;" class="choice_ebank">
+                        <span class="note1" style="color:#666;font-size:14px;" id="recharge_name">支付宝账号：</span>
+                        <input id="zhifubao" class="money num_three form-control" value="{$user_m.zhifubao}" autocomplete="off" type="text">
+                        <span class="note" style="margin-left: 10px;line-height:40px;">请确保使用本人的支付宝账号</span>
+                    </li>
+
+                    <li style="color:#f00; font-size:16px; margin-top:20px; margin-left:99px;" class="choice_ebank"></li>
+
+                    <li>
+                    <a href="javascript:void(0);" onclick="zhifubao()" class="btn_turn" id="choice_submit">生成汇款订单</a></li>
+                </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">
+                <p style="text-align: center;margin:220px 0;color: #999;font-size: 22px;">模块功能暂未开放，敬请期待......</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ybc_list w-f">
+            <div class="ybcoin ">
+                <h2 style="font-size: 16px;" class="left">充值记录</h2>
+                <div class="clear"></div>
+            </div>
+            <div>
+            <table class="raise_list" align="center" border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr style="background-color: #f1f5f9;">
+                        <th>记录ID</th>
+                        <th>时间</th>
+                        <th>充值方式</th>
+                        <th>充值金额</th>
+                        <th>到账金额</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <volist name='list' id='vo' key='key'>
+                        <tr>
+                        <td>{$vo.pay_id}</td>
+                        <td>{$vo.add_time|date='Y-m-d H:i:s',###}</td>
+                        <td>
+                        <if condition="$vo.type eq 1">人工充值
+                        <elseif condition="$vo.type eq 3" />网银充值
+                        <elseif condition="$vo.type eq 4" />支付宝充值
+                        </if>
+                        </td>
+                        <td>{$vo.count|default=0}</td>
+                        <td>{$vo.money|default=0}</td>
+                        <td>
+                        <if condition="$vo.status eq 0">
+                            <if condition="$vo.type eq 1"><a class="fkbtn" onclick='showPay({$vo.count|default=0},{$vo.num})'>请付款</a>
+                            <elseif condition="$vo.type eq 4" />
+                            <a class="fkbtn" onclick='zhifubaoPay({$vo.count|default=0},{$vo.num})'>请付款</a>
+                            </if>
+                        <elseif condition="$vo.status eq 1" />
+                        <a class="fkbtn">付款成功</a>
+                        <elseif condition="$vo.status eq 2" />
+                        <a class="fkbtn" style="color: #aaa;border-color: #aaa;">已失效</a>
+                        </if>
+                        </td>
+                        </tr>
+                    </volist>
+                </tbody>
+            </table>
+            </div>
+            <div class="page">
+                    {$page}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- body结束 -->
+<!-- recharge alert start -->
+<style type="text/css">
+.ybc_chongzhi_tc{width: 610px; height: 400px; border:1px #ddd solid;z-index:9999; position: fixed;left: 50%; top: 50%; margin: -200px 0 0 -305px; background: #fff; z-index: 9999;}
+.ybc_chongzhi_tc_tittle{width: 608px; height: 50px;padding: 0 10px;margin:0; text-align: center; border-bottom:1px solid #c1c1c1;}
+.ybc_chongzhi_tc_tittle h2{ color:#666; text-align:left; font-size:18px; height:30px; line-height:30px;float: left;width: 550px;margin:10px 0; }
+.ybc_chongzhi_tc_main{width: 608px;height: 220px; background-color:#fff; padding: 10px 0px; }
+.ybc_chongzhi_tc_tittle_img{float: left;margin-top: 15px;width: 28px; height:28px;background: url("../images/close.png") left bottom no-repeat;}
+.ybc_chongzhi_tc_tittle_img:hover{margin-top: 26px;width: 28px; height:28px;background: url("__PUBLIC__/home/images/close.png") left top no-repeat;cursor:pointer}
+.ybc_chongzhi_tc_main h3{ color:#e4000f; text-align:center; font-size:16px;  line-height:30px; background-color:#ffffc9;margin:0 30px;}
+.ybc_chongzhi_tc_main .hs{ color:#ff0000; text-align:center; font-size:20px; line-height:30px; }
+.ybc_chongzhi_tc_main li span{/*width: 300px; text-align: right;*/ float: left; color:#333;font-size:14px;}
+.ybc_chongzhi_tc_main li{ font-size:14px; color:#333; height:30px; line-height:30px;}
+.ybc_chongzhi_tc_tishi h3{color:#ff0000; text-align:center; font-size:25px; ; line-height:60px;}
+.ybc_chongzhi_tc_tishi p{color:#ff0000; text-align:left; font-size:16px; ; line-height:24px; padding-left: 130px;}
+.ybc_chongzhi_tc_tishi_bz{width: 570px; height: 80px;padding: 0 20px 0 20px; line-height: 80px; font-size:18px; color: #666;}
+.ybc_chongzhi_tc_tishi span{width: 1px;padding: 0px 2px; border-right: 1px #ddd solid; height: 18px; margin-right: 8px;}
+.box_bg2{  width: 100%;  height: 100%;  background: #000; filter: Alpha(opacity=60); -moz-opacity: 0.6; -khtml-opacity: 0.6; opacity: 0.6; position: absolute;  z-index: 9998;  position: fixed;  left: 0; top: 0;}
+
+.special_note{ width:480px; height:320px; background:#ffffca; border:1px solid #fbd163; position:fixed; top:50%; margin-top:-161px; left:50%; margin-left:-241px; z-index:9999;}
+.special_note h2{ color:#f60; font-size:24px; text-align:center; height:60px; line-height:60px;}
+.special_note p{ font-size:16px; line-height:28px; padding:0 40px; margin-bottom:10px; text-indent:2em; color:#333;}
+.special_note .yes_no .yes,.special_note .yes_no .no{ width:160px; height:40px; border:0; margin:10px 20px; cursor:pointer; color:#fff; font-family:'Microsoft Yahei'; font-size:14px;}
+.special_note .yes_no{ width:400px; margin:0 auto;}
+.special_note .yes_no .yes{ background:#690; color:#fff;}
+.special_note .yes_no .yes:hover{ background:#4b7100;}
+.special_note .yes_no .no{ background:#f00; color:#fff;}
+.special_note .yes_no .no:hover{ background:#ba0000;}
+.ybc_chongzhi_tc_tittle_img {
+    float: left;
+    margin-top: 26px;
+    width: 28px;
+    height: 28px;
+    background: url("__PUBLIC__/Home/images/close.png") left bottom no-repeat;
+}
+.pad{ padding-left:38px;width: 100%;}
+.pad .li-f{ float: left; width: 25%;text-align: right;}
+.pad .l-right{ float: right; width: 70%;text-align: left;}
+</style>
+
+<div id="recharge_alert_bank" style="display:none;">
+<div class="box_bg2"></div>
+<div class="ybc_chongzhi_tc">
+    <div class="ybc_chongzhi_tc_tittle">
+        <h2 class="left clearfix" id="recharge_alert_title"></h2>
+        <div id="recharge_alert_bank_close" style="float: left;margin-top: 10px;">
+        <a class="ybc_chongzhi_tc_tittle_img  right clearfix " style="margin:0;"></a></div>
+    </div>
+    
+    <div class="ybc_chongzhi_tc_main">
+        
+        <h3>＊请您通过网银或柜台向以下银行账户转账汇款</h3>
+        <div style=" margin:0 auto;float: left;">
+        <ul style=" width:560px; float: left;padding:0;margin-top: 25px;margin-left:50px;">
+            <empty name="bank[1]['bank_adddress']">
+            <!--居中-->
+            <li class="pad"><span class="li-f">收款人：</span><span class="l-right">{$bank[0]['bank_name']|default='暂无'}</span></li>
+            <li class="pad"><span class="li-f">银行账户：</span><span class="l-right">{$bank[0]['bank_no']|default='暂无'}</span></li>
+            <li class="pad"><span class="li-f">开户行：</span><span class="l-right"">{$bank[0]['bank_adddress']|default='暂无'}</span></li>
+            <li class="pad"><span class="li-f">汇款金额：</span><span class="l-right""><strong style="font-size:16px;" class="recharge_html_num"></strong></span></li>
+            <li class="pad"><span class="li-f">备注/附言：</span>
+            <span class="l-right" id="dan_num">{$Think.session.USER_KEY_ID}-{$count+1}</span></li>
+            </empty>
+            <!--居中-->
+<!--             <notempty name="bank[1]['bank_adddress']">
+            <li class="pad"><span>收款人：</span>{$bank[0]['bank_name']|default='暂无'}</li>
+            <li class="pad"><span>收款人账号：</span>{$bank[0]['bank_no']|default='暂无'}</li>
+            <li class="pad"><span>收款人开户行：</span><span class="wid">{$bank[0]['bank_adddress']|default='暂无'}</span></li>  
+          
+            <li class="pad"><span>向{$bank[1]['bank_name']|default='暂无'}汇款</li>
+            <li class="pad"><span>收款人：</span>{$bank[1]['bank_name']|default='暂无'}</li>
+            <li class="pad"><span>收款人账号：</span>{$bank[1]['bank_no']|default='暂无'}</li>
+            <li class="pad"><span>收款人开户行：</span><span class="wid">{$bank[1]['bank_adddress']|default='暂无'}</span></li>  
+            </notempty> -->
+            <div class="clear"></div>
+<!--             <li style="font-size:14px; color:#f00; padding-left:5px;"><span style="font-size:18px;">汇款金额：</span><strong style="font-size:18px;" class="recharge_html_num"></strong>（汇款时请严格按照此金额转账，支付宝转账请备注ID号，否则不能到账）</li> -->
+        </ul>
+        </div>
+    </div>
+    
+    <div style="padding:0 30px;">
+        <p style="font-size: 18px;font-weight: bold;">注意:</p>
+        <p style="line-height: 25px;padding-top: 10px;padding-left:15px;">1、本系统非自动扣款，请通过您的<font class="phone_bank_and_net"></font>汇款！<br>
+            2、如您已向{$bank[0]['bank_name']|default='暂无'}<notempty name="bank[1]['bank_name']">或{$bank[1]['bank_name']|default='暂无'}</notempty>汇款<font class="recharge_html_num"></font>，系统在收到汇款后20分钟内入账。</p>
+    </div>
+</div>
+</div>
+<!-- recharge alert end -->
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+<script type="text/javascript" src="__PUBLIC__/Home/js/tab2.js"></script>
+<script src="__PUBLIC__/Home/js/layer.js"></script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>   
+<script type="text/javascript">
+function url_1123(which) {
+    var htmla= $(which).find("a").attr("href");
+    window.location = htmla;
+}
+</script>
+<script>
+
+    function closewin(){
+        $(".layui-layer-shade").remove();
+        $(".layui-layer").remove();
+    }
+    function notfee(){
+        if($("#over_num").val()!=""){
+            $("#ure").text((parseInt($("#over_num").val(),10)+{$fee}).toFixed(2));
+        }else{
+            $("#ure").text("");
+        }
+    }
+
+    function onkeynum()
+    {
+        var rand = "";
+        for(var i = 0; i < 2; i++){
+            var r = Math.floor(Math.random() * 10);
+
+            rand += r;
+
+        }
+        rand='.'+rand;
+        $("#keynum").text(rand);
+    }
+    function onkeynum1()
+    {
+        var rand = "";
+        for(var i = 0; i < 2; i++){
+            var r = Math.floor(Math.random() * 10);
+
+            rand += r;
+
+        }
+        rand='.'+rand;
+        $("#keynum1").text(rand);
+    }    
+function recharge() {
+    var min_num={$config.pay_min_money};
+    var max_num={$config.pay_max_money};
+    var fee = {$fee};
+    if (this.choice_money == 0) {
+        // window.open("http://yuanbao.com/user_ebank");
+        $('.ebank_box_common').show();
+        return false;
+    }
+
+    // 姓名
+    //var recharge_name_yes = $('#recharge_name_yes').val();
+    var recharge_name_yes = $('#realname').attr('data');
+
+    if (!(/[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/).test(recharge_name_yes)) {
+    //if (!(/^[\u4e00-\u9fa5]{2,10}$/).test(recharge_name_yes)) {
+
+        //Layer.alert('请输入正确的汇款人姓名');
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: '<div>请输入正确的汇款人姓名</div><div style="text-align:center"><button type="button" class="yes" onclick="closewin()">确定</button>',
+            area: ['420px', '280px'], //宽高
+        });
+        return false;
+
+    }
+    
+    // 充值金额
+    var over_num = $('#over_num').val();
+    var number = over_num ? over_num: 0;
+    var rand_num = document.getElementById("keynum").innerText;;//$('#rand_num').val();
+    rand_num = rand_num ? rand_num: 0;
+    
+    var num = parseInt(number) + parseFloat(rand_num);
+    if(num < min_num) {
+       layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: '<div>充值金额不能小于'+min_num+'元</div><div><button type="button" class="yes" onclick="closewin()">确定</button>',
+            area: ['420px', '280px'], //宽高
+        });
+        return false;
+    }
+
+    if (num >= max_num) {
+        layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: '<div>转账金额不能大于'+max_num+'</div><div><button type="button" class="yes" onclick="closewin()">确定</button>',
+            area: ['420px', '280px'], //宽高
+        });
+        return false;
+    }
+
+   // var rand_num='rand_num;
+    var count=parseInt($("#over_num").val(),10);
+    var count2=count+rand_num;
+
+    $.post("{:U('Pay/rechargeByMan')}", {'money':number, 'count':count2,'type':1,'member_name': recharge_name_yes},
+        function(data) {
+            if (data.status == 0) {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    skin: 'layui-layer-demo', //样式类名
+                    closeBtn: 0, //不显示关闭按钮
+                    shift: 2,
+                    shadeClose: true, //开启遮罩关闭
+                    content: '<div>'+data.info+'</div><div><button type="button" class="yes" onclick="closewin()">确定</button>',
+                    area: ['420px', '280px'], //宽高
+                });
+            } else {
+                $('#recharge_alert_bank').show();
+                $('#recharge_alert_bank_close').click(function(){$('#recharge_alert_bank').hide(); location.reload();});
+                $('.recharge_html_num').html(data.num);
+                $('#recharge_alert_title').html('银行卡汇款信息');
+                $('.phone_bank_and_net').html('“手机银行”或“网上银行”'); 
+            }
+        }
+    );
+
+    return false;
+    
+};
+
+function zhifubao() {
+    var min_num={$config.pay_min_money};
+    var max_num={$config.pay_max_money};
+    var fee = {$fee};
+
+    var recharge_name_yes = $('#zhifubao').val();
+    // 充值金额
+    var over_num = $('#zhi_num').val();
+    var number = over_num ? over_num: 0;
+    var rand_num = document.getElementById("keynum1").innerText;;//$('#rand_num').val();
+    rand_num = rand_num ? rand_num: 0;
+    
+    var num = parseInt(number) + parseFloat(rand_num);
+    if(num < min_num) {
+       layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            offset: '200px',
+            shadeClose: true, //开启遮罩关闭
+            content: '<div>充值金额不能小于'+min_num+'元</div><div><button type="button" class="yes" onclick="closewin()">确定</button>',
+            area: ['420px', '280px'], //宽高
+        });
+        return false;
+    }
+
+    if (num >= max_num) {
+        layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            offset: '200px',
+            shadeClose: true, //开启遮罩关闭
+            content: '<div>转账金额不能大于'+max_num+'</div><div><button type="button" class="yes" onclick="closewin()">确定</button>',
+            area: ['420px', '280px'], //宽高
+        });
+        return false;
+    }
+
+   // var rand_num='rand_num;
+    var count=parseInt($("#zhi_num").val(),10);
+    var count2=count+rand_num;
+
+    $.post("{:U('Pay/rechargeByzhifubao')}", {'money':count2, 'count':count2,'type':4,'member_name': recharge_name_yes},
+        function(data) {
+            if (data.status == 0) {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    skin: 'layui-layer-demo', //样式类名
+                    closeBtn: 0, //不显示关闭按钮
+                    shift: 2,
+                    shadeClose: true, //开启遮罩关闭
+                    content: '<div>'+data.info+'</div><div><button type="button" class="yes" onclick="closewin()">确定</button>',
+                    area: ['420px', '280px'], //宽高
+                });
+            } else {
+            var beizhu = '{$Think.session.USER_KEY_ID}-'+data.num;
+            layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            offset: '200px',
+            shadeClose: true, //开启遮罩关闭
+            content: '<div style="width: 610px;height: 400px;background-color: #fff;padding:15px;"><p style="width: 100%;font-size: 20px;float: left;border-bottom: 1px solid #c1c1c1;padding-bottom: 10px;">支付宝汇款信息<a class="ybc_chongzhi_tc_tittle_img  right clearfix " onclick="closewin()" style="margin:0;float: right;"></a></p><p style="margin-top: 10px;margin-left: 10%;background-color: #ffffc9;padding-left: 0px;float: left;width: 80%;font-size: 16px;color: #f00;height: 30px;line-height: 30px;text-align: center;">＊请您通过支付宝转账到以下账户</p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 15px 0 5px 0;"><span style="width: 120px;float: left;text-align: right;">支付宝账号：</span><span style="text-align:left;float: left;margin-left: 20px;">3410014501@qq.com</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="float: left;width: 120px;text-align: right;">公司名称：</span><span style="text-align:left;float: left;margin-left: 20px;">常州区块连信息技术有限公司</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="width: 120px;float: left;text-align: right;">付款金额：</span><span id="dan_price" style="text-align:left;float: left;margin-left: 20px;font-weight:bold;">'+count2+'元</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="float: left;width: 120px;text-align: right;">到账时间：</span><span style="text-align:left;float: left;margin-left: 20px;">12小时内</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="width: 120px;float: left;text-align: right;">备注信息：</span><span style="text-align:left;float: left;margin-left: 20px;" id="dan_beizhu">'+beizhu+'</span></p><p style="padding-left: 60px;float: left;width: 100%;margin-top: 20px;font-size:14px;text-align:left;">1、本系统非自动扣款，请通过您的支付宝汇款！</p><p style="padding-left: 60px;float: left;width: 100%;margin-top:5px;font-size:14px;text-align:left;">2、如您已向常州区块连信息技术有限公司汇款，系统在收到汇款后20分钟内入账。</p></div>',
+            area: ['610px', '400px'], //宽高
+            });
+            }
+        }
+    );
+
+    return false;
+};
+
+function showPay(num,dan_num){
+    var beizhu = '{$Think.session.USER_KEY_ID}-'+dan_num;
+    $('#recharge_alert_bank').show();
+    $('#recharge_alert_bank_close').click(function(){$('#recharge_alert_bank').hide(); location.reload();});
+    $('.recharge_html_num').html(num);
+    $('#dan_num').html(beizhu);
+    $('#recharge_alert_title').html('银行卡汇款信息');
+    $('.phone_bank_and_net').html('“手机银行”或“网上银行”'); 
+}
+function zhifubaoPay(num,dan_num){
+    var beizhu = '{$Think.session.USER_KEY_ID}-'+dan_num;
+        layer.open({
+        type: 1,
+        title: false,
+        skin: 'layui-layer-demo', //样式类名
+        closeBtn: 0, //不显示关闭按钮
+        shift: 2,
+        offset: '200px',
+        shadeClose: true, //开启遮罩关闭
+        content: '<div style="width: 610px;height: 400px;background-color: #fff;padding:15px;"><p style="width: 100%;font-size: 20px;float: left;border-bottom: 1px solid #c1c1c1;padding-bottom: 10px;">支付宝汇款信息<a class="ybc_chongzhi_tc_tittle_img  right clearfix " onclick="closewin()" style="margin:0;float: right;"></a></p><p style="margin-top: 10px;margin-left: 10%;background-color: #ffffc9;padding-left: 0px;float: left;width: 80%;font-size: 16px;color: #f00;height: 30px;line-height: 30px;text-align: center;">＊请您通过支付宝转账到以下账户</p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 15px 0 5px 0;"><span style="width: 120px;float: left;text-align: right;">支付宝账号：</span><span style="text-align:left;float: left;margin-left: 20px;">3410014501@qq.com</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="float: left;width: 120px;text-align: right;">公司名称：</span><span style="text-align:left;float: left;margin-left: 20px;">常州区块连信息技术有限公司</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="width: 120px;float: left;text-align: right;">付款金额：</span><span id="dan_price" style="text-align:left;float: left;margin-left: 20px;font-weight:bold;">'+num+'元</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="float: left;width: 120px;text-align: right;">到账时间：</span><span style="text-align:left;float: left;margin-left: 20px;">12小时内</span></p><p style="float: left;width: 100%;padding-left: 100px;font-size: 14px;margin: 10px 0 5px 0;"><span style="width: 120px;float: left;text-align: right;">备注信息：</span><span style="text-align:left;float: left;margin-left: 20px;" id="dan_beizhu">'+beizhu+'</span></p><p style="padding-left: 60px;float: left;width: 100%;margin-top: 20px;font-size:14px;text-align:left;">1、本系统非自动扣款，请通过您的支付宝汇款！</p><p style="padding-left: 60px;float: left;width: 100%;margin-top:5px;font-size:14px;text-align:left;">2、如您已向常州区块连信息技术有限公司汇款，系统在收到汇款后20分钟内入账。</p></div>',
+        area: ['610px', '400px'], //宽高
+        });
+}
+</script>
+<script>
+    $(".menu12").addClass("uc-current");
+
+    function showTips(id,msg){
+        var tips = layer.tips(msg, id, {
+            tips: [1, '#fff8db'],
+            area: ['400px', '35px']
+        });
+        $(id).on('mouseout', function(){
+            layer.close(tips);
+        });
+    };
+
+    $("#zhifubao").blur(function(){
+        var total_chongzhi = $("#zhifubao").val();
+        if (total_chongzhi=='' || total_chongzhi==null || total_chongzhi==undefined) {
+            layer.open({
+              title: '请注意'
+              ,content: '支付宝账号不能为空！'
+              ,offset: '200px'
+            }); 
+        }
+    });
+
+    $("#zhi_num").blur(function(){
+        var zhi_num = $("#zhi_num").val();
+        var min_num={$config.pay_min_money};
+        if (zhi_num=='' || zhi_num<0) {
+            layer.open({
+              title: '请注意'
+              ,content: '充值金额不能为空！'
+              ,offset: '200px'
+            }); 
+        }else if(zhi_num<min_num){
+            layer.open({
+              title: '请注意'
+              ,content: '充值金额不能小于'+min_num+'元！'
+              ,offset: '200px'
+            }); 
+        }
+    });
+</script>

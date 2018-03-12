@@ -1,0 +1,147 @@
+<html>
+<head>
+    <title>{$Think.config.MAIL_FROMNAME}-</title>
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="/1.ico" />
+	<style type="text/css">
+	.list-unstyled li{
+		border: 1px solid #ddd;
+		width: 100%;
+		height: 38px;
+		background: #fff;
+	}
+	.list-unstyled li input{
+		height: 35px;
+		border: 0;
+		padding-left: 30px;
+	}
+	#getcode{
+		margin-top: 3px;
+		background: #ddd;
+		height: 30px;
+		line-height: 30px;
+		border-radius: 5px;
+	}
+	.input-group{
+		margin-bottom:15px;
+	}
+	</style>
+</head>
+	<body>
+	<div class="container">
+		<div class="row">
+		<include file="Index:header" />
+		<div style="padding:0 10px;">
+			<h4>请填写注册信息</h4>
+		</div>
+		<form action="" method="post" id="myreg" style="padding:0 10px;">
+				<div class="input-group">
+			      <div class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></div>
+			      <input type="text" name="phone" class="form-control" id="exampleInputAmount" placeholder="请输入手机号码">
+			      <div class="input-group-addon" id="sendcode"><span>获取验证码</span></div>
+			    </div>
+				<div class="input-group">
+			      <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
+			      <input type="text" class="form-control" name="code_p" placeholder="校验码">
+			    </div>
+				<div class="input-group">
+			      <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
+			      <input type="password" name="pwd" class="form-control" placeholder="登录密码">
+			    </div>	
+				<div class="input-group">
+			      <div class="input-group-addon"><i class="glyphicon glyphicon-ok-circle"></i></div>
+			      <input type="password" name="repwd" class="form-control" placeholder="确认登录密码">
+			    </div>	
+				<div class="input-group">
+			      <div class="input-group-addon"><i class="glyphicon glyphicon-th-large"></i></div>
+			      <input type="text" class="form-control" name="spid" placeholder="邀请码（选填）">
+			    </div>	
+				<div class="input-group">
+			      <div class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i></div>
+			      <input type="password" class="form-control" name="pwdtrade" placeholder="交易密码（不能和登录密码相同）">
+			    </div>	
+			<div class="input-group">
+			      <div class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></div>
+			      <input type="password" class="form-control" name="repwdtrade" placeholder="确认交易密码">
+			    </div>				    			    		    			    		    
+		</form>
+		<div class="col-xs-12 text-center">
+		<div class="col-xs-4"></div>
+			<button class="btn btn-success col-xs-4" id="sendreg">注册</button>
+			<div class="col-xs-4"></div>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/new/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/plugin/layer_mobile/layer.js"></script>
+<script >
+	var posturl="{:U('Register/regQuery')}";//接受注册信息
+	var codeurl="{:U('/Home/Common/ajaxSandPhone')}";
+ $('.glyphicon-chevron-left').click(function () {
+        window.history.go(-1);
+    });
+ $('.glyphicon-home').click(function () {
+       window.location='http://'+"{$Think.server.HTTP_HOST}";
+    });
+ $('#sendreg').click(function () {
+	//注册被触发事件
+	 var regdate=$('#myreg').serialize();
+	 $.post(posturl,regdate,function (d) {
+		 if(d.code==0)
+		 {
+             window.location=d.url;
+		 }else{
+             layer.open({
+                 content: d.error
+                 ,btn: '我知道了'
+             });
+         }
+     })
+ });
+    var timer="";
+    var nums=60;
+    var validCode=true;//定义该变量是为了处理后面的重复点击事件
+    $('#sendcode').click(function () {
+        console.log("111");
+        var code=$(this);
+        var phone=$("input[name='phone']").val();
+        if(validCode){
+            validCode=false;
+            timer=setInterval(function(){
+                if(nums>0){
+                    nums--;
+                    code.text(nums+"秒后重新发送");
+                    code.addClass("gray-bg");
+                    code.attr("disabled","disabled");
+                }
+                else{
+                    clearInterval(timer);
+                    nums=60;//重置回去
+                    validCode=true;
+                    code.removeClass("gray-bg");
+                    code.removeAttr("disabled");
+                    code.text("发送验证码");
+                }
+            },1000)
+        }
+		if(nums==60) {
+            $.post(codeurl, {'phone': phone},
+                function (d) {
+                    console.log(d);
+                    if (d.stauts != 1) {
+                        nums = 0;//发送失败取消计时器
+                        layer.open({
+                            content: d.info
+                            , btn: '我知道了'
+                        });
+                    }
+                    if (d.status == 1) {
+                        nums = 60;
+                    }
+                });
+        }
+    })
+</script>
+	</body>
+</html>

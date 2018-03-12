@@ -1,0 +1,223 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/zhongchou.css">
+
+<!-- <div class="w-f" style="border-top: 1px solid #c1c1c1;"></div> -->
+<div class="w10 banner" style="float: none;">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <else />
+                    <li data-target="#carousel-example-generic" data-slide-to="{$i-1}"></li>
+                </if>
+            </volist>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                    <div class="item active" style="background-image:url({$vo.pic});background-repeat:no-repeat;background-size:cover;text-align: center;background-position:center center;height: 300px;">
+                        <a href="{$vo.jump_url|default='javascript:;'}" style="display: block;height: 300px;"></a>
+                    </div>
+                    <else />
+                    <div class="item" style="background-image:url({$vo.pic});background-repeat:no-repeat;background-size:cover;text-align: center;background-position:center center;height: 300px;">
+                        <a href="{$vo.jump_url|default='javascript:;'}" style="display: block;height: 300px;"></a>
+                    </div>
+                </if>
+            </volist>
+      </div>
+    </div>
+</div>    
+<div class="container" style="padding-left: 15px;">
+	<div class="zhong_container">
+		<div class="zhong_article row" style="margin:0;">
+			<div class="col-md-6 col-xs-6 zhong_a_1" style="padding-left: 0;padding-right: 40px;">
+				<p class="z_c_title">行业资讯<span><a href="{:U('Art/index',array('id'=>'101'))}">查看更多></a></span></p>
+				<ul class="z_c_ul">
+					<volist name="news" id="vo">
+					<li><a href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,23}</a><span>{$vo.add_time|date='m/d',###}</span></li>
+					</volist>
+				</ul>
+			</div>
+
+			<div class="col-md-6 col-xs-6 zhong_a_1" style="padding-left: 40px;padding-right: 0;">
+				<p class="z_c_title">最新新闻<span><a href="{:U('Art/index',array('id'=>'102'))}">查看更多></a></span></p>
+				<ul class="z_c_ul">
+					<volist name="bizhong" id="vo">
+					<li><a href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,23}</a><span>{$vo.add_time|date='m/d',###}</span></li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="zhong_pro">
+	<div class="container">
+		<p class="z_c_title" style="padding-left: 15px;">ICO项目<span><a href="{:U('Zhongchou/ico_list')}">查看更多></a></span></p>
+		<div class="z_c_img">
+			<volist name="list" id="vo">
+			<div class="col-md-4 col-xs-4" style="margin-left: 15px;margin-right:10px;margin-bottom: 30px;">
+				<if condition="$vo.status eq 0">
+				<p class="ab_p1">即将开始</p>
+				<elseif condition="$vo.status eq 1" />
+				<p class="ab_p1" style="background-color: #32b16c;">进行中</p>
+				<elseif condition="$vo.status eq 2" />
+				<p class="ab_p1" style="background-color: #ff0000;">已成功</p>
+				<elseif condition="$vo.status eq 3" />
+				<p class="ab_p1" style="background-color: #c9c9c9;">已结束</p>
+				</if>
+				<div class="program_img">
+					<a href="{:U('Zhongchou/ico_details',array('id'=>$vo['id']))}"><img src="{$vo.url1}" class="img-responsive" style="width: 372px;height: 220px;"></a>
+				</div>
+				<div class="program_content" style="width: 100%;">
+					<p class="p_c_title"><a href="{:U('Zhongchou/ico_details',array('id'=>$vo['id']))}">{$vo.title|default='此项目暂无详情简介'}</a></p>
+					<p class="p_c_attr">{$vo.atter|default='此项目暂无详情简介'}</p>
+					<div class="program_zhongchou">
+						<p>众筹进度 {$vo.percent} %</p>
+						<div class="progress" style="height: 10px;margin-bottom: 20px;">
+						  	<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: {$vo.percent}%;height: 10px;">
+						  	</div>
+						</div>
+					</div>
+					<div class="w-f" style="margin-bottom: 15px;">
+						<div class="w111" style="border-right: 1px solid #f1f1f1;float: left;">
+							<p style="font-weight: bold;">{$vo.num|default='0.00'}{$vo.buy_mark}</p>
+							<p>目标金额</p>
+						</div>
+						<div class="w112" style="border-right: 1px solid #f1f1f1;float: left;">
+							<p style="font-weight: bold;text-align: center;width: 75px;">{$vo.end_data|default='0'}</p>
+							<p style="padding-left: 10px;">剩余天数</p>
+						</div>
+						<div class="w113" style="float: left;">
+							<p style="font-weight: bold;text-align: center;width: 60px;">
+							<eq name="vo.buy_sum" value="0">
+							{$vo.p_num}
+							<else />
+							{$vo.buy_sum|default='0'}
+							</eq>
+							</p>
+							<p style="padding-left: 10px;">支持者</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</volist>
+		</div>
+	</div>
+</div>
+
+	<div class="container">
+		<div class="zhong_container">
+			<div class="zhong_article" style="margin:0;padding:40px 0;padding-bottom: 20px;">
+				<div class="row">
+					<div class="col-md-3 col-xs-3">
+						<p><img src="__PUBLIC__/new/images/sss_1.png" class="img-responsive center-block"></p>
+						<p style="font-size: 20px;font-weight: bold;text-align: center;margin: 10px 0;">安全</p>
+					</div>
+					<div class="col-md-3 col-xs-3">
+						<p><img src="__PUBLIC__/new/images/sss_2.png" class="img-responsive center-block"></p>
+						<p style="font-size: 20px;font-weight: bold;text-align: center;margin: 10px 0;">诚信</p>
+					</div>
+					<div class="col-md-3 col-xs-3">
+						<p><img src="__PUBLIC__/new/images/sss_3.png" class="img-responsive center-block"></p>
+						<p style="font-size: 20px;font-weight: bold;text-align: center;margin: 10px 0;">公平</p>
+					</div>
+					<div class="col-md-3 col-xs-3">
+						<p><img src="__PUBLIC__/new/images/sss_4.png" class="img-responsive center-block"></p>
+						<p style="font-size: 20px;font-weight: bold;text-align: center;margin: 10px 0;">透明</p>
+					</div>
+					<p style="font-size: 14px;text-align: center;padding: 20px 80px;float: left;color: #999;">我们致力于为广大数字货币、区块链支持者提供一个安全、诚信、公平、透明的ICO融资服务平台。基于对数字货币、区块链行业的深刻理解，九交网坚持去中心化的经营理念，项目发起者可在九交网发起项目筹款，收集用户需求及获取种子用户，并承诺提供回报给项目支持者，支持者可在九交网发现及支持可靠的项目，并获得由项目发起者承诺的回报。</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="zhong_pro" style="padding:70px 0;">
+		<div class="container">
+			<div class="z_c_img" style="">
+				<div class="col-md-4 col-xs-4" style="padding:60px 0;margin-left: 0;">
+					<p><a href="#"><img src="__PUBLIC__/new/images/ppp_1.png" class="img-responsive center-block"></a></p>
+					<p style="font-size: 20px;font-weight: bold;text-align: center;margin: 30px 0;">专业团队</p>
+					<p style="font-size: 14px;float: left;padding:0 65px;color: #999;">我们由一支熟悉数字货币、区块链、互联网金融运作方式的团队开发并运营。</p>
+				</div>
+				<div class="col-md-4 col-xs-4" style="padding:60px 0;">
+					<p><a href="#"><img src="__PUBLIC__/new/images/ppp_2.png" class="img-responsive center-block"></a></p>
+					<p style="font-size: 20px;font-weight: bold;text-align: center;margin: 30px 0;">投资资源</p>
+					<p style="font-size: 14px;float: left;padding:0 60px;color: #999;">我们拥有一批来自于数字货币、区块链、金融、科技、基金领域的投资资源。</p>
+				</div>
+				<div class="col-md-4 col-xs-4" style="padding:60px 0;margin-right: 0;">
+					<p><a href="#"><img src="__PUBLIC__/new/images/ppp_3.png" class="img-responsive center-block"></a></p>
+					<p style="font-size: 20px;font-weight: bold;text-align: center;margin: 30px 0;">用户体验</p>
+					<p style="font-size: 14px;float: left;padding:0 65px;color: #999;">我们提供7 × 12小时客服在线及技术支持，确保产品每一环节使用流畅。</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="container">
+	<div class="zhong_container">
+		<div class="zhong_article zhong_link" style="margin:0;padding:40px 0;padding-bottom: 40px;float: left;">
+			<p style="font-size: 22px;font-weight: bold;text-align: center;margin-bottom: 40px;">合作伙伴</p>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a href="#"><img src="__PUBLIC__/new/images/111.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a href="#"><img src="__PUBLIC__/new/images/222.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/333.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/444.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/555.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/666.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/777.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/888.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/9991.png" class="img-responsive"></a></p>
+				</div>
+			</div>
+			<div class="link_five">
+				<div class="link_li">
+					<p><a><img src="__PUBLIC__/new/images/1010.jpg" class="img-responsive"></a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<!--footer start-->
+<include file="App/Home/View/Public/new_footer.html"/>
+<!--footer end-->
+<!--footer end-->

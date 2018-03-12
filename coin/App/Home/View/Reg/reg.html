@@ -1,0 +1,492 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/user.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/login.css">
+<!--top end-->
+
+<style type="text/css">
+.ybc_header {
+    width: 1000px;
+    height: 70px;
+    margin: 10px auto;
+}
+.main{ width:100%;float: left; background-color:#f5f5f5; min-height:550px; _height:550px;font-size:12px; color:#666; font-family:"微软雅黑";}
+.main_box{ width:1200px; margin:0 auto;
+    min-height: 400px;
+	padding:20px 40px 40px 40px;
+	margin-top:50px;
+	/*border: 1px solid #d4d4d4;*/
+	background-color: #fbfaf8;
+    margin-bottom:35px;
+}
+.warning {
+    line-height: 24px;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 14px;
+    word-break: break-all;
+	margin-top:0px;
+
+ 
+}
+.btn-default[disabled] { color: #337cbf; }
+.warning h2{  }
+.warning h3{  height:40px;  line-height:40px;width:100%; margin-top:20px;color:#333;font-weight:normal;}
+
+.ybc_text input { width: 210px; }
+.ybc_label{ width:110px; height:35px; line-height:35px; text-align:right; padding-right:5px;}
+.ybc_user2 {
+    margin-bottom: 20px;
+    margin-top: 50px;
+	height:20px;
+
+}
+.ybc_user1 {
+    margin-bottom: 20px;
+    margin-top: 30px;
+
+	height:40px;
+
+}
+
+.left {
+    float: left;
+}
+.ybc_text .ybc_next {
+    width: 204px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    background: #337cbf;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Microsoft Yahei';
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+.clearfix {
+    zoom: 1;
+}
+.ybc_hint1 {
+    height: 30px;
+    line-height: 30px;
+    color: #999;
+	margin-left:15px;
+}
+.tycolor {
+color: #2471cb; 
+    text-decoration: underline;
+}
+.form-button{
+    background-color: #337cbf;
+    border-color: #337cbf;
+    color: #fff;
+    margin-left: 10px;
+}
+#regtitle{
+    height:60px; line-height:60px; border-bottom:1px solid #e1e1df; width:100%; text-align:center; margin-bottom:20px;color:#333; font-weight:normal;
+}
+</style>
+<div class="main" id="reg-prev">
+	<div class="main_box">
+            <h2 id="regtitle">第九交易网9coin.com服务条款</h2>
+		<div class="warning" style="height: 400px;overflow: auto;">
+			{$config.reg_risk_warning}
+		</div>
+		<div class="ybc_user2 clearfix">
+			<div class="ybc_text left"><input name="agree" id="tongyi" type="checkbox" ></div>
+			<div class="ybc_hint left"><label for="tongyi">我已经认真阅读以上风险提示，并已同意{$config.name} <!-- <a href="{:U('Reg/terms')}" id="agreement" class="tycolor">服务条款</a> -->，同意在自担风险，自担损失的情况下参与交易
+</label></div>
+			<div class="ybc_hint left"><span id="agree"></span></div>
+		</div>
+		<div class="ybc_user1 clearfix" style="padding-left:300px;">
+			<div class="ybc_label left"><label>&nbsp;</label></div>
+			<div class="ybc_text left"><input value="继续注册" id="next-btn" class="ybc_next" style="background-color:#e1e1e1; " type="submit"></div>
+			<div class="ybc_hint1 left"><span id="agree"> <a href="{:U('Index/index')}" class="tycolor">取消</a></span></div>
+		</div>
+	</div>
+</div>
+
+<div class="ybc_section" id="reg-now" style="display:none;">
+    <ul class="ybc_user_nav clearfix Font18">
+        <li class="current"><span>1</span>手机注册</li>
+        <li id="currentpwd"><span>2</span>设置交易密码</li>
+        <li id="currentid"><span>3</span>实名认证</li>
+        <li><span>4</span>注册成功</li>
+    </ul>
+    <div class="container">
+            <div class="login-530" style="width:680px">
+                <form class="form-horizontal login-form" id="ttttform" method="post" jump-url="{:U('Reg/regSuccess')}" action="{:U('Reg/addReg')}" onsubmit="return step2();">
+                    <div id="step1">
+                        <!--<div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="pid">邀请码</label></div>
+                            <div class="ybc_text left"><input type='text' name='pid' value="0"></div>
+                        </div>-->
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="email">手机号码:</label></div>
+                            <div class="ybc_text left"><input name="phone" id="phone" type="text"></div>
+                            <div class="ybc_hint left"><strong class="msg_i" id="email_msg">i</strong><span id="emailmsg">请输入您的手机号码，用于登录和找回密码</span></div><!--默认 i class="msg_i"  正确class="msg_error"  错误class="msg_ok"-->
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="code_p">校验码:</label></div>
+                            <div class="ybc_text left"><input name="code_p" id="code_p" type="text" maxlength="6"></div>
+                            <div class="ybc_hint left">
+                                <button type="button" class="btn btn-default form-button gray-bg" id="form-button" disabled="disabled">获取验证码</button>
+                            </div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="pwd">登录密码:</label></div>
+                            <div class="ybc_text left"><input id="pwd" name="pwd" type="password"></div>
+                            <div class="ybc_hint left"><strong class="msg_i" id="pwd_msg">i</strong><span id="pwdmsg">密码长度6-20位</span></div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="repwd">重复密码:</label></div>
+                            <div class="ybc_text left"><input id="repwd" name="repwd" type="password"></div>
+                            <div class="ybc_hint left"><strong class="msg_i" id="repwd_msg">i</strong><span id="repwdmsg">重复输入密码，两次需要一致</span></div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="pid">邀请码:</label></div>
+                            <div class="ybc_text left"><input name="pid" <if condition="$pid">value="{$pid}" readonly="readonly"</if>  type="text"></div>
+                            <div class="left" style="color:#f00; line-height:30px;">选填项</div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label>&nbsp;</label></div>
+                            <div class="ybc_text left"></div>
+                           
+                            <div class="ybc_hint left"><span id="agree"></span></div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label>&nbsp;</label></div>
+                            <div class="ybc_text left"><input value="下一步" class="ybc_next" onclick="step1()" type="button"></div>
+                        </div>
+                    </div>
+                    <div id="step2" style="display:none">
+                        <div class="ybc_warn Font16" style="background:none; margin:-40px 0 60px 0;"><span class="msg_warn">！</span>为保障您的资金安全，请设置交易密码。              <br>对账户资产进行投资、交易、转出时，需用到交易密码，请务必牢记。</div>
+
+                        <div id="capital" class="ybc_warn " style="display: none;">大写锁定已开启</div> 
+                        <div class="ybc_user clearfix">
+                            
+                            <div class="ybc_label left"><label for="pwdtrade">交易密码</label></div>
+                            <div class="ybc_text left"><input id="pwdtrade" name="pwdtrade" type="password" onkeypress ="return testCapsLock(event)"></div>
+                            <div class="ybc_hint left"><strong class="msg_i" id="pwdtrade_msg">i</strong><span id="pwdtrademsg">请输入交易密码，不能与登录密码相同</span></div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="repwdtrade">重复交易密码</label></div>
+                            <div class="ybc_text left"><input id="repwdtrade" name="repwdtrade" type="password" onkeypress ="return testCapsLock(event)"></div>
+                            <div class="ybc_hint left"><strong class="msg_i" id="repwdtrade_msg">i</strong><span id="repwdtrademsg">重复输入交易密码，两次需要一致</span></div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label>&nbsp;</label></div>
+                            <div class="ybc_text left"><input value="下一步" class="ybc_next" onclick="step2()"></div>
+                        </div>
+                    </div>
+                    <div id="step3" style="display:none">
+                        <!-- <div class="ybc_warn Font16" style="background:none; margin:-40px 0 60px 0;"><span class="msg_warn">！</span>身份验证</div> -->
+                        <h2 style="background:none;font-size: 24px; margin:-40px 0 40px 0;padding-left: 40px;">实名认证:<span style="color:#ef4949;font-size:16px;margin-left: 8px;">尚未认证(无法充值和提现人民币)</span></h2>
+                        <p style="margin-bottom: 30px;color: #999;"><span style="border:1px solid #337cbf;padding:4px 12px;margin-right: 15px;color: #337cbf;border-radius: 4px;">初级认证</span>完成初级认证后，人民币每日提取上限提高至50万，可充值,交易,提现,不可提币</p>
+                        <div id="capital" class="ybc_warn " style="display: none;">大写锁定已开启</div> 
+                        <div class="ybc_user clearfix">
+                            
+                            <div class="ybc_label left"><label for="truename">姓名</label></div>
+                            <div class="ybc_text left"><input id="truename" name="name" type="text"></div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label for="idcard">身份证号</label></div>
+                            <div class="ybc_text left"><input id="idcard" name="idcard" type="text"></div>
+                            <div class="ybc_hint left"><strong class="msg_i" id="idcard_msg">i</strong><span id="idcardtrademsg">请输入正确的身份证号码</span></div>
+                        </div>
+                        <div class="ybc_user clearfix">
+                            <div class="ybc_label left"><label>&nbsp;</label></div>
+                            <div class="ybc_text left"><input value="下一步" class="ybc_next" onclick="checkform()"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="login-370" style="width:420px">
+                <p style="margin-top:70px;color:#727272;text-align:center;line-height:25px;">已有账号，请<a style="color:#337cbf;" href="{:U('Login/index')}">直接登录</a><img src="__PUBLIC__/new/images/go.jpg"></p>
+                <p class="login-other" style="margin-top:10px;">使用以下账号直接登陆：</p>
+                <p class="login-other-img"><a href="{:U('Login/qqlogin')}"><img src="__PUBLIC__/new/images/login-qq.png"></a>
+                <a href="{:U('Login/wxLogin')}"><img src="__PUBLIC__/new/images/login-weixin.png"></a></p>
+                <p class="login-other-text"><span>QQ</span><span>微信</span></p>
+                <p style="text-align:center;"><img src="{$config.weixin|default="暂无"}" style="width: 160px;"></p>
+                <p style="text-align:center;color:#666;margin-top:15px;">九交网服务号</p>
+            </div>
+    </div>    
+</div>
+<script src="__PUBLIC__/Home/js/form.js"></script>
+<script type="text/javascript">
+    vali = { pwd: 0, repwd: 0,tongyi:1};
+    valistep2 = {pwdtrade: 0, repwdtrade: 0}
+    // $('#email').bind('blur', function(){
+    //     var path_Email = "{:U('Reg/ajaxCheckEmail')}";
+    //     $.get(path_Email,{email:encodeURIComponent($(this).val())}, function(d){
+    //         if(d['status'] == 1){
+    //             $('#email_msg').html("√");
+    //             $('#email_msg').css('msg_ok');
+    //         }else{
+    //             $('#email_msg').html("×");
+    //             $('#email_msg').css('msg_error');
+    //         }
+    //         validateMsg('email', d['msg'], d['status']);
+    //         vali.email = d['status'];
+    //     }, 'json');
+    // });
+ var phonecheckurl="{:U('Reg/checkphone')}";//注册手机唯一性验证
+    $('#phone').change(function () {
+       var phones=$(this).val();
+        var index = layer.load(2, {time: 5*1000});
+        $.post(phonecheckurl,{phone:phones},function (d) {
+            if(d.code==0)
+            {
+                layer.close(index);
+                $('#form-button').removeClass("gray-bg");
+                $('#form-button').removeAttr("disabled");
+            }else if(d.code==1){
+                layer.close(index);
+                layer.msg('手机号码已经被注册',{icon:2});
+                $('#form-button').addClass("gray-bg");
+                $('#form-button').attr("disabled","disabled");
+            }else if(d.code==2)
+            {
+                layer.close(index);
+                layer.msg('输入的号码格式不正确',{icon:2});
+                $('#form-button').addClass("gray-bg");
+                $('#form-button').attr("disabled","disabled");
+            }
+        });
+    });
+    $('#pwd').bind('blur', function(){
+        var pLen = $(this).val().length;
+        if(pLen < 6 || pLen > 20) {
+            $('#pwd_msg').html("×");
+            $('#pwd_msg').css('msg_error');
+            return validateMsg('pwd', '密码长度在6-20个字符之间', 0);
+        }
+        $('#pwd_msg').html("√");
+        $('#pwd_msg').css('msg_ok');
+        return validateMsg('pwd', '', vali.pwd = 1);
+    });
+    $('#repwd').bind('blur', function(){
+        var pLen = $(this).val().length;
+        if(pLen < 6 || pLen > 20){
+            $('#repwd_msg').html("×");
+            $('#repwd_msg').css('msg_error');
+            return validateMsg('repwd', '密码长度在6-20个字符之间', 0);
+        }
+        if($('#pwd').val() != $('#repwd').val()){
+            $('#repwd_msg').html("×");
+            $('#repwd_msg').css('msg_error');
+            return validateMsg('repwd', '密码不一致，请重新输入。', 0);
+        }
+        $('#repwd_msg').html("√");
+        $('#repwd_msg').css('msg_ok');
+        return validateMsg('repwd', '', vali.repwd = 1);
+    });
+
+    $('#idcard').bind('blur', function(){
+        var pLen = $(this).val().length;
+        if(pLen < 15 || pLen > 18){
+            $('#idcard_msg').html("×");
+            $('#idcard_msg').css('msg_error');
+            $("#idcardtrademsg").html("身份证号长度不对");
+            $("#idcardtrademsg").attr("style","color:red");
+        }else{
+            $('#idcard_msg').html("√");
+            $('#idcard_msg').css('msg_ok');
+            $("#idcardtrademsg").html("输入正确");           
+        }
+
+    });
+
+
+
+    $('#pwdtrade').bind('blur', function(){
+        var pLen = $(this).val().length;
+        var repLen = $('#repwdtrade').val().length;
+        if(pLen < 6 || pLen > 20) {
+            $('#pwdtrade_msg').html("×");
+            $('#pwdtrade_msg').css('msg_error');
+            return validateMsg('pwdtrade', '密码长度在6-20个字符之间', 0);
+        }
+        if($('#pwdtrade').val() == $('#pwd').val()){
+            $('#pwdtrade_msg').html("×");
+            $('#pwdtrade_msg').css('msg_error');
+            return validateMsg('pwdtrade', '交易密码不能与登录密码一致哦', 0);
+        }
+        if(repLen>1){
+            if($('#pwdtrade').val() != $('#repwdtrade').val()){
+                $('#repwdtrade_msg').html("×");
+                $('#repwdtrade_msg').css('msg_error');
+                return validateMsg('repwdtrade', '再次输入的交易密码不一致', 0);
+            }
+        }
+        $('#pwdtrade_msg').html("√");
+        $('#pwdtrade_msg').css('msg_ok');
+        return validateMsg('pwdtrade', '', valistep2.pwdtrade = 1);
+    });
+    $('#repwdtrade').bind('blur', function(){
+        var pLen = $(this).val().length;
+        if(pLen < 6 || pLen > 20){
+            $('#repwdtrade_msg').html("×");
+            $('#repwdtrade_msg').css('msg_error');
+            return validateMsg('repwdtrade', '密码长度在6-20个字符之间', 0);
+        }
+        if($('#repwdtrade').val() != $('#pwdtrade').val()){
+            $('#repwdtrade_msg').html("×");
+            $('#repwdtrade_msg').css('msg_error');
+            return validateMsg('repwdtrade', '密码不一致，请重新输入。', 0);
+        }
+        $('#repwdtrade_msg').html("√");
+        $('#repwdtrade_msg').css('msg_ok');
+        return validateMsg('repwdtrade', '', valistep2.repwdtrade = 1);
+    });
+    $("#tongyi").bind('click',function(){
+        if($(this).val() == 1)
+            $(this).val(0);
+        else
+            $(this).val(1);
+        if($(this).val() == 0){
+            return validateMsg('agreemsg', '需同意本网站服务条款方可进行下一步', vali.tongyi = 0);
+        }else{
+            return validateMsg('agreemsg', '', vali.tongyi = 1);
+        }
+    });
+
+    function step1(){
+        //检查第一步是否有问题
+        for(var i in vali){
+            if(!vali[i]) {
+                event.preventDefault();
+                return false;
+            }
+        }
+        $('#step1').hide()
+        $('#step2').show();
+        $('#currentpwd').addClass('current');
+    }
+    function step2()
+    {
+        if(valistep2.pwdtrade==0 || valistep2.repwdtrade==0){
+            return false;
+        }else{
+            $('#step2').hide()
+            $('#step3').show();
+            $('#currentid').addClass('current');
+        }
+    }
+</script>
+
+
+<script>
+function checkform(){
+    var phone=$('#phone').val();
+    var code_p=$('#code_p').val();
+    if(phone==0){
+            $('#phone').focus();
+            return false;
+        }
+        if(code_p==0){
+            $('#code_p').focus();
+            return false;
+        }
+   $.post("{:U('Reg/addReg')}", $('#ttttform').serialize(),function(data){
+       if(data.status==1){
+        layer.msg(data['info']);    
+        window.location.href="{:U('Safe/index')}"
+       }else{
+           layer.msg(data['info']); 
+           }
+       
+    });
+};
+</script>
+<script>
+   	$('#tongyi').click(function() {
+		var isAgree = $(this).attr('checked');
+		if(isAgree) {
+			$(this).removeAttr('checked');
+			$('#next-btn').css({'background':'#e1e1e1'});
+		} else {
+			$(this).attr("checked",'true');
+			$('#next-btn').css({'background':'#337cbf'});
+		}
+		
+	});
+	$('#next-btn').click(function() {
+		var isAgree = $('#tongyi').attr('checked');
+		if(isAgree) {
+			$('#reg-prev').hide();
+			$('#reg-now').show();
+            $('html,body').animate({scrollTop:0});
+		}
+	});
+</script>
+<script type="text/javascript">
+    var timer="";
+    var nums=60;
+    var validCode=true;//定义该变量是为了处理后面的重复点击事件
+    $("#form-button").on('click',function(){
+                console.log("111");
+                var code=$(this);
+                var phone=$('#phone').val();
+                if(validCode){
+                    validCode=false;
+                    timer=setInterval(function(){
+                        if(nums>0){
+                            nums--;
+                            code.text(nums+"秒后重新发送");
+                            code.addClass("gray-bg");
+                            code.attr("disabled","disabled");
+                        }
+                        else{
+                            clearInterval(timer);
+                            nums=60;//重置回去
+                            validCode=true;
+                            code.removeClass("gray-bg");
+                            code.removeAttr("disabled");
+                            code.text("发送验证码");
+                }
+                    },1000)
+                }
+                $.post("{:U('Common/ajaxSandPhone')}",{'phone':phone},
+                    function(d){
+                       layer.msg(d.info);
+                        if(d.status==1){
+                            nums=60;
+                            
+                 }
+                });
+                
+
+            })
+
+ 
+
+
+
+</script>
+<script type="text/javascript">
+function  testCapsLock(e){ 
+
+       var valueCapsLock = e.keyCode ? e.keyCode:e.which; 
+       //var tag=document.getElementById(capital);
+       var valueShift = e.shiftKey ? e.shiftKey:((valueCapsLock == 16 ) ? true : false );  
+
+       if (((valueCapsLock >= 65 && valueCapsLock <= 90 ) && !valueShift)|| ((valueCapsLock >= 97 && valueCapsLock <= 122 ) && valueShift))
+       { 
+            //tag.style.display="block";
+            
+            $("#capital").show();
+            return true;  
+        } else {  
+
+           
+            $("#capital").hide();
+            return true;  
+        }      
+    }
+</script>
+
+<!--footer start-->
+<include file="App/Home/View/Public/new_footer.html"/>
+<!--footer end-->

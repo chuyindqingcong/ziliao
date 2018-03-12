@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html style="font-size: 55.2px;" >
+<header>
+    <meta charset="utf-8">
+    <title>我的账户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <style type="text/css">
+        .container-fluid{
+            padding: 0;
+            margin: 0;
+        }
+        .theader{
+            background-color: white;
+            height: 0.95rem;
+            line-height: 0.95rem;
+            border-bottom: 1px solid #d4d4d4;
+        }
+        .theader i{
+            color: #979797;
+        }
+        .theader a{
+            color: black;
+            text-decoration: none;
+        }
+
+        .division{
+            display: block;
+            height: 1.3rem;
+            background-color: #f6f6f6;
+        }
+        .list-unstyled{
+            border-top: 1px solid white;
+        }
+        .list-unstyled li{
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+    </style>
+</header>
+
+<body>
+<div class="container-fluid">
+    <div class="col-xs-12 theader">
+        <i class="glyphicon glyphicon-menu-left"></i>
+        <a href="{:U('User/memberCenter')}">返回</a>
+    </div>
+    <div class="division"></div>
+    <form id="myform">
+
+    <ul class="list-unstyled">
+        <li>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+                <input type="password" class="form-control" name="pwd" placeholder="请输入当前登录密码" aria-describedby="sizing-addon1">
+            </div>
+        </li>
+        <li>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" ><i class="glyphicon glyphicon-exclamation-sign"></i></span>
+                <input type="password" class="form-control" name="newpwd" placeholder="请输入新密码" aria-describedby="sizing-addon1">
+            </div>
+        </li>
+        <li>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" ><i class="glyphicon glyphicon-alert"></i></span>
+                <input type="password" class="form-control" name="rpwd" placeholder="请再次输入新密码" aria-describedby="sizing-addon1">
+            </div>
+        </li>
+    </ul>
+    </form>
+    <div class="col-xs-12">
+        <button class="btn btn-warning col-xs-12" id="mysubmit">确认修改</button>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/new/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/plugin/layer_mobile/layer.js"></script>
+<script>
+    var uppasswd="{:U('User/utp')}";
+$('#mysubmit').click(function () {
+   var myformdata=$('#myform').serialize();
+   $.post(uppasswd,myformdata,function (d) {
+       if(d.code==0)
+       {
+           layer.open({
+               content:'修改成功！',
+               btn:'确定'
+           });
+       }else{
+           layer.open({
+               content:d.error,
+               btn:'确定'
+           });
+       }
+   });
+});
+</script>
+</body>
+</html>

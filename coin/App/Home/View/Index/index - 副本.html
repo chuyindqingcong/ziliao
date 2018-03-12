@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta property="wb:webmaster" content="8af72a3a7309f0ee">
+    <title><notempty name='article'>{$article.title}-</notempty>{$config.title|default="虚拟币交易网站"}</title>
+    <link rel="shortcut icon" href="1.ico" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/index.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/news-list.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+    <!-- 旧版css -->
+<!--     <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/base.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/subpage.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/user.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/coin.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/zcpc.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/iconfont/demo.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/jb_style.css"> -->
+
+    <script src="__PUBLIC__/new/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/new/js/bootstrap.min.js"></script>
+<!-- 旧版js -->
+<!--     <script src="__PUBLIC__/Home/js/hm.js"></script> -->
+    <script type="text/javascript" src="__PUBLIC__/js/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/jquery.validate.min.js"></script>
+    <script language="javascript" src="__PUBLIC__/js/alert.js"></script>
+
+    <!--  
+<script src="__PUBLIC__/js/messages_zh.min.js"></script>
+
+    <script src="__PUBLIC__/js/base.js"></script>
+    <script src="__PUBLIC__/Home/js/script.js"></script> -->
+
+</head>
+<style type="text/css">
+    .page a{ padding: 4px 8px; background-color: #fff;color: #337ab7; border-radius: 3px;margin-right:4px;border:1px solid #e1e1e1;}
+    .page span{ padding:4px 8px; background-color: #fff;color: #337ab7;  border-radius: 3px;margin-right:4px;border:1px solid #e1e1e1;}
+    .page .current { background-color: #337ab7;color: #fff; border:none;}
+    .hover_user { float: left;text-align: center; border:1px solid #fff;border-bottom: none;background-image:url('__PUBLIC__/new/images/down.png');background-repeat:no-repeat;background-position: right;z-index: 1000;width: 126px;padding-top:2px;}
+    .asss:hover a{ border:1px solid #c1c1c1;border-bottom: 1px solid #fff; background-image:url('__PUBLIC__/new/images/up.png');background-repeat:no-repeat;background-position: right;background-color: #fff;}
+
+    .active_mon { display: none; position: absolute; top: 22px;right: 34px;width:400px; max-height: 260px;border:1px solid #c1c1c1;z-index: 100;background-color: #fff;border-top: none;background-image:url('__PUBLIC__/new/images/active_bg.png');background-repeat:no-repeat;padding-left: 15px;padding-bottom: 15px;font-size: 12px;}
+    .active_mon .mon_span { float: left;width: 100%; }
+    .active_mon .mon_span span{ float: left;width: 48%; line-height: 20px;height: 20px;margin:4px 0;}
+    .active_mon .mon_span img{ margin:0px 5px 0 0;float: left;}
+    .active_mon .mon_span b { font-weight: normal;width: 60px; float: left;}
+    .active_mon .mon_a_list{ float: left;width: 100%; margin-top: 10px;}
+    .active_mon .mon_a_list .mon_a { padding:3px 6px; background-color: #fff;color: #337ab7;border-radius: 3px;border-color: #337ab7 ; float: left;margin-right: 20px;background-image:none;width: 70px;text-align: center;}
+    .active_mon .mon_a_list .mon_a:hover { background-color: #337ab7;color: #fff;border-color: #337ab7 ; }
+
+    .con-deal { background-image:url('__PUBLIC__/new/images/down.png');background-repeat:no-repeat;background-position: right;z-index: 89999; }
+    .con_sss:hover .con-deal{ background-image:url('__PUBLIC__/new/images/up.png');background-repeat:no-repeat;background-position: right; color: #337ab7;}
+    .con_deal_n { display: none; position: absolute; top: 72px;left: 105px;width:150px; z-index: 99999;color: #f00;background-color: #fff;border: 1px solid #eee;border-top:2px solid #337ab7;}
+    .sjjj {display: inline-block;width: 0;height: 0;margin-left: 66px;vertical-align: middle;border-bottom: 6px solid #337ab7;border-right: 6px solid transparent;border-left: 6px solid transparent;position: absolute;top: -6px;cursor: pointer;}
+    .con_deal_n a { width: 100%;float: left;margin:0; font-size: 12px;border-bottom: 1px solid #eee;border-radius: 0;}
+    .con_deal_n a p img{ margin-right:5px;}
+</style>
+<body style="background-color: #f0f0f0;">
+<!-- 头部 -->
+
+    <!-- 头部导航 -->
+    <div class="w120 container" style="position: relative;padding-top: 10px;background-color: #fff;">
+        <div class="row" style="margin:0;">
+            <div class="col-md-3">
+                <a href="{:U('Index/index')}"><img class="head-logo img-responsive" src="{$config.logo}" /></a>
+            </div>
+            <div class="col-md-6" style="float: right;width: 530px;margin-right:10px;position: relative;">
+                <div class="head-nav">
+                    <a href="{:U('Index/index')}">首页</a>
+                    <!-- <a href="{:U('Index/aboutus')}">关于我们</a> -->
+                    <div class="con_sss" style="float: left;"><a href="{:U('Orders/currency_trade')}" class="con-deal" style="padding-right: 16px;">交易中心
+                    </a>
+                    <div class="con_deal_n">
+                        <div class="sjjj"></div>
+                        <volist name="currency_all" id="vo">
+                            <a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}"><p><img src="{$vo.currency_logo}" style="width:25px; height:25px;">{$vo.currency_name|default='虚拟币'}({$vo.currency_mark|default=''})</p></a>
+                        </volist>
+                    </div>
+                    </div>
+                    <a href="{:U('User/index')}">财务中心</a>
+                    <a href="{:U('Safe/index')}">安全中心</a>
+                    <a href="{:U('Help/index')}">帮助中心</a>
+                </div>
+            </div>
+        </div>
+
+    <empty name="user_id">
+    <div class="head_kefu">
+       <!--  <a href="#" class="about_us_a">关于我们</a> -->
+        <a href="{:U('Reg/reg')}" class="btn btn-default head_kefu_a_1">注册</a>
+        <a href="{:U('Login/index')}" class="btn btn-default head_kefu_a_2">登录</a>
+    </div>
+    <else />
+    <div class="head_kefu" style="height: 26px;">
+        <div class="asss" style="float: left;margin-left: 40px;">
+            <a href="{:U('User/index')}" class="hover_user">您好，{$us_name}</a>
+            <div class="active_mon">
+                <div class="mon_span" style="margin-top: 10px;">
+                    <span style="padding-left: 10px;">可用余额</span>
+                    <span style="padding-left: 10px;">委托冻结</span>
+                </div>
+                <div class="mon_span">
+                    <span><img src="__PUBLIC__/new/images/RMB.png" style="width:20px; height:20px;"><b>人民币</b>：<strong style="font-weight:normal;color: green;">{$member.rmb|default=0.00}</strong></span>
+                    <span><img src="__PUBLIC__/new/images/RMB.png" style="width:20px; height:20px;"><b>人民币</b>：<strong style="font-weight:normal;color: #e55600;">{$member.forzen_rmb|default=0.00}</strong></span>
+                </div>
+                <volist name="currency_user" id="vo">
+                <div class="mon_span">
+                    <span><img src="{$vo.currency_logo}" style="width:20px; height:20px;"><b>{$vo.currency_name|default='虚拟币'}</b>：<strong style="font-weight:normal;color: green;">{$vo.num|default=0.00}</strong></span>
+                    <span><img src="{$vo.currency_logo}" style="width:20px; height:20px;"><b>{$vo.currency_name|default='虚拟币'}</b>：<strong style="font-weight:normal;color: #e55600;">{$vo.forzen_num|default=0.00}</strong></span>
+                </div>
+                </volist>
+                <div class="mon_a_list">
+                    <a href="{:U('User/pay')}" class="mon_a">充值</a>
+                    <a href="{:U('User/draw')}" class="mon_a">提现</a>
+                    <a href="{:U('Entrust/manage')}" class="mon_a">委托管理</a>
+                    <a href="{:U('Trade/myDeal')}" class="mon_a">成交查询</a>
+                </div>
+            </div>
+        </div>
+<!--         <span>(UID: <b style="color: #337ab7;font-weight: normal;">{$Think.session.USER_KEY_ID}</b> )</span> -->
+        
+        <!-- <a href="{:U('User/index')}" style="margin-left:15px;">财务中心</a> -->
+        <a href="{:U('Login/loginOut')}" style="float: left;line-height: 23px;">退出</a>
+
+    </div>
+    </empty>
+    </div>
+<script type="text/javascript">
+    
+    $(function () {
+        $('.asss').hover(function(){$('.active_mon').show();},function(){$('.active_mon ').hide()});
+        $('.con_sss').hover(function(){$('.con_deal_n').show();},function(){$('.con_deal_n').hide()});
+    })
+</script>
+
+<!-- 头部轮播 -->
+<div class="w10 banner">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width: 1200px;margin:0 auto;">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <volist name='flash' id='vo'>
+            <if condition="$i eq 1">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <else />
+                <li data-target="#carousel-example-generic" data-slide-to="{$i-1}"></li>
+            </if>
+        </volist>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                <div class="item active">
+                    <a href="http://{$vo.jump_url|default='#'}" target="_blank"><img src="{$vo.pic}" alt="{$vo.title}-{$i}" style="height:300px;"></a>
+                </div>
+                <else />
+                <div class="item">
+                    <a href="http://{$vo.jump_url|default='#'}" target="_blank"><img src="{$vo.pic}" alt="{$vo.title}" style="height:300px;"></a>
+                </div>
+                </if>
+            </volist>
+      </div>
+    </div>
+
+<!--     <div class="banner-numble">
+        <p><img src="__PUBLIC__/new/images/num-person.png" />有超过<span>8</span><span>0</span><span>9</span><span>8</span><span>0</span><span>9</span>人正在操盘</p>
+    </div> -->
+    <!-- 登录框 -->
+    <empty name="user_id">
+    <div class="banner-input">
+        <form name="signupForm" method="post"  action="{:U('Login/checkLog')}">
+            <p>第九交易网用户登录</p>
+            <span class="input-phone">
+                <img src="__PUBLIC__/new/images/input-phone.png">
+                <input type="" id="email" placeholder="请输入手机号" />
+                <span class="glyphicon glyphicon-remove-circle e_tips"></span>
+            </span>
+            <span class="input-pas">
+                <img src="__PUBLIC__/new/images/input-pas.png">
+                <input type="password"  id="password" placeholder="请输入密码" />
+                <span class="glyphicon glyphicon-remove-circle p_tips"></span>
+            </span>
+            <input type="button" onclick="checkform()" class="btn form-submit" value="登录"/>
+            <span class="form-three"><a class="form-new" href="{:U('Reg/reg')}">新用户注册</a><a href="{:U('Login/findPwd')}">忘记密码?</a></span>
+            <div class="form-other">
+                <p><img src="__PUBLIC__/new/images/other-submit.png"></p>
+                <span>
+                    <a class="other-qq" href="{:U('Login/qqlogin')}"></a>
+                    <a class="other-weixin" href="{:U('Login/wxLogin')}"></a>
+                </span>
+            </div>
+        </form>
+    </div>
+    </empty>
+</div>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w10" style="background-color: #f0f0f0;">
+    <div class="w120 container body">
+        <div class="row" style="margin:0;">
+
+            <div class="col-md-3 bi" style="margin-left: 0px;">
+                <div class="bi-name" style="height: 625px;border: none;margin-bottom: 10px;background-color: #fff;border-radius: 2px;border:1px solid #d1d1d1;">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr style="background-color: #fff;">
+                          <th width="140">币种名称</th>
+                          <th width="75">现价</th>
+                          <th width="80">24H涨跌</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <volist name='currency' id='vo' empty='$empty'>
+                            <tr><td><img src="{$vo.currency_logo}" style="width:25px; height:25px;"><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}">{$vo.currency_name|default='虚拟币'}{$vo.currency_mark|default=''}</a></td>
+                            <td <eq name='vo.new_price_status' value='0'>class="red"<else/>class="green"</eq>>{$vo.new_price|default='暂无'}</td><td <gt name='vo.7D_change' value='0'>class="green"<else/>class="red"</gt>>{$vo.7D_change|default='0'}%</td></tr>
+                        </volist>
+                      </tbody>
+                    </table>
+                </div>
+
+                <div class="w-f index_ads_1">
+                    <p class="title">
+                        <span>视频介绍</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-9" style="padding:0 10px 10px 10px;background-color: #fff;border:1px solid #d1d1d1;margin-left: 12px;width: 74%;border-radius: 2px;">
+<!--                 <div class="w10-f gonggao">
+                    <span class="gonggao-t"><img src="__PUBLIC__/new/images/gogngao-bg.png"></span>
+                    <span class="gonggao-dian glyphicon glyphicon-info-sign"></span>
+                    <div class="notice_active">
+                        <ul>
+                            <volist name="gonggao" id="vo" offset="1" length="3">
+                            <li class="notice_active_ch">
+                                <span><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,40}</a></span>                
+                            </li>
+                            </volist>
+                        </ul>   
+                
+                    </div>
+                </div> -->
+
+                <div class="col-md-7 bizhong" style="float: left;">
+                <div class=" ">
+                    <p class="title">
+                        <span>平台公告</span>
+                        <a target="_balnk" href="{:U('Art/index',array('id'=>'103'))}">更多>></a>
+                    </p>
+                    <div class="bizhong-six" style="height: 171px;border-bottom: 1px solid #eee;">
+                        <ul class="bizhong-six-ul" style="border-bottom: none;">
+                            <volist name="gonggao" id="vo">
+                            <li><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,26}</a><span>{$vo.add_time|date='Y-m-d',###}</span></li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class=" ">
+                    <p class="title">
+                        <span>币种动态</span>
+                        <a target="_balnk" href="{:U('Art/index',array('id'=>'102'))}">更多>></a>
+                    </p>
+                    <volist name="bizhong" id="vo" offset="0" length='1'>
+                        <div class="bizhong-first">
+                            <div class="bizhong-first-three">
+                                <img src="{$vo.pic2}">
+                            </div>
+                            <div class="bizhong-first-seven">
+                                <a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,22}</a>
+                                <span class="bizhong-first-body">{$vo.art_sub}...</span>
+                                <span class="bizhong-first-time"><img src="__PUBLIC__/new/images/hangyenew-time.png">{$vo.add_time|date='Y-m-d H:i',###}</span>
+                            </div>
+                        </div>
+                    </volist>
+                    <div class="bizhong-six">
+                        <ul class="bizhong-six-ul" >
+                        <volist name="bizhong" id="vo" offset="1" length='6'>
+                            <li><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,26}</a><span>{$vo.add_time|date='Y-m-d',###}</span></li>
+                        </volist>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class=" ">
+                    <p class="title">
+                        <span>最新政策</span>
+                        <a target="_balnk" href="{:U('Art/index',array('id'=>'104'))}">更多>></a>
+                    </p>
+                    <div class="bizhong-six">
+                        <ul class="bizhong-six-ul" style="border-bottom: none;">
+                            <volist name="zhengce" id="vo">
+                            <li><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,26}</a><span>{$vo.add_time|date='Y-m-d',###}</span></li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-5 hangye">
+                    <p class="title">
+                        <span>行业资讯</span>
+                        <a target="_balnk" href="{:U('Art/index',array('id'=>'101'))}">更多>></a>
+                    </p>
+                    <volist name="news" id="vo" offset="0" length='3'>
+                    <div class="hangye-three">
+                        <p   class="hangyenew-title">
+                        <if condition="$vo['sign'] eq 1 ">
+
+                        <a style="color: red" target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,20}
+                        </a>
+                        <else />
+                         <a  target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,20}
+                        </a>
+                        </if>
+                        
+
+
+                        </p>
+                        <p class="hangyenew-body">{$vo.art_sub}...</p>
+                        <p class="hangyenew-num">
+                            <span style="width:115px;float:left;"><img src="__PUBLIC__/new/images/hangyenew-num.png">阅读：{$vo.views}</span>
+                            <span><img src="__PUBLIC__/new/images/hangyenew-time.png">{$vo.add_time|date='Y-m-d H:i',###}</span>
+                        </p>
+                    </div>
+                    </volist>
+                    <div class="hangye-six">
+                        <volist name="news" id="vo" offset="3" length='1'>
+                        <div class="hangye-six-f"><p><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,20}</a></p></div>
+                        </volist>
+                        <ul class="hangye-ul">
+                            <volist name="news" id="vo" offset="4" length='5'>
+                            <li><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,24}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+                    
+                    <div class="hangye-six">
+                        <volist name="news" id="vo" offset="9" length='1'>
+                        <div class="hangye-six-f"><p><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,20}</a></p></div>
+                        </volist>
+                        <ul class="hangye-ul">
+                            <volist name="news" id="vo" offset="10" length='5'>
+                            <li><a target="_balnk" href="{:U('Art/details',array('id'=>$vo['article_id']))}">{$vo.title|msubstr=0,24}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- body结束 -->
+
+<!-- part-link开始 -->
+<!-- <div class="w120 container part">
+    <div class="part-body">
+        <p><img src="__PUBLIC__/new/images/part-bg.jpg" /></p>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+        <a href="#"><img src="__PUBLIC__/new/images/part-1.jpg"></a>
+    </div>
+</div> -->
+<!-- <div class="w120 container link">
+    <div class="link-body">
+        <p><img src="__PUBLIC__/new/images/link-bg.jpg" /></p>
+        <volist name = "link_info" id = "vo">
+            <a target="_blank" href="http://{$vo['url']}">{$vo.name}</a>
+        </volist>
+    </div>
+</div> -->
+<!-- part-link结束 -->
+<script>
+function checkform(){
+
+        
+        if($('#email').val()==""){
+            $('#email').focus();
+            return false;
+        }
+        if( $('#password').val()==''){
+            $('#password').focus();
+            return false;
+        }
+        var username=$('#email').val();
+        var passwd=$('#password').val();
+        
+//        return true;
+       $.post("{:U('Login/checkLog')}", {'email':username,'pwd':passwd},function(data){
+           if(data.status==1){
+            //layer.msg(data['info']);  
+            window.location.href="{:U('Index/index')}"
+           }else{
+              layer.alert(data['info'], {icon: 5});
+               $('.e_tips').fadeIn();
+               $('.p_tips').fadeIn();
+               }
+        })
+    }
+</script>
+<script type="text/javascript">
+    function timer(opj){
+        $(opj).find('ul').animate({
+            marginTop : "-3.5rem"  
+            },500,function(){  
+            $(this).css({marginTop : "0"}).find("li:first").appendTo(this);  
+        })  
+    }
+    $(function(){ 
+        var num = $('.notice_active').find('li').length;
+        if(num > 1){
+           var time=setInterval('timer(".notice_active")',3500);
+        }
+
+        
+    });
+</script>
+<include file="App/Home/View/Public/new_footer.html"/>

@@ -1,0 +1,127 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+<!-- 头部结束 -->
+<style type="text/css">
+.user_table_1>thead>tr>th { text-align: left; }
+</style>
+
+<!-- body开始 -->
+<div class="w-f" id="main" style="border-top:1px solid #c1c1c1;background-color: #f5f5f5;">
+<div class="w120 container" style="margin-top: 20px;">
+	<div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 600px;margin-right: 16px;border-radius:2px;" id="left_safebody">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+				<li class="active safe_8" onclick="url_1123(this)"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+				<li class="safe_9" onclick="url_1123(this)"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+				<li class="safe_10" onclick="url_1123(this)"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+				<li class="safe_11" onclick="url_1123(this)"><span class="span_11"></span><a href="{:U('User/cart_man')}">银行卡管理</a></li>
+				<li class="safe_12" onclick="url_1123(this)"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+				<li class="safe_13" onclick="url_1123(this)"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+				<li class="safe_14" onclick="url_1123(this)"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!-- 				<li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+				<li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 600px;width: 72%;padding-left: 10px;padding-right: 10px;border-radius:2px;">
+		<div class="safe-name">账户资产<!-- <span style="font-weight:normal;color:#e55600;font-size:12px;padding-left: 15px;">推荐{$config.name|default='虚拟币'}赚佣金，躺着也挣钱！</span> --></div>
+		<div class="user_rmb">
+			<img src="/Public/Home/images/coin_rmb.png">　人民币(CNY)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可用：<span style="color:green;" >￥{$u_info['rmb']|floatval}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;冻结：<span style="color:orange;" >￥{$u_info['forzen_rmb']|floatval}</span>
+		</div>
+		<div class="user_all">
+		    总资产：<b>￥{$allcount|floatval}</b>
+		</div>
+		<div style="margin-top: 35px;width: 100%;float: left;">
+			<a class="user_chongzhi" href="{:U('User/pay')}">充值</a>
+			<a class="user_tixian" href="{:U('User/draw')}">提现</a>
+		</div>
+		<div class="w-f">
+            <table class="table table-hover user_table_1">
+              <thead>
+                <tr style="background-color: #f1f5f9;">
+                  <th width="170" style="text-align: center;">币种名称</th>
+                  <th width="145">&nbsp;&nbsp;&nbsp;总资产</th>
+                  <th width="145">数量总计</th>
+                  <th width="145">可用余额</th>
+                  <th width="145">交易冻结数量</th>
+                  <th style="text-align: center;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+<!--               		<tr class="list_con1">
+					    <td class="usertdtitle assets01"><img src="__PUBLIC__/new/images/RMB.png" style="width:25px; height:25px;">人民币 CNY</td>
+					    <td class="assets02">{$member.count|default=0.00}</td>
+					    <td class="assets02">{$member.rmb|default=0.00}</td>
+					    <td class="assets02">{$member.forzen_rmb|default=0.00}</td>
+					    <td class="cost assets03"><a style="color: #337cbf" href="{:U('User/pay')}">充值</a> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a style="color: #337cbf" href="{:U('User/draw')}">提现</a></td>
+					</tr> -->
+				<volist name='currency_user' id='vo' > 	
+                    <tr class="list_con2">
+					    <td class="usertdtitle assets01" style="text-align: left;"><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{$vo.currency_logo}" style="width:20px; height:20px;">{$vo.currency_name|default='虚拟币'}{$vo.currency_mark|default='--'}</a></td>
+					    <td class="assets02" style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;{$vo.cmoney|default=0.00}</td>
+					    <td class="assets02" style="text-align: left;">&nbsp;{$vo['num']+$vo['forzen_num']}</td>
+					    <td class="assets02" style="text-align: left;">&nbsp;{$vo['num']*1}</td>
+					    <td class="assets02" style="text-align: left;">&nbsp;<if condition="$vo.forzen_num lt 0.0001">
+					    	0
+					    	<else/>
+					    	{$vo['forzen_num']*1}
+					    </if></td>
+					    <td class="cost interest assets03">
+						<a style="color: #337cbf" href="{:U('Pay/bpay',array('currency_id'=>$vo['currency_id']))}">充币</a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;<a id="tj" cid="{$vo['currency_id']}" style="color: #337cbf" href="#" onclick="tj({$vo['currency_id']});">提币</a>
+						</td>
+						
+				    </tr>
+                  </volist>
+              </tbody>
+            </table>
+		</div>
+	</div>
+</div>
+</div>
+<include file="App/Home/View/Public/id-main-s.html"/>
+<script type="text/javascript">
+function url_1123(which) {
+	var htmla= $(which).find("a").attr("href");
+	window.location = htmla;
+}
+</script>
+<script type="text/javascript">
+$(function(){
+	var hsss = $(".safe-body").height();
+	$("#left_safebody").css("min-height",hsss);
+})
+</script>
+<!-- body结束 -->
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+<script type="text/javascript">
+function tj(id)
+{
+
+	var tag='{$u_info['shenhestatus']}';
+	
+	if(tag!=1)
+	{
+		layer.confirm('你当前是初级认证用户，无法提币，如需要请进行高级认证', {
+			  btn: ['取消','认证'] ,//按钮
+			  offset: '30%',
+			  btnAlign:'c',
+
+			}, function(index){
+				 layer.close(index);
+			 
+			}, function(){
+			  window.location.href="{:U('Home/Safe/shenfen')}";
+			});
+
+	}
+
+	else
+
+	{
+		window.location.href="http://www.9coin.com/Home/Pay/tcoin/currency_id/"+id+".html";
+	}
+}
+</script>

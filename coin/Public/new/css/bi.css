@@ -1,0 +1,327 @@
+ul li {list-style-type:none}
+
+.bi_con { float: left;padding: 0.1rem; width: 100%;	border-bottom: 1px solid #dddddd;padding-bottom: 0.2rem}
+.bi_con .bi_name { float: left;width:100%;font-size: 0.28rem; line-height: 0.5rem;}
+.bi_con .bi_name img{ float: left;margin-right: 0.2rem; }
+
+.bi_con table{
+	width: 100%;
+	font-size: 0.24rem;
+	margin-top: 0.1rem;
+	float: left;
+}
+.bi_con table tr:first-child td{
+	text-align: center;
+	line-height: 0.5rem;
+	color: #999999
+}
+
+.bi_con .j_boxtab tr:first-child td:first-child{
+	text-align: left;
+        padding-left: 0.3rem;
+}
+.bi_con .j_boxtab tr:first-child td:last-child{
+        padding-right: 0.3rem;
+}
+.bi_con .j_boxtab tr:last-child td:first-child{
+	text-align: left;
+        padding-left: 0.3rem;
+}
+.bi_con .j_boxtab tr:last-child td:last-child{
+        padding-right: 0.3rem;
+}
+
+
+.bi_con .j_boxtab tr:first-child td{
+	text-align: right;
+	line-height: 0.5rem;
+	color: #999999;
+}
+
+.bi_con .j_boxtab tr:last-child td{
+	text-align: right;
+	line-height: 0.5rem;
+	color: #666;
+}
+.bi_con table tr:last-child td{
+	text-align: center;
+	color: #333;
+	font-size: 0.24rem;
+}
+.bi_con table tr:last-child td.se{
+	color: #33cc00
+}
+
+.jiaoyi { float: left; margin-top: 0.1rem;width: 100%;}
+
+/* wodeweituo */
+
+.wt-box2 .tab_wt{
+	width: 100%;
+	font-size: 0.24rem;
+
+}
+.wt-box2 .tab_wt tr{
+	background: #e2e2e2;
+	height: 0.7rem
+}
+.wt-box2 .tab_wt tr th{
+	text-align: center;
+	width: 20%
+}
+.wt-box2 .tab_overflow {
+	max-height: 4.87rem;
+	border: 1px solid #dddddd;
+	border-top: none;
+	overflow: hidden;
+	overflow-y: scroll;
+	position: relative;
+}
+#bg-f{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 10px;
+	width: 92%;
+	z-index: 9;
+	margin-left: 4%;
+	background: rgba(255,255,255,0.8);
+}
+.wt-box2 .tab_overflow table{
+	width: 100%;
+	font-size: 0.2rem;
+	color: #666;
+
+}
+
+.wt-box2 .tab_overflow table tr td{
+	text-align: center;
+	width: 20%
+}
+.wt-box2 .tab_overflow table tr td.color_wtg{
+	color: #669900;
+}
+.wt-box2 .tab_overflow table tr td.color_wtr{
+	color: #ff0000;
+}
+.wt-box2 .tab_overflow table tr td a{
+	display: inline-block;
+	width: 0.98rem;
+	height: 0.48rem;
+	border: 1px solid #ff6600;
+	color: #ff6600;
+	text-align: center;
+	line-height: 0.48rem;
+	border-radius: 5px;
+}
+.wt-box2 .tab_overflow table tr{
+	height: 0.85rem;
+	border-bottom: 1px solid #dddddd;
+}
+.wt-box3 h3 select{
+	float: right;
+	color: #666;
+	width: 1.58rem;
+	height: 0.58rem;
+	/* background: url('../image/a-bottom.png') no-repeat 1rem center; */
+	outline: none;
+	background-size: 20%;
+	border: 1px solid #dddddd;
+	line-height: 0.58rem;
+	margin: 0.1rem 0.3rem 0 0;
+	background-color: #fff;
+}
+
+
+.tab-pane .j-L{
+	float: left;
+	width: 48%;
+	height:6rem;
+	margin-right: 4%;
+	position: relative;
+}
+.tab-pane .j-tabL1{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+	width: 100%;
+	font-size: 0.2rem;
+}
+.tab-pane .j-tabL1 tr{
+	line-height:  0.54rem;
+	
+	display:block;
+}
+.tab-pane .j-tabL1 tr.j-bg-G{
+	background: #a4c85d;
+	opacity: 0.2;
+}
+.tab-pane .j-tabL1 tr.j-bg-R{
+	background: #ff0000;
+	opacity: 0.1;
+}
+.tab-pane .j-tabL{
+	width: 100%;
+	font-size: 0.24rem;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.tab-pane .j-tabL tr{
+	margin-bottom: 0.1rem
+}
+.tab-pane .j-tabL tr td{
+	line-height: 0.54rem;
+}
+.tab-pane .j-tabL tr td:first-child{
+	text-align: left;
+}
+.tab-pane .j-tabL tr td:nth-child(2){
+	text-align: center;
+}
+.tab-pane .j-tabL tr td:last-child{
+	text-align: right;
+}
+.tab-pane .j-tabL tr.j-bg-c{
+	background: #f5f5f5;
+}
+.tab-pane .j-tabL tr td.j-colorG{
+	color: #669900;
+        padding-left: 0.1rem;
+}
+.tab-pane .j-tabL tr td.j-colorR{
+	color: #ff0000;
+        padding-left: 0.1rem;
+}
+.tab-pane .j-L .j-div2{
+	font-size: 0.2rem;
+	margin-top: 0.18rem;
+}
+.tab-pane .j-L .j-div2 a{
+	font-size: 0.2rem;
+	width: 3.4rem;
+	height: 0.8rem;
+	border: 1px solid #dddddd;
+	font-size: 0.2rem;
+	color: #666;
+	line-height: 0.8rem;
+	text-align: center;
+	display: inline-block;
+}
+.tab-pane .j-R{
+	float: right;
+	width: 48%;
+	min-height:5.76rem;
+}
+.tab-pane .j-R .div1{
+	padding-left: 0.1rem;
+	height: 1.02rem;
+	background: #f5f5f5;
+	margin-bottom:0.22rem;
+}
+.tab-pane .j-R .div1 p:first-child{
+	font-size: 0.20rem;
+	color: #666;
+	line-height: 0.4rem;
+	padding-top: 0.15rem;
+}
+.tab-pane .j-R .div1 p:last-child{
+	font-size: 0.25rem;
+	font-weight:600;
+	color: #333;
+}
+.tab-pane .j-R .j-p1{
+	position: relative;
+	font-size: 0.24rem;
+	color: #666;
+	margin-top:0.15rem;
+	margin-bottom: 0.07rem;
+}
+.tab-pane .j-R .j-p1_top{
+	position: relative;
+	font-size: 0.24rem;
+	color: #666;
+}
+
+.tab-pane .j-R .j-p2{
+	display: block;
+	width: 100%;
+	height: 0.60rem;
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	font-size: 0.24rem;
+	line-height: 0.78rem;
+	padding-left: 0.1rem;
+	outline: none;
+	-webkit-appearance:none;
+}
+.tab-pane .j-R .j-p3{
+	font-size: 0.18rem;
+	color: #ff6600;
+	margin: 0.26rem 0;
+	position: absolute;
+	right: 0.3rem;
+
+}
+.tab-pane .j-R .j-p3 span{
+	color: #ff6600;
+}
+.tab-pane .j-R .j-p4 input{
+	width: 3.15rem;
+	height: 0.78rem;
+	border: 1px solid #dddddd;
+	display: inline-block;
+	outline: none;
+	line-height: 0.78rem;
+	padding-left: 0.1rem;
+	border-radius: 5px;
+}
+
+.tab-pane .j-R .j-p5{
+	font-size: 0.24rem;
+	color: #666;
+	margin: 0.17rem 0 0;	
+}
+.tab-pane .j-R .j-p6{
+	font-size: 0.2rem;
+	margin-top: 0.3rem;
+}
+.tab-pane .j-R .j-p6 a{
+	width: 3.3rem;
+	height: 0.8rem;
+	background: #ff0000;
+	font-size: 0.2rem;
+	color: #fff;
+	line-height: 0.8rem;
+	text-align: center;
+	display: inline-block;
+}
+.tab-pane { padding: 0 5px; }
+
+.deal { float: left;width: 100%;margin-top: 0.2rem; }
+
+.tab-pane .j-tab3{
+	width: 100%;
+	font-size: 0.24rem;
+	color: #666;
+}
+.tab-pane .j-tab3 th{
+	font-size: 0.24rem;
+	color: #333;
+	text-align: center;
+	height: 0.64rem;
+	border-bottom: 1px solid #f2f2f2;
+}
+.tab-pane .j-tab3 tr td{
+	text-align: center;
+	height: 0.83rem;
+	border-bottom: 1px solid #f2f2f2;
+}
+.tab-pane .j-tab3 tr td:first-child span:last-child{
+	margin-left: 0.16rem;
+}
+.tab-pane .j-tab3 tr td.mairu{
+	color: #ff0000;
+}
+.tab-pane .j-tab3 tr td.maichu{
+	color: #669900;
+}

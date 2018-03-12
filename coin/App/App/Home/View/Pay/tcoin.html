@@ -1,0 +1,291 @@
+﻿<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+      <script type="text/javascript" src="__PUBLIC__/home/js/ajax.js"></script> 
+      <script type="text/javascript" src="__PUBLIC__/home/js/Fnc.js"></script> 
+      <script type="text/javascript" src="__PUBLIC__/home/js/inputFormat.js"></script>
+<style type="text/css">
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+ .my_add{ width: 100%;float: left;margin-bottom:15px;}
+ .my_add thead th{ text-align: center; padding: 10px 0;color: #333;}
+ .my_add tbody tr td{ text-align: center; padding: 12px 0;color: #333;}
+.verify{ padding: 4px 20px;border:none;background-color: #337cbf;color:#fff; border-radius: 5px;}
+.verify:hover{ opacity: 0.8;color:#fff; }
+#tibi{ padding-left: 200px; }
+#tibi input{ width: 300px; float: left;}
+#tibi span{ float: left;line-height: 34px;margin-left:10px;}
+.confirm { float: left; margin-top: 3px;margin-left:10px;padding: 5px 20px;border:none;background-color: #337cbf;color:#fff; border-radius: 5px; }
+.confirm:hover{ opacity: 0.8;color:#fff; }
+
+.dj{background-color: grey;}
+</style>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" style="background-color: #f5f5f5;border-top:1px solid #c1c1c1;">
+<div class="w120 container" style="margin-top: 4px;">
+	<div class="col-md-3" style="background-color: #fff;min-height: 1000px;margin-right: 10px;border:1px solid #e1e1e1;border-radius: 2px;">
+		<div class="safe-ul w-f">
+			<ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+				<li class="active safe_8"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+				<li class="safe_9"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+				<li class="safe_10"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+				<li class="safe_11"><span class="span_11"></span><a href="{:U('Fill/index')}">网银支付日志</a></li>
+				<li class="safe_12"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+				<li class="safe_13"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+				<li class="safe_14"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!-- 				<li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+				<li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-9 safe-body" style="background-color: #fff;min-height: 1000px;width: 72%;padding-left: 10px;border:1px solid #e1e1e1;border-radius: 2px;">
+		<div class="safe-name" style="font-size: 18px;margin-bottom:20px;">虚拟币转出</div>
+
+        <div id="tagContent" class="passContent w-f">
+        <div class="tagContent selectTag" id="tagContent0">
+            <div class="choose_one clearfix" style="margin-bottom:5px;">
+				<h2 class="left" style="font-size: 16px;margin-top: 5px;">选择一个提币地址<span style="float:right;margin-right:50px;"><strong id="coinout_showtips"></strong></span></h2>
+				<p class="right" style="font-size:12px; margin-top:8px;float: right;">如果您新添加的地址为【未认证】，请联系官方客服QQ（{$config.qq1}）审核。</p>
+	    	</div>
+	    <table cellpadding="0" cellspacing="0" border="0" class="my_add">
+		<thead>
+			<tr align="center" style="background-color: #f1f5f9;">
+				<th style="width:143px">选择</th>
+				<th style="width:221px">地址标签</th>
+				<th style="width:300px;">提币地址</th>
+				<th style="width:100px">状态</th>
+				<th style="width:144px">操作</th>
+			</tr>
+		</thead>
+     
+		<tbody>
+            <form class="form-horizontal m-t" id="address" jump-url="{:U('Pay/tcoin',array('currency_id'=>$cuid['currency_id']))}" method="post" >
+            			<tr style="display:none;" id="coinout_newaddr" align="center">
+				<td>新地址</td>
+				<td><input class="sum" id="new_label"  type="text" name="name" placeholder="例如：张三的地址"></td>
+				<td><input class="sum" id="wallet_address" style="width:300px;"  type="text" name="address" placeholder="例如：yja67fGc8UBXLWtjwvHFkjrmYhTFGH9PTs" ></td>				
+				<input type="hidden" name="currency_id" value="{$cuid['currency_id']}" />
+				<td>&nbsp;</td>
+				<td><input class="verify"  id="yes_add2" value="确认" type="button"></td>
+			</tr>
+			</form>
+			<empty name="list">
+			<tr align="center" id="addAddress_tr">
+				<td colspan="5"><a href="javascript:coinOut.addNewAddr();" id="addNewAddress">点击添加一个新的提币地址</a></td>
+			</tr>
+			<else/>
+			<tr align="center">
+				<td>地址</td>
+				<td><input class="sum" id="new_label"  type="text" name="name" value="{$list.name|default=''}" disabled="disabled"></td>
+				<td><input class="sum" id="wallet_address" style="width:300px;"  type="text" name="address" disabled="dosabled"  value="{$list.qianbao_url|default=''}"></td>
+				<td>可用</td>
+				
+				<td><a href="{:U('Pay/del_address',array('id'=>$list['id'],'cuid'=>$cuid['currency_id']))}">删除</a></td>
+			</tr>
+			</empty>
+		</tbody>
+	    </table>
+		  <script>	
+           
+	$('#yes_add2').click(function(){
+
+	    	var name=$('#new_label').val();
+	    	var addr=$('#wallet_address').val();
+	    	
+	    	if(!name)
+	    	{
+	    		layer.msg("标签不能为空");
+	    		return false;
+	    	}
+	    	if(!addr)
+	    	{
+	    		layer.msg("地址不能为空");
+	    		return false;
+	    	}
+	    	
+
+	    	$.post("{:U('Pay/add_qianbao_address')}", $("#address").serialize(),function(data){
+	           if(data.status==1)
+	           {
+		            layer.msg(data['info']);  
+		            location.reload();
+	           }
+	           else
+	           {
+	               
+	              layer.msg(data['info']);
+	              return false;
+	           }
+        	})
+
+
+	    	
+	    })	
+
+			</script> 
+			
+<!-- 	    <h2 class="choose_one">输入要提币的数额<span>(可用余额：<strong>{$cuser.num} {$cuid.currency_mark}</strong>)</span><span style="float:right;margin-right:20px;"><strong id="coinout2_showtips"></strong></span></h2> -->
+		<form class="form-horizontal m-t w-f" id="tibi" jump-url="{:U('Pay/tcoin',array('currency_id'=>$cuid['currency_id']))}" method="post" ">
+		<input type="hidden" name="currency_id" value="{$cuid['currency_id']}">
+	    	 <div class="form-group">
+			    <div class="col-sm-10">
+			      <input type="text" class="sum form-control" id="coin_rmb" name="num" placeholder="请输入转出数量">
+			      <span>可用{$cuid.currency_name}：{$cuser.num} </span>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-10">
+			      <input type="password" class="sum form-control" name="paypwd" id="pwd" placeholder="请输入交易密码">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-10">
+			      <input style="display:none" type="password">
+                    <!-- for disable autocomplete on chrome -->
+                    <input class="sum form-control" name="code" id="code" autocomplete="off" type="password" placeholder="请输入手机验证码">
+                    <a class="confirm" type="button" id="msgt" data-key='off' onclick="sandPhone()">点击发送</a>
+			    </div>
+			  </div>
+				<input id="zhuanchu" style="margin-left:0px;margin-top: 20px;padding:10px 25px;" type="button" class="confirm" value="确认转出">
+        	</form>
+        </div>
+        </div>
+
+		<div class="w-f" style="color:#666;padding-left: 10px;margin-top: 35px;">
+			<p style="line-height: 30px;">转出说明</p>
+			<p style="line-height: 30px;">1.提币手续费为{$cuid.currency_sell_fee|mb_substr=0,4,"utf-8"}%，请仔细确认后再操作。</p>
+            <p style="line-height: 30px;">2.每笔转出最大限额100个币。</p>
+		</div>
+
+		<div class="ybc_list w-f">
+	    <div class="ybcoin">
+	        <h2 class="left" style="font-size: 16px;">转出记录</h2>
+	        <div class="clear"></div>
+	    </div>
+		<table cellspacing="0" cellpadding="0" border="0" class="raise_list" align="center">
+			<thead>
+			<tr style="background-color: #f1f5f9;">
+				<th>记录ID</th>
+				<th>转入钱包地址</th>
+				<th>转出数量</th>
+				<th>实际到账</th>
+				<th>操作时间</th>
+				<th>状态</th>
+			</tr>
+			</thead>
+			<tbody>
+			<volist name="tibi_list" id='vo'>
+			<tr id="btc_box" class="btc_new">
+				<td id="btc_id">{$vo.id}</td>
+				<td id="btc_wallet">{$vo.url}</td>
+				<td id="btc_number">{$vo.num}</td>
+				<td id="btc_fee">{$vo.actual}</td>
+				<td id="btc_created">{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+				<td class="tableEnd" id="btc_status"><eq name="vo.status" value = '0'>等待转出<else/>已经到账</eq></td>
+			</tr>
+					
+			</volist>
+					</tbody>
+		</table>
+		</div>
+
+	</div>
+</div>
+</div>
+<!-- body结束 -->
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+	    <script>
+
+	    $('#zhuanchu').click(function(){
+
+	    	var num=$('#coin_rmb').val();
+	    	var pwd=$('#pwd').val();
+	    	var yzm=$('#code').val();
+	    	if(!num)
+	    	{
+	    		layer.msg("转出数量不能为空");
+	    		return false;
+	    	}
+	    	if(!pwd)
+	    	{
+	    		layer.msg("交易密码不能为空");
+	    		return false;
+	    	}
+	    	if(!yzm)
+	    	{
+	    		layer.msg("验证码不能为空");
+	    		return false;
+	    	}
+
+	    	$.post("{:U('Pay/ti_bi')}", $("#tibi").serialize(),function(data){
+	           if(data.status==1)
+	           {
+		            layer.msg(data['info']);  
+		            location.reload();
+	           }
+	           else
+	           {
+	               
+	              layer.msg(data['info']);
+	              return false;
+	           }
+        	})
+
+
+	    	
+	    })	
+ 			</script> 
+
+<script src="__PUBLIC__/Home/js/coinout.js"></script>
+<script>
+$('#coin_rmb').bind('input propertychange', function() {
+	var num=$("#coin_rmb").val();
+	if(isNaN(num)){
+	 alert("请输入数字类型");
+	}else{
+	
+	var fee=$("#sell_fee").val()/100;
+	var shiji=num*(1-fee);
+	$("#true_coin").val(shiji.toFixed(2));
+	}
+}); 
+ function  sandPhone(){
+        var phone="{$member.phone}";
+		
+		var i=120;
+        var tid2;
+        tid2=setInterval(function(){
+            if($("#msgt").attr("data-key")=='off'){
+                $("#msgt").attr("disabled",true);
+                 $("#msgt").removeClass("class");
+                 $("#msgt").addClass("dj");
+                i--;
+                $("#msgt").text(i+"秒后可重新发送");
+                if(i<=0){
+                    $("#msgt").removeAttr("disabled").text("重新发送验证码");
+                    $("#msgt").attr("data-key","on");
+                    $("#msgt").removeClass("dj");
+                }
+            }
+        },1000);
+        
+            $.post("{:U('Common/ajaxSandPhone')}",{'phone':phone},
+                    function(d){
+                       layer.msg(d.info);
+                        if(d.status==1){
+                            
+                            
+            	 }
+            });
+    }
+
+
+
+</script>

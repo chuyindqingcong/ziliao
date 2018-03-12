@@ -1,0 +1,155 @@
+<include file="App/Admin/View/Public/left.html"/>
+<!--/sidebar-->
+<div class="main-wrap">
+
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">返利记录</span></div>
+    </div>
+    <div class="search-wrap">
+        <div class="search-content">
+             <form action="{:U('Invit/rebate')}" method="GET" id="myForm">
+                <table class="search-tab">
+                    <tr>
+                    <td width="70">编号:</td>
+                        <td><input class="common-text" placeholder="ID" name="invit_id" type="text" value="{$Think.get.invit_id}"></td>
+                        <td width="70">开始日期:</td>
+                        <td><input class="common-text" placeholder="开始日期" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$Think.get.start}" name="start"></td>
+                        <td>-</td>
+                        <td><input class="common-text" placeholder="结束日期" name="endtime" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{$Think.get.endtime}"></td>
+                        <td>
+                            <select name="status">
+                            <option value="0" selected>请选择状态</option>
+                            <if condition="I('get.status') eq 1">
+                                <option value="1" selected>未返利</option>
+                                <else />
+                                <option value="1">未返利</option>
+                            </if>
+                            <if condition="I('get.status') eq 2">
+                                <option value="2" selected>已返利</option>
+                                <else />
+                                <option value="2">已返利</option>
+                            </if>
+                            </select>
+                        </td>
+                        <td><input class="btn btn-primary btn2"  value="查询" type="submit"></td>
+                    </tr>
+                </table>
+            </form>
+            <button class="btn btn-primary" id="rebateNow">立即返利</button>
+        </div>
+    </div>
+    <div class="result-wrap">
+
+        <div class="result-title">
+            <div class="result-list">
+               <i class="icon-font"></i>返利记录
+            </div>
+        </div>
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th>编号</th>
+                    <th>交易人(ID)</th>
+                    <th>交易类型</th>
+                    <th>交易数量</th>
+                    <th>手续费</th>
+                    <!--  <th>会员邮箱</th> -->
+                    <th>返利</th>
+                    <th>邀请人(ID)</th>
+                    <!-- <th>返利类型</th> -->
+                    <th>时间</th>
+                    <th>返利状态</th>
+                </tr>
+                <volist name='list' id='vo'>
+                    <if condition="$vo['invit_id'] eq true">
+                    <tr>
+                        <td>{$vo['invit_id']}</td>
+                        <td>{$vo.member_id_bottom}</td>
+                          <if condition="$vo['order_type'] eq 'buy'">
+                            <td style="color:green;">买入</td>
+                         <else/>
+                            <td style="color:red;">卖出</td>
+                        </if>
+                        <td>{$vo['num']}</td>
+                        <td>{$vo['cfee']}
+                            <if condition="$vo['rebatetype'] eq 1">
+                     &nbsp({$vo.currency_name})
+                            <else/>
+                        &nbsp(RMB)
+                        </if>
+                        </td>
+                        <if condition="$vo['rebatetype'] eq 1">
+                        <td>{$vo['rebate']}&nbsp({$vo.currency_name})</td>
+                            <else/>
+                        <td>{$vo['rebate']}&nbsp(RMB)</td>
+                        </if>
+                        <td>{$vo['member_id']}</td>
+                      
+                      <!--   <if condition="$vo['order_type'] eq 'buy'">
+                            <td>币种</td>
+                         <else/>
+                            <td>账户余额</td>
+                        </if> -->
+                    <!--     <if condition="$vo['rebatetype'] eq 1">
+                        <td>{$vo['rebate']}&nbsp({$vo.currency_name})</td>
+                            <else/>
+                        <td>{$vo['rebate']}&nbsp(RMB)</td>
+                        </if> -->
+                        <td>{$vo['ctime']|date="Y-m-d H:i:s",###}</td>
+                        <td>
+                            <if condition="$vo['status'] eq 1">
+                                <span style="color: green;">已返</span>
+                                <else/>
+                                <span style="color: gray;text-align:center;">未返</span>
+                            </if>
+                        </td>
+                    </tr>
+                    </if>
+                </volist>
+                <tr style="font-weight: 700">
+                    <td colspan="3">总计：</td>
+                    <td colspan="3">手续费&nbspRMB:{$cfee.rmb|default="0.00"}</td>
+                    <td colspan="3">&nbsp&nbsp手续费&nbsp币:{$cfee.coin|default="0.00"}</td>
+                    </tr>
+            </table>
+            <div class="list-page"> <ul>{$page}</ul></div>
+        </div>
+
+    </div>
+</div>
+<!--/main-->
+</div>
+</body>
+</html>
+<script>
+    $(".sub-menu").eq(11).show();
+    $(".sub-menu").eq(11).children("li").eq(1).addClass("on");
+</script>
+<script type="text/javascript">
+    var rebateUrl="{:U('Invit/executeRebate')}";
+    $('#rebateNow').click(function()
+    {
+        var formdata=$('#myForm').serialize();
+        $.get(rebateUrl,formdata,function(d)
+        {
+            if(d.code==false)
+            {
+                alert('请求已完成,累计处理'+d.number+'条记录');
+            }
+        })
+    }
+    ); 
+    $(document).on("change",'select#sfrz',function(){
+        var type=$(this).val();
+        var memberid=$(this).attr('memberid');
+
+        if(type==0)
+        {
+            return false;
+        }
+        $.post("{:U('Member/shenfenrz')}",{type:type,memberid:memberid},function(data){
+
+        });
+
+    });
+</script>

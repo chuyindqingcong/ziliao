@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html style="font-size: 55.2px;" >
+<head>
+    <meta charset="utf-8">
+    <title>我的账户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/style.css">
+    <style type="text/css">
+        .user_info{
+            background: white;
+            border-top: 0.2rem solid #f2f2f2;
+        }
+        .user_info .email{
+            font-size: 0.32rem;
+            padding-top: 0.3rem;
+        }
+        .user_info .grade{
+            padding:10px;
+            display: block;
+            background: url("https://m.yuanbao.com/images/chuji_03.png") no-repeat;
+            position: relative;
+            bottom: 23px;
+            left: 94px;
+            width: 64px;
+        }
+        .user_info .member_id{
+            font-size: 0.28rem;
+            color: #999;
+        }
+        .container-fluid{
+            padding: 0;
+            margin: 0;
+        }
+        .user_info .logout{
+            background: url("https://m.yuanbao.com/mobile/image/icon_contact_223.png") no-repeat;
+        }
+        .user_info .glyphicon-off{
+           float: right;
+            padding-bottom: 3px;
+        }
+        .user_info .col-xs-6{
+            margin: 0;
+            padding: 0;
+        }
+        .accounttitle{
+            background-color:#f2f2f2 ;
+            height: 1rem;
+        }
+        .accounttitle span{
+            line-height: 1rem;
+            font-size:0.3rem;
+        }
+        .list-unstyled li{
+            background: white;
+            height: 52px;
+            border-bottom: 1px solid #ddd;
+            padding-top: 16px;
+            font-size: 0.3rem;
+        }
+        .list-unstyled a{
+            text-decoration:none;
+            color: black;
+        }
+        /*.user_auth{*/
+            /*display:inline-block;*/
+            /*background: url("https://ybh-static.oss-cn-hangzhou.aliyuncs.com/mobile/image/icon_accont_07.png") no-repeat;*/
+            /*height: 30px;*/
+            /*width: 30px;*/
+            /*margin-top: 10px;*/
+        /*}*/
+        .glyphicon-menu-right{
+            float: right;
+        }
+       li i:nth-child(1){
+            padding-right: 10px;
+        }
+        .service{
+            background-color:#f2f2f2 ;
+            height: 1rem;
+        }
+        .service span{
+            line-height: 1rem;
+            font-size:0.3rem;
+        }
+        .describe{
+            float: right;
+           color: #908c8c;
+        }
+        .describetext{
+            color: #999 !important
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <include file="Public/header"/>
+        <div class="col-xs-12 user_info" >
+            <if condition="$userinfo['email'] eq true">
+                <p class="email">{$userinfo.email}</p>
+                <else/>
+                <p class="email">{$userinfo.phone}</p>
+            </if>
+            <div class="col-xs-6">
+                <span class="member_id">UID:{$userinfo.member_id}</span>
+                <span class="grade"></span>
+            </div>
+            <div class="col-xs-6">
+                <a href="{:U('User/logout')}" class="glyphicon glyphicon-off"></a>
+            </div>
+        </div>
+        <div class="col-xs-12 accounttitle">
+            <span>账户管理</span>
+        </div>
+        <ul class="list-unstyled">
+
+            <!--<li class="col-xs-12">-->
+                <!--<i class="glyphicon glyphicon-user describetext"></i> <span>实名认证</span> <i class="glyphicon glyphicon-menu-right describe"></i>-->
+            <!--</li>-->
+             <a href="{:U('User/passwd')}">
+            <li class="col-xs-12">
+                <i class="glyphicon glyphicon-lock describetext"></i> <span>修改登录密码</span> <i class="glyphicon glyphicon-menu-right describe"></i>
+            </li>
+            </a> 
+            <a href="{:U('User/tradepasswd')}">
+            <li class="col-xs-12">
+                <i class="glyphicon glyphicon-yen describetext"></i>  <span>修改交易密码</span>  <i class="glyphicon glyphicon-menu-right describe"></i>
+            </li>
+            </a>
+
+        </ul>
+        <div class="col-xs-12 service">
+            <span>联系客服</span>
+        </div>
+        <ul class="list-unstyled">
+
+            <li class="col-xs-12">
+                <i class="glyphicon glyphicon-envelope describetext"></i> <span>客服邮箱</span> <span class="describe">kefu@9coin.com</span>
+            </li>
+            <li class="col-xs-12">
+                <i class="glyphicon glyphicon-phone-alt describetext"></i> <span>客服电话</span> <span class="describe">400-879-8786</span>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

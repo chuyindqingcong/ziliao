@@ -1,0 +1,247 @@
+a:hover{ text-decoration:none; }
+.line { 
+	height: 1px;
+	border-top: 1px solid #dddddd;
+	background-color: #f5f5f5;
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 10px;
+
+}
+.bi-name .green_1{
+	padding-top: 7px;
+}
+.bi-name .red{
+	padding-top: 7px;
+}
+.deal-title{
+	float: left;
+	/*border:1px solid #ebebeb;*/
+    background-color: #fff;
+    border-radius: 4px;
+}
+.deal-title-p{
+	color: #333;
+	font-size: 18px;
+	line-height: 30px;
+	padding-left: 20px;
+	margin-top:10px;
+}
+.deal-title-p img{
+	margin-top: -3px;
+	margin-right: 8px;
+}
+.deal-title-button{
+	float: right;
+	margin-right: 50px;
+	padding: 6px 25px;
+	color: #8796ab;
+	border-color:#8796ab;
+}
+.deal-prcie{
+	 width: 96%;
+	 margin-left: 2%;
+	 /*background-color: #f7f7f7;*/
+}
+.deal-prcie-four{
+	width: 19%;
+	float: left;
+	/*border-right: 1px dashed #e1e6ed;*/
+}
+.deal-prcie-four p{
+	padding-top:10px;
+	text-align: center;
+	color: #8796ab;
+}
+.deal-prcie-four span{
+	width: 100%;
+	float: left;
+	text-align: center;
+	font-size:22px;
+	padding-bottom:8px;
+}
+.deal-prcie-one{
+	width: 24%;
+	float: left;
+}
+.deal-prcie-one p{
+	padding-top:10px;
+	text-align: center;
+	color: #8796ab;
+}
+.deal-prcie-one span{
+	width: 100%;
+	float: left;
+	text-align: center;
+	font-size:22px;
+	padding-bottom:10px;
+}
+
+.bi-name-title{
+	font-size: 18px;
+	color: #000;
+	padding-left: 55px;
+	margin-top: 15px;
+	padding-bottom: 13px;
+	background: url(../images/bi-name-bg.png) no-repeat;
+	border-bottom: 1px solid #f0f0f0;
+}
+.deal-deal{
+	
+	 margin-top: 15px;
+	 padding: 0 15px 20px 15px;
+     /*border:1px solid #ebebeb;*/
+   	 background-color: #fff;
+     border-radius: 4px;
+}
+
+.deal-deal-title{
+	float: left;
+	font-size: 18px;
+	color: #000;
+	padding-left: 32px;
+	margin-top: 20px;
+	padding-bottom: 10px;
+	background: url(../images/deal-deal-bg.png) no-repeat;
+	border-bottom: 1px solid #f0f0f0;
+}
+.deal-deal-p{
+	margin-top: 15px;
+	font-size: 18px;
+	color: #e4000f;
+}
+.deal-deal-p span{
+	float: right;
+	padding: 2px 10px;
+	font-size: 14px;
+	color: #666;
+	background-color: #f1f4f8;
+}
+.input-group-addon{
+	background-color: #fff;
+}
+
+.deal-form{
+	margin-top: 15px;
+}
+.deal-form input{
+	height: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-right: none;
+}
+.deal-form-button{
+	width: 100%;
+	float: left;
+	padding: 10px 0px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background-color: #e4000f;
+	border-color: #e84a64;
+	border-radius: 5px;
+}
+.deal-form-button:hover{
+	opacity: 0.8;
+	color: #fff;
+	background-color: #e84a64;
+	border-color: #e84a64;
+	text-decoration:none;
+}
+.deal-form-button-2{
+	width: 100%;
+	float: left;
+	padding: 10px 0px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background-color: #1bab34;
+	border-color: #669900;
+	border-radius: 5px;
+}
+.deal-form-button-2:hover{
+	opacity: 0.8;
+	color: #fff;
+	background-color: #669900;
+	border-color: #669900;
+	text-decoration:none;
+}
+
+.deal-weituo{
+	margin-bottom: 0px;
+	margin-left: 15px;
+    /*border:1px solid #ebebeb;*/
+	background-color: #fff;
+	padding:0 10px 5px 10px;
+    border-radius: 4px;
+}
+.deal-weituo-title{
+	float: left;
+	font-size: 18px;
+	color: #000;
+	padding-left: 37px;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	background: url(../images/deal-weituo-bg.png) no-repeat;
+	border-bottom: 1px solid #f0f0f0;
+}
+.deal-weituo-span{
+	float: left;
+	margin-top: 3px;
+	height: 15px;
+}
+.red{
+	color: #e4000f;
+}
+.green_1{
+	color: #1bab34;
+}
+.table>tbody>tr>.red>a{
+	color: #e84a64;
+}
+.table>tbody>tr>.green_1>a{
+	color: #2eaa48;
+}
+.bg-red {
+	background-color: #ff8888;
+}
+.bg-green_1 {
+	background-color: #2eaa48;
+}
+
+.deal-record{
+	margin-top: 15px;
+	/*border:1px solid #ebebeb;*/
+	background-color: #fff;
+	padding:0 10px 5px 10px;
+    border-radius: 4px;
+}
+.deal-record-title{
+	float: left;
+	font-size: 18px;
+	color: #000;
+	padding-left: 37px;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	background: url(../images/deal-record-bg.png) no-repeat;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.deal-mine{
+	min-height: 259px;
+	margin-top: 16px;
+	/*border:1px solid #ebebeb;*/
+	background-color: #fff;
+	padding:0 10px 5px 10px;
+    border-radius: 4px;
+}
+.deal-mine-title{
+	float: left;
+	font-size: 18px;
+	color: #000;
+	padding-left: 37px;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	background: url(../images/deal-weituo-bg.png) no-repeat;
+	border-bottom: 1px solid #f0f0f0;
+}

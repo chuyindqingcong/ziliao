@@ -1,0 +1,158 @@
+<html dir="ltr" lang="zh-CN"><head>
+  <meta charset="utf-8">
+  <!-- v13058 -->
+  <title>OPENIEX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta content="openiex,交易所,BTC,coin" name="keywords">
+  <link rel="stylesheet" href="/Public/js/lib/iconfont/iconfont.css" />
+  <link rel="stylesheet" media="screen and (max-width: 600px)" href="/Public/css/single/help/small.css" />
+  <link rel="stylesheet" media="screen and (min-width: 601px) and (max-width: 1000px)" href="/Public/css/single/help/middle.css" />
+  <link rel="stylesheet" media="screen and (min-width: 1001px)" href="/Public/css/single/help/pc.css" />
+  <link rel="stylesheet" type="text/css" href="/Public/css/single/help/index.css"/>
+</head>
+<body class="">
+
+
+  <include file="App/Home/View/Single/comm/header.html"/>
+
+  <main role="main">
+    <div class="container-divider"></div>
+    <div class="container">
+      <nav class="sub-nav">
+        <ol class="breadcrumbs">
+
+          <li title="Binance">
+
+            <a href="/home/single/help">OPENIEX</a>
+
+          </li>
+
+          <li title="提交请求">
+
+            {$Think.lang.work_order}
+
+          </li>
+
+        </ol>
+
+        <form role="search" class="search" data-search="" action="/Home/single/search.html" method="get"><input name="utf8" type="hidden" value="&#x2713;" /><input type="search" name="query" id="query" placeholder="{$Think.lang.search}" autocomplete="off" aria-label="搜索"></form>
+      </nav>
+
+      <h1>
+        {$Think.lang.work_order}
+
+      </h1>
+
+      <div class="form">
+        
+        <form id="form2">
+
+
+
+
+
+          <div class="form-field string required request_anonymous_requester_email"><label for="request_anonymous_requester_email">{$Think.lang.email}</label>
+            <input type="text" name="email" id="email" />
+          </div>
+
+
+
+
+          <div class="form-field string  required  request_subject" >
+            <label for="request_subject">{$Think.lang.title}</label>
+            <input type="text" name="title" id="title" maxlength="150" size="150" />
+
+
+          </div>
+
+
+          <div class="suggestion-list" data-hc-class="searchbox" data-hc-suggestion-list="true"></div>
+
+
+          <div class="form-field text  required  request_description" >
+            <label for="request_description">{$Think.lang.describe}</label>
+            <textarea name="describe" id="describe"></textarea>
+            <p>{$Think.lang.describe_question}</p>
+
+          </div>
+
+
+
+          <div class="form-field string  required  request_custom_fields_114095609651" >
+            <label for="request_custom_fields_114095609651">{$Think.lang.choose_type}</label>
+            <div class="shouDi">
+              <div class="textInput">
+                {$Think.lang.other}
+              </div>
+              <img src="/Public/img/jjb.png">
+              <div class="hideTx">
+                <ul>
+                  <li data-id=2>{$Think.lang.deposit}</li>
+                  <li data-id=3>{$Think.lang.withdrawal}</li>
+                  <li data-id=4>{$Think.lang.trade}</li>
+                  <li data-id=1>{$Think.lang.other}</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <div class="form-field string  optional  request_custom_fields_114095609671" >
+            <label for="request_custom_fields_114095609671">{$Think.lang.submit_txid}</label>
+
+
+
+          </div>
+
+
+
+
+          <div class="form-field">
+            <label>{$Think.lang.enclosure}</label>
+            <div id="upload-dropzone" class="upload-dropzone">
+              {$Think.lang.upload_file}
+            </div>
+
+            <div id="upload-error" class="notification notification-error notification-inline">
+              <span data-upload-error-message></span>
+            </div>
+
+
+            <ul id="request-attachments-pool" class="upload-pool" data-template="upload-template">
+
+            </ul>
+
+
+
+          </div>
+
+          <input type="hidden" id="hidss" name="type" value="1">
+          <span class="sendsy1">{$Think.lang.submit}</span>
+        </form>
+
+
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+  
+    <include file="App/Home/View/Single/comm/footer.html"/>
+  <form enctype="multipart/form-data" id="form5">
+    <input type="file" id="file5" style="display:none" name="idcard[]" multiple>
+    <input type="hidden" style="display:none" name="" value="1">
+  </form>
+  <input type="hidden" id="mess" data-ok='上传成功' data-err="请填写必要内容">
+  <script src="/Public/js/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="/Public/js/lib/jquery-form/jquery-form.js"></script>
+  <script src="/Public/js/lib/iconfont/iconfont.js"></script>
+  <script src="/Public/js/private/comm/comm.js"></script>
+  <script src="/Public/js/private/single/job.js"></script>
+  <include file="App/Home/View/comm/count.html"/>
+  <!-- / -->
+</body></html>

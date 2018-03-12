@@ -1,0 +1,152 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user.css">
+<script src="__PUBLIC__/Home/js/clipboard.min.js"></script>
+<style>
+.coin_footer{background-color:#f8f8f8;}
+.raise_list{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+}
+.raise_list thead th{ text-align: center; padding: 8px 0;color: #333;}
+.raise_list tbody tr td{ text-align: center; padding: 10px 0;color: #333;}
+.bd_weixin_popup .bd_weixin_popup_foot { line-height: 15px; }
+.bd_weixin_popup .bd_weixin_popup_main { padding: 7px 10px; }
+</style>
+<script>
+        var clipboard = new Clipboard('#copy');
+        clipboard.on('success', function(e) {
+            console.log(e);
+            alert("已复制");
+            //$(".cpypt").show();
+            //setTimeout(function(){$(".cpypt").hide();},1000);
+        });
+
+        clipboard.on('error', function(e) {
+            console.log(e);
+            alert("浏览器不支持直接复制，请选定连接后，ctrl+c复制");
+        });
+
+</script>
+<!-- 头部结束 -->
+<!-- body开始 -->
+<div class="w-f" style="border-top:1px solid #c1c1c1;background-color: #f5f5f5;">
+<div class="w120 container" style="margin-top: 20px;">
+    <div class="col-md-3 col-xs-3" style="background-color: #fff;min-height: 600px;margin-right: 16px;border-radius:2px;">
+        <div class="safe-ul w-f">
+            <ul style="margin-top: 20px;padding-top: 5px;border-top: 2px solid #337cbf;">
+                <li class="safe_8" onclick="url_1123(this)"><span class="span_8"></span><a href="{:U('User/index')}">财务中心</a></li>
+                <li class="safe_9" onclick="url_1123(this)"><span class="span_9"></span><a href="{:U('User/pay')}">人民币充值</a></li>
+                <li class="safe_10" onclick="url_1123(this)"><span class="span_10"></span><a href="{:U('User/draw')}">人民币提现</a></li>
+                <li class="safe_11" onclick="url_1123(this)"><span class="span_11"></span><a href="{:U('User/cart_man')}">银行卡管理</a></li>
+                <li class="safe_12" onclick="url_1123(this)"><span class="span_12"></span><a href="{:U('Entrust/manage')}">委托管理</a></li>
+                <li class="safe_13" onclick="url_1123(this)"><span class="span_13"></span><a href="{:U('Trade/myDeal')}">成交查询</a></li>
+                <li class="active safe_14" onclick="url_1123(this)"><span class="span_14"></span><a href="{:U('User/invit')}">我的推广</a></li>
+<!--                <li class="safe_7"><a href="{:U('Safe/email')}">邮件通知</a></li>
+                <li class="safe_8"><a href="{:U('Safe/jiaoyi')}">交易密码输入设置</a></li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9 col-xs-9 safe-body" style="background-color: #fff;min-height: 600px;width: 72%;padding-left: 10px;padding-right: 10px;border-radius:2px;">
+        <div class="safe-name">我的推广</div>
+
+        <div class="w-f" style="padding-left: 15px;color: #666;">
+            <p style="line-height: 30px;">邀请好友：</p>
+            <p style="line-height: 30px;">推荐第九交易网（www.9coin.com）给他人，即可享受被推荐者交易手续费的30%返利优惠。 </p>
+        </div>
+
+        <div class="w-f" style="padding-left: 15px;color: #666;margin-top: 25px;">
+            <p>复制您的专属地址发送给你的好友<!-- <span style="margin-left:20px;color:red;">您的邀请码是: {$Think.session.USER_KEY_ID}</span> --></p>
+            <p style="color:red;padding-left: 80px;margin-top: 10px;margin-bottom:10px;">http://{$_SERVER['SERVER_NAME']}{:U('Reg/reg',array('Member_id'=>session('USER_KEY_ID')))}
+            </p>
+            <input type="hidden" id="user_key_id"  value="{$user_key_id}">
+        </div>
+
+        <div class="w-f" style="padding-left: 15px;color: #666;">
+            <h3 style="height:20px;font-size: 14px;margin-bottom: 0;">把内容分享到以下空间</h3>
+            <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+            <!-- <script>window._bd_share_config={"common":{"bdUrl":"http://"+$("#server_name").val()+"/Home/Reg/reg/Member_id/391.html","bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script> -->
+            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"第九交易网","bdUrl" : 'http://www.9coin.com/Mobile/Register/index/Member_id/"+$("#user_key_id").val()+".html',"bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+        </div>
+
+        <div class="ybc_list w-f" style="padding-left: 0px;color: #666;">
+                <div class="ybcoin">
+                    <h2 class="left" style="font-size: 14px;padding-left: 15px;">我的邀请</h2><!-- <h2 class="right">邀请奖励总额: <span style="color:#f60;">{$count|default='0'}</span></h2> -->
+                </div>
+                <table class="raise_list" align="center" border="0" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr class="list_head" style="background-color: #f1f5f9;">
+                            <th>邮箱</th>
+                            <th>状态</th>
+                            <th>注册时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="my_invit" id="vo">
+                        <tr>
+                            <td>{$vo['email']}</td>
+                            <td>{$vo['status_name']}</td>
+                            <td>{$vo['reg_time']|date="Y-m-d H:i:s ",###}</td>
+                        </tr>
+                    </volist>
+                    </tbody>
+            </table>
+        </div>
+         <div class="page" style=" min-width:200px !important; float:right;">
+                    {$page}
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+function url_1123(which) {
+  var htmla= $(which).find("a").attr("href");
+  window.location = htmla;
+}
+</script>
+<!-- body结束 -->
+
+<!-- footer开始 -->
+<include file="App/Home/View/Public/new_footer.html"/>
+<script>
+    $(".menu9").addClass("uc-current");
+</script>
+<script>
+      function sendmail(){
+      url = "{:U('User/invit')}";
+    var emailList = $('#emaillist').val();
+        if(emailList.replace(/\s/g,'') === ''){
+            alert("请填写邮箱内容");
+            return false;
+        }else{
+            var arr = escape(emailList.replace(/(^\s*)|(\s*$)/g,"")).split('%3B'), error = '' , emailrule = /\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/;
+            if(arr.length > 5 && arr.length){
+                alert("最多填写5个邮箱");
+                return false;
+            }else{
+                for (var i = 0 ; i < arr.length; i ++){
+                    if(!emailrule.test(arr[i])){
+                        var num = i + 1;
+                        error += num+"、";
+                    };
+                }
+            };
+            if(error != ''){
+                error = error.substr(0,error.length-1);
+                alert("第"+error+"个邮箱格式不正确");
+                return false;
+            };
+            $.post(url,{ emails: emailList },function(data){
+                if(data.status==0)
+                {
+                   alert(data.info);
+                }
+                else{
+                        alert('邀请成功');
+                        window.location.reload();
+                    }
+            },"json");
+       }
+  }
+    
+</script>

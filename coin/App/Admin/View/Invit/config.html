@@ -1,0 +1,57 @@
+<include file="App/Admin/View/Public/left.html"/>
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">返利设置</span></div>
+    </div>
+    <div class="result-wrap">
+        <form action="{:U('Invit/configUpdate')}" method="post" id="myform"
+              name="myform" enctype="multipart/form-data">
+            <div class="config-items">
+                <div class="config-title">
+                    <h1>
+                        <i class="icon-font">&#xe00a;</i>返利设置
+                    </h1>
+                </div>
+                <div class="result-content">
+                    <table width="100%" class="insert-tab">
+                        <tbody>
+                        <tr>
+                            <th><i class="require-red">*</i>默认有效期（天）：</th>
+                            <td><input type="text" value="{$tay}"
+                                       size="85" name="day" class="common-text"></td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>返利用户：</th>
+                            <td><input type="text" value="{$member_id}" size="85" name="invit_member_id" class="common-text"></td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red">*</i>一级返利：</th>
+                            <td><input type="text" id="" value="{$onerebate}"
+                                       size="85" name="onerebate" class="common-text col-xs-12">百分比</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="submit" value="提交"
+                                       class="btn btn-primary btn6 mr10"> <input type="button"
+                                                                                 value="返回" onclick="history.go(-1)" class="btn btn6"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+    $(".sub-menu").eq(11).show();
+    $(".sub-menu").eq(11).children("li").eq(0).addClass("on");
+</script>

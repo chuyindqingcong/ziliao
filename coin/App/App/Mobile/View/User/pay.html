@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html style="font-size: 55.2px;" >
+<head>
+	<meta charset="utf-8">
+	<title>我的账户</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/new/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/new/css/user1.css">
+    <style type="text/css">
+        .form-control { height: 0.6rem;font-size: 0.24rem;}
+        .form-group label { line-height: 0.6rem;text-align: right; }
+    </style>
+</head>
+<body>
+	<div class="container" style="padding: 0;">
+
+    <include file="Public/header"/>
+
+        <div style="width: 100%;height: 0.1rem;background-color: #f6f6f6;float: left;">
+        </div>
+        
+        <div style="font-size: 0.24rem;float: left;width: 100%;min-height: 5rem;">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist" style="padding-left: 0.3rem;">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">转账充值</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">在线网银</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">支付宝</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">微信支付</a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content" style="font-size:0.24rem;">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div style="padding:0.2rem;">
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <label for="inputEmail3" class="col-xs-3 control-label">汇款人</label>
+                        <div class="col-xs-9">
+                          <input type="text" class="form-control" id="recharge_name_yes" placeholder="{$member['name']|default='暂无'}" disabled="disabled" value="{$member['name']|default='暂无'}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputEmail3" class="col-xs-3 control-label">金额</label>
+                        <div class="col-xs-9">
+                          <input style="width:2.5rem;border-radius: 0;float: left;border-right:none;" name="number" id="over_num" class="money num_three form-control" onkeyup="onkeynum();" autocomplete="off" maxlength="10" type="text" placeholder="支持{$config['pay_min_money']|default='0'}元以上">
+                            <div class="input-group-addon" style="width: 0.8rem;height: 0.6rem;line-height: 0.6rem;float: left;border-radius:4px;border-top-left-radius:0;border-bottom-left-radius:0;padding:0;" id="keynum">.00</div>
+                            <span style="color:#f00;float: left;margin-top:0.2rem;">请严格按照汇款金额汇款</span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputEmail3" class="col-xs-3 control-label">汇款银行</label>
+                        <div class="col-xs-9">
+                          <select class="money num_three form-control" id="bankOut" name="bankOut" style="height:0.6rem;" >
+                                    <option selected="selected" value="请选择银行">请选择银行</option>
+                                   <!--  <option value="支付宝">支付宝</option> -->
+                                    <option value="招商银行">招商银行</option>
+                                    <option value="中信银行">中信银行</option>
+                                    <option value="光大银行">光大银行</option>
+                                    <option value="兴业银行">兴业银行</option>
+                                    <option value="平安银行">平安银行</option>
+                                    <option value="华夏银行">华夏银行</option>
+                                    <option value="邮政储蓄">邮政储蓄</option>
+                                    <option value="广发银行">广发银行</option>
+                                    <option value="浦发银行">浦发银行</option>
+                                    <option value="北京银行">北京银行</option>
+                                    <option value="上海银行">上海银行</option>
+                                    <option value="杭州银行">杭州银行</option>
+                                    <option value="宁波银行">宁波银行</option>
+                                    <option value="民生银行">民生银行</option>
+                                    <option value="工商银行">工商银行</option>
+                                    <option value="农业银行">农业银行</option>
+                                    <option value="建设银行">建设银行</option>
+                                    <option value="交通银行">交通银行</option>
+                                    <option value="中国银行">中国银行</option>
+                                    <option value="其它银行">其它银行</option>
+                                </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputEmail3" class="col-xs-3 control-label">银行帐号</label>
+                        <div class="col-xs-9">
+                          <input type="text" id="recharge_account_yes" class="form-control" placeholder="银行帐号" value="">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-offset-1 col-xs-10">
+                          <a href="javascript:void(0);" onclick="recharge()" class="btn btn-default" id="choice_submit" style="width: 100%;background-color: #337cbf;color: #fff;border-color: #337cbf;">生成汇款订单</a>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <p style="padding:1.5rem 0;text-align: center;font-size: 0.3rem;color: #999;">模块功能暂未开放，敬请期待......</p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+                    <form class="form-horizontal" action="{:U('Home/User/pay_order')}" method="post" style="padding:0.5rem 0.2rem;">
+                      <div class="form-group">
+                        <label for="inputEmail3" class="col-xs-3 control-label">充值金额</label>
+                        <div class="col-xs-9">
+                          <input type="text" name="fee" id="chongzhi_fee" class="form-control" placeholder="充值金额不能小于100" value="">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-offset-1 col-xs-10">
+                          <button type="submit" class="btn default" style="width: 100%;background-color: #337cbf;color: #fff;border-color: #337cbf;">提交订单</button>
+                        </div>
+                      </div>
+                    </form>               
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">
+                <p style="padding:1.5rem 0;text-align: center;font-size: 0.3rem;color: #999;">模块功能暂未开放，敬请期待......</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="width: 100%;height: 0.1rem;background-color: #f6f6f6;float: left;">
+        </div>
+
+
+        <div class="" style="margin-top: 0.2rem;padding:0 0.2rem;font-size: 0.24rem;float: left;width: 100%;">
+            <p style="font-weight: bold;">充值记录</p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>金额</th>
+                  <th>充值时间</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody>
+              <volist name='list' id='vo' key='key'>
+                <tr>
+                  <th scope="row">{$key}</th>
+                  <td>{$vo.count|default=0}</td>
+                  <td>{$vo.add_time|date="Y-m-d H:i",###}</td>
+                  <td>
+                        <if condition="$vo.type eq 1">人工充值
+                        <elseif condition="$vo.type eq 3" />网银充值
+                        <elseif condition="$vo.type eq 4" />支付宝
+                        </if>
+                    <if condition="$vo.status eq 0">
+                        <a class="fkbtn" onclick='showPay({$vo.count|default=0})'>-请付款</a>
+                        <elseif condition="$vo.status eq 1" />
+                        <a class="fkbtn">-付款成功</a>
+                        </if>
+                  </td>
+                </tr>
+              </volist>
+              </tbody>
+            </table>
+        </div>
+	</div>    
+    <include file="Public/footer"/>
+<script src="__PUBLIC__/new/js/jquery.min.js"></script>
+<script src="__PUBLIC__/new/js/bootstrap.min.js"></script>
+<!-- <script src="__PUBLIC__/new/js/fast.js"></script> -->
+<script type="text/javascript" src="__PUBLIC__/js/layer/layer.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/js/layer/skin/layer.css">
+<script>
+
+var cw = document.documentElement.clientWidth;
+if (cw > 1920) {
+    cw = 1920;
+}
+document.getElementsByTagName("html")[0].style.fontSize = 40 * ( cw / 300) + 'px'
+</script>
+<script type="text/javascript"> 
+function onkeynum()
+    {
+        var rand = "";
+        for(var i = 0; i < 2; i++){
+            var r = Math.floor(Math.random() * 10);
+
+            rand += r;
+
+        }
+        rand='.'+rand;
+        $("#keynum").text(rand);
+    }
+</script>
+<script>
+
+function closewin(){
+    $(".layui-layer-shade").remove();
+    $(".layui-layer").remove();
+}
+function notfee(){
+    if($("#over_num").val()!=""){
+        $("#ure").text((parseInt($("#over_num").val(),10)+{$fee}).toFixed(2));
+    }else{
+        $("#ure").text("");
+    }
+}
+function recharge() {
+    var min_num={$config.pay_min_money};
+    var max_num={$config.pay_max_money};
+    var fee = {$fee};
+    if (this.choice_money == 0) {
+        // window.open("http://yuanbao.com/user_ebank");
+        $('.ebank_box_common').show();
+        return false;
+    }
+
+    // 姓名
+    var recharge_name_yes = $('#recharge_name_yes').val();
+    //var recharge_name_yes = $('#realname').attr('data');
+
+    if (!(/[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*/).test(recharge_name_yes)) {
+    //if (!(/^[\u4e00-\u9fa5]{2,10}$/).test(recharge_name_yes)) {
+
+        //Layer.alert('请输入正确的汇款人姓名');
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: "<div style='padding:0.3rem;'><p style='font-size0.24rem;line-height0.3rem;'>请输入正确的汇款人姓名</p><p style='margin-top:0.8rem;text-align:center;'><button type='button' class='btn btn-primary' onclick='closewin()''>确定</button></p></div>",
+            area: ['4.2rem', '3rem'], //宽高
+        });
+        return false;
+
+    }
+
+    // 银行卡号
+    var recharge_account_yes = $('#recharge_account_yes').val();
+    //alert(recharge_account_yes.length);
+    
+    if (recharge_account_yes == '' || recharge_account_yes.length < 11 ||  recharge_account_yes.length > 20) {
+
+        //Layer.alert('请输入正确的汇款银行账号');
+        layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: "<div style='padding:0.3rem;'><p style='font-size0.24rem;line-height0.3rem;'>请输入正确的汇款银行账号12-20位字符</p><p style='margin-top:0.8rem;text-align:center;'><button type='button' class='btn btn-primary' onclick='closewin()''>确定</button></p></div>",
+            area: ['4.2rem', '3rem'], //宽高
+        });
+
+        return false;
+
+    }
+    
+    // 汇出银行
+    var bankName = $('#bankOut').val();
+    if(bankName == '请选择银行'){
+        layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: "<div style='padding:0.3rem;'><p style='font-size0.24rem;line-height0.3rem;'>请输入正确的汇款银行</p><p style='margin-top:0.8rem;text-align:center;'><button type='button' class='btn btn-primary' onclick='closewin()''>确定</button></p></div>",
+            area: ['4.2rem', '3rem'], //宽高
+        });
+
+        return false;
+    }
+    
+    // 充值金额
+    var over_num = $('#over_num').val();
+    var number = over_num ? over_num: 0;
+    var rand_num = document.getElementById("keynum").innerText;;//$('#rand_num').val();
+    rand_num = rand_num ? rand_num: 0;
+    
+    var num = parseInt(number) + parseFloat(rand_num);
+    if(num < min_num) {
+       layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: "<div style='padding:0.3rem;'><p style='font-size0.24rem;line-height0.3rem;'>充值金额不能小于"+min_num+"元</p><p style='margin-top:0.8rem;text-align:center;'><button type='button' class='btn btn-primary' onclick='closewin()''>确定</button></p></div>",
+            area: ['4.2rem', '3rem'], //宽高
+        });
+        return false;
+    }
+
+    if (num >= max_num) {
+        layer.open({
+            type: 1,
+            title: false,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            shadeClose: true, //开启遮罩关闭
+            content: "<div style='padding:0.3rem;'><p style='font-size0.24rem;line-height0.3rem;'>充值金额不能大于"+max_num+"元</p><p style='margin-top:0.8rem;text-align:center;'><button type='button' class='btn btn-primary' onclick='closewin()''>确定</button></p></div>",
+            area: ['4.2rem', '3rem'], //宽高
+        });
+        return false;
+    }
+
+   // var rand_num='rand_num;
+    var count=parseInt($("#over_num").val(),10);
+    var count2=count+rand_num;
+
+    $.post("{:U('Home/Pay/rechargeByMan')}", {'money':number, 'account': recharge_account_yes, 'count':count2,'type':1,'member_name': recharge_name_yes},
+        function(data) {
+            if (data.status == 0) {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    skin: 'layui-layer-demo', //样式类名
+                    closeBtn: 0, //不显示关闭按钮
+                    shift: 2,
+                    shadeClose: true, //开启遮罩关闭
+                    content: "<div style='padding:0.3rem;'><p style='font-size0.24rem;line-height0.3rem;'>"+data.info+"</p><p style='margin-top:0.8rem;text-align:center;'><button type='button' class='btn btn-primary' onclick='closewin()''>确定</button></p></div>",
+                    area: ['4.2rem', '3rem'], //宽高
+                });
+            } else {
+                layer.open({
+                type: 1,
+                title: false,
+                skin: 'layui-layer-demo', //样式类名
+                closeBtn: 1, //不显示关闭按钮
+                shift: 2,
+                shadeClose: true, //开启遮罩关闭
+                content: "<div style='padding:0.3rem;'><table class='table table-bordered'><thead><tr><th></th><th></th></tr></thead><tbody><tr><th scope='row'>向{$bank[0]['bank_name']|default='暂无'}汇款</th><td>汇款金额："+data.num+"</td></tr><tr><th scope='row'>收款人：{$bank[0]['bank_name']|default='暂无'}</th><td></td></tr><tr><th scope='row'>收款人账号：{$bank[0]['bank_no']|default='暂无'}</th><td></td></tr><tr><th scope='row'>收款人开户行：{$bank[0]['bank_adddress']|default='暂无'}</th><td></td></tr></tbody></table><p>1、本系统非自动扣款，请通过您的<font class='phone_bank_and_net'></font>汇款！<br>2、如您已向{$bank[0]['bank_name']|default='暂无'}汇款，系统在收到汇款后20分钟内入账。</p></div>",
+                area: ['7rem', '6rem'], //宽高
+        });
+            }
+        }
+    );
+
+    return false;
+    
+};
+
+
+$("#chongzhi_fee").blur(function(){
+    var total_chongzhi = $("#chongzhi_fee").val();
+    if (total_chongzhi<100) {
+        layer.open({
+          title: '请注意'
+          ,content: '充值金额不能小于100！'
+        }); 
+    }
+});
+</script>
+</body>
+</html>

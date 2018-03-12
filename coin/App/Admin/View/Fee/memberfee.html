@@ -1,0 +1,61 @@
+    <include file="App/Admin/View/Public/left.html"/>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:U('Index/index')}">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">手续费设置</span></div>
+        </div>
+        <div class="search-wrap">
+        </div>
+        <div class="result-wrap">
+        <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:U('Fee/feeadd',array('member_id'=>I('get.member_id')))}"><i class="icon-font"></i>添加规则</a>
+                    </div>
+                </div>
+            <div class="result-content">
+                <table class="result-tab" width="100%">
+                    <tr>
+                        <th>币种名称</th>
+                        <th>买入（币）</th>
+                        <th>卖出（RMB）</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <volist name='list' id='vo'>
+                        <tr>
+                            <td>{$vo.currency_name}</td>
+                            <td>{$vo.currency_buy_fee}%</td>
+                            <td>{$vo.currency_sell_fee}%</td>
+                            <td>{$vo.ctime|date="Y-m-d H:i:s",###}</td>
+                            <td><a href="javascript:;" data-id="{$vo.trade_fee_id}">删除</a></td>
+                        </tr>
+                    </volist>
+                </table>
+                <div class="list-page"> <ul>{$page}</ul></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+var deleteurl="{:U('Fee/delete')}";
+$('tr td a').click(function()
+{
+    var dataid=$(this).attr('data-id');
+    $.post(deleteurl,{'trade_fee_id':dataid},function(d)
+    {
+        if(d.code==0)
+        {
+            alert('删除成功！');
+            document.location.reload();
+        }else{
+            alert('删除失败');
+            document.location.reload();
+        }
+    })
+});
+$(".sub-menu").eq(3).show();
+$(".sub-menu").eq(3).children("li").eq(0).addClass("on");
+</script>

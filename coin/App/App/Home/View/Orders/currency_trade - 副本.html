@@ -1,0 +1,388 @@
+<include file="App/Home/View/Public/new_header.html"/>
+<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/jb_style.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/jb_font-awesome.css"> -->
+<!-- kline -->
+<script src="__PUBLIC__/clc/rickshaw/vendor/d3.v3.js"></script>
+<script src="__PUBLIC__/clc/rickshaw/rickshaw.min.js"></script>
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/clc/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="__PUBLIC__/clc/js/jquery.dataTables.js"></script>
+<style>
+body { background-color: #fff; }
+.coin_num {
+	font-size: 14px;
+    border: none;
+}
+table.dataTable.display tbody td{
+    background-color:#fff;
+    border: none;
+}
+table.dataTable tbody tr{
+    border: none;
+}
+table.dataTable tbody tr:hover{
+    background-color: #c1c1c1;
+}
+table.dataTable tbody td{
+    padding: 0 0 0 20px;
+    border: none;
+}
+table.dataTable.no-footer{
+    border: none;
+}
+.coin_num td a{
+	color:#333;font-size: 14px;
+}
+.coin_num td input{
+border:none;
+color:#337cbf;
+background-color: #fff;
+border:1px solid #337cbf;
+border-radius: 3px;
+width: 80px;
+height: 30px;
+margin: 5px;
+cursor: pointer;
+-webkit-transition:0.3s ease all;transition:0.3s ease all;-o-transition:0.3s ease all;-moz-transition:0.3s ease all;-ms-transition:0.3s ease all
+}
+.coin_num td input:hover{
+border:none;
+border-radius: 3px;
+width: 80px;
+height: 30px;
+margin: 5px;
+cursor: pointer;
+color:#FFF;
+background-color:#337cbf;	
+}
+    .nammer-isuser-content{
+        float: left;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        margin-left: 350px;
+        color: #333;
+        height: 239px;
+        width: 240px;
+        padding:15px 10px;
+        background-color: #fff;
+        border:1px solid #d1d1d1;
+        border-radius: 5px;
+    }
+    .nammer-account-admin a{
+        float: left;
+        /*width: 50px;*/
+        width: 29%;
+        margin-right: 2%;
+        text-align: center;
+        color: #337cbf;
+        border-radius:3px; ;
+        line-height:30px;
+        background-color:white ;
+        border: 1px solid #337cbf;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .nammer-account-admin a:hover{
+        background-color:#337cbf;
+        color: white;
+    }
+    .orange{
+        color: #337cbf;
+    }
+/*.coin_num .sorting_1 a { color: #e55600; }*/
+table.dataTable.display tbody tr.odd > .sorting_1 { background-color:#fff; }
+table.dataTable.display tbody tr.even > .sorting_1 { background-color:#fff; }
+table.dataTable.display tbody tr:hover > .sorting_1{ background-color:#eaeaea; }
+table.dataTable.display tbody tr:hover td { background-color:#eaeaea; }
+.coin_num .sell{ color: #749917; }
+.coin_num .buy{ color: #e6562e; }
+.b-title { background-color: #f1f1f1; }
+.dataTables_wrapper {border-top:2px solid #dddddd;}
+.sorting_asc { border-top:2px solid #e55800; float: left; margin-top: -2px;}
+.sorting_desc { border-top:2px solid #e55800; float: left; margin-top: -2px;}
+</style>
+
+<!-- 头部轮播 -->
+<div class="w10 banner">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <volist name='flash' id='vo'>
+            <if condition="$i eq 1">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <else />
+                <li data-target="#carousel-example-generic" data-slide-to="{$i-1}"></li>
+            </if>
+        </volist>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+            <volist name='flash' id='vo'>
+                <if condition="$i eq 1">
+                <div class="item active">
+                    <a href="http://{$vo.jump_url|default='#'}" target="_blank"><img src="{$vo.pic}" alt="{$vo.title}-{$i}" style="height:300px;"></a>
+                </div>
+                <else />
+                <div class="item">
+                    <a href="http://{$vo.jump_url|default='#'}" target="_blank"><img src="{$vo.pic}" alt="{$vo.title}" style="height:300px;"></a>
+                </div>
+                </if>
+            </volist>
+      </div>
+    </div>
+
+<!--     <div class="banner-numble">
+        <p><img src="__PUBLIC__/new/images/num-person.png" />有超过<span>8</span><span>0</span><span>9</span><span>8</span><span>0</span><span>9</span>人正在操盘</p>
+    </div> -->
+    <!-- 登录框 -->
+    <empty name="user_id">
+        <div class="banner-input">
+            <form name="signupForm" method="post"  action="{:U('Login/checkLog')}">
+                <p>第九交易网用户登录</p>
+                <span class="input-phone">
+                <img src="__PUBLIC__/new/images/input-phone.png">
+                <input type="" id="email" placeholder="请输入手机号" />
+                <span class="glyphicon glyphicon-remove-circle e_tips"></span>
+            </span>
+                <span class="input-pas">
+                <img src="__PUBLIC__/new/images/input-pas.png">
+                <input type="password"  id="password" placeholder="请输入密码" />
+                <span class="glyphicon glyphicon-remove-circle p_tips"></span>
+            </span>
+                <input type="button" onclick="checkform()" class="btn form-submit" value="登录"/>
+                <span class="form-three"><a class="form-new" href="{:U('Reg/reg')}">新用户注册</a><a href="{:U('Login/findPwd')}">忘记密码?</a></span>
+                <div class="form-other">
+                    <p><img src="__PUBLIC__/new/images/other-submit.png"></p>
+                    <span>
+                    <a class="other-qq" href="{:U('Login/qqlogin')}"></a>
+                    <a class="other-weixin" href="{:U('Login/wxLogin')}"></a>
+                </span>
+                </div>
+            </form>
+        </div>
+        <else/>
+        <div class="nammer-isuser-content" style="opacity: 1;">
+            <h4>欢迎使用第九交易网</h4>
+            <span>您正在使用的帐号为：</span>
+            <br />
+            <if condition="session('user.email') eq true">
+                {$Think.session.user.email}
+                <else/>
+                <span class="orange">{$Think.session.user.phone}</span>
+            </if>
+            <br />
+
+            <span>UID：</span> <span class="orange">{$Think.session.user.member_id}</span>
+            <br />
+            <span>总资产：</span> <span class="orange">￥{$Think.session.user.rmb|default="0.00"}</span>
+            <div class="nammer-account-admin" style="float: left;width: 100%;padding-left: 2%;">
+                <a href="{:U('User/pay')}" class="">充值</a>
+                <a href="{:U('User/draw')}" class="">提现</a>
+                <a href="{:U('Entrust/manage')}" class="" style="width: 70px;">委托管理</a>
+            </div>
+            <a href="{:U('User/index')}" class="btn btn-warning col-xs-12" style="background: #337cbf;border-color: #337cbf;">财务中心</a>
+        </div>
+    </empty>
+</div>
+<!-- 头部结束 -->
+
+<div id="main" class="w-f" style="margin-bottom:200px;">
+	<div class="main_box w-f">
+      <!--币币交易开始-->
+      <div id="tags_coin" class="coinarea container w120" style="position:relative;">
+		<!--<ul id="tags" class="for_coin">
+			<li class="selectTag"><a onmouseover="selectTag('tagContent0',this)">对CNY交易区</a></li>
+			<li><a onmouseover="selectTag('tagContent3',this)">对TRMB交易区</a></li>
+            </ul>
+		-->
+		<div class="bgcolor" style="display:none;"></div>
+		<div style="margin-top:30px;" id="tagContent">
+		<!-- 对CNY交易区 结束-->
+		<div class="tagContent selectTag" id="tagContent0">
+		<p style="color:#f00; font-size:14px; margin-bottom:10px;">{$config.friendship_tips}</p>
+		</div>
+            <div style="width: 1200px; clear: both; margin: 0px auto;">
+                <div class="page" style="min-width: 250px !important;margin-left: 500px;">
+                    {$page}
+                </div>
+            </div>
+	</div>
+    </div>
+
+    <div class="w-f">
+        <table id="dtable" class="display" >
+            <thead>
+                <tr class="b-title">
+                    <th id="left_t" style="padding: 0;width: 100px;"></th>
+                    <th style="text-align:left;padding-left: 25px;">币种名称</th>
+                    <th  class="s">最新成交价(CNY)</th>
+                    <th class="s">24H成交量</th>
+                    <th  class="s">24H成交额(CNY)</th>
+                    
+                    <th  class="s">24H涨跌</th>
+                    <th class="header">价格趋势(3日)</th>
+                    <th id="right_t" class="header" style="padding-right: 60px;width: 100px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name='currency' id='vo' empty='$empty'>
+
+                    <tr class="coin_num" id="currency{$vo.currency_id}">
+                        <td></td>
+                        <td class="coin_name"><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}"><img src="{$vo.currency_logo}" style="width:20px; height:20px;margin-right: 5px;">{$vo.currency_name|default='虚拟币'}{$vo.currency_mark|default=''}</a></td>
+                        <td><eq name='vo.new_price_status' value='0' ><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}" class="buy"><else/><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}" class="sell"></eq>
+                        {$vo.new_price|default='暂无'}<eq name='vo.new_price_status' value='0'>↓<else/>↑</eq></a></td>
+                        <td><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}">{$vo.24H_done_num|default='0'}</a></td>
+                        <td><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}">{$vo.24H_done_money|default='0'}</a></td>
+                       
+                        <td><gt name='vo.24H_change' value='0'><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}" class="sell"><else/><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}" class="buy"></gt>{$vo.24H_change|default='0'}%</a></td>
+                        
+                        
+                         <td>
+                         <canvas style="height:40px;margin-top:10px;" id="rickshaw_line_{$vo.currency_id}">
+                         </canvas></td>
+                       
+
+                       <td style="padding-right: 10px;"><a href="{:U('Orders/index',array('currency'=>$vo['currency_mark']))}"><input value="去交易"  type="button"></a></td>
+                    </tr>
+                   
+                </volist>
+            </tbody>
+        </table>
+    </div>
+	  <!--币币交易结束-->
+<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+<!--footer start-->
+<include file="App/Home/View/Public/new_footer.html"/>
+<!--footer end-->
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+        var w_high = $(window).width();    //浏览器当前窗口可视区域宽度
+        var left = (w_high-1200)/2;
+        $('#left_t').css('width',left);
+        $('#right_t').css('width',left);
+
+        $('#dtable').DataTable( {
+            paging: false,
+            searching:false,
+            bInfo:false,
+            "columnDefs":[
+            {"orderable":false, "targets": 0},
+            {"orderable":false, "targets": 1},
+            {"orderable":false, "targets": 6},
+            {"orderable":false, "targets": 7}
+            ],
+
+        } );
+			
+        } );
+		
+// $(function() {
+// var arr={$line};
+// var t=arr;//eval(JSON.stringify(arr));
+// var s=JSON.stringify(t[0]['data']);
+
+	
+// 	for(var i=0;i<{$len};i++)
+// 	{
+	
+// 		var a = new Rickshaw.Graph({
+//         element: document.querySelector("#rickshaw_line_"+t[i]['currency_id']),
+//         renderer: "line",
+//         series: [{
+//             data:t[i]['data'],
+//             color: "#e55800"
+//         }]
+//     });
+//     a.render();
+
+// 	}
+   
+    
+   
+// });	
+var onechar=document.getElementById('rickshaw_line_29');
+var charone =onechar.getContext('2d');
+var data="{$line}";
+var jsonobj=(eval('('+data+')'));
+var datas=(jsonobj[1]['data']);
+var xdata=[];
+charone.lineWidth = 6;
+for(var i=0;i<datas.length;i++)
+{
+    xdata[i]=(datas[i]['y']);
+
+}
+charone.moveTo(1,xdata[2]*1000);
+for(var i=0;i<10;i++)
+{
+    charone.lineTo((i+1)*50,xdata[i+3]*1000);
+}
+charone.strokeStyle='#337cbf';
+charone.stroke();
+
+
+var twochar=document.getElementById('rickshaw_line_36');
+var cahrtwo =twochar.getContext('2d');
+var datatwo=(jsonobj[0]['data']);
+var xdatatwo=[];
+for(var i=0;i<datatwo.length;i++)
+{
+    xdatatwo[i]=(datatwo[i]['y']);
+}
+cahrtwo.lineWidth = 6;
+cahrtwo.moveTo(1,xdatatwo[2]);
+for(var i=0;i<20;i++)
+{
+    cahrtwo.lineTo((i+1)*50,xdatatwo[i+3]);
+}
+cahrtwo.strokeStyle='#337cbf';
+console.log(xdatatwo);
+cahrtwo.stroke();
+</script>	
+<volist name='currency' id='vo' empty='$empty'>
+    <script type="text/javascript">
+
+            var crr=currency{$vo.currency_id}; 
+            $(crr).click(function(){
+                self.location='{:U('Orders/index',array('currency'=>$vo['currency_mark']))}';
+            });
+
+    </script>
+</volist>
+<script>
+function checkform(){
+
+        
+        if($('#email').val()==""){
+            $('#email').focus();
+            return false;
+        }
+        if( $('#password').val()==''){
+            $('#password').focus();
+            return false;
+        }
+        var username=$('#email').val();
+        var passwd=$('#password').val();
+        
+//        return true;
+       $.post("{:U('Login/checkLog')}", {'email':username,'pwd':passwd},function(data){
+           if(data.status==1){
+            //layer.msg(data['info']);  
+            window.location.href="{:U('Safe/index')}"
+           }else{
+               // $('#tips').text(data['info']);
+               $('.e_tips').fadeIn();
+               $('.p_tips').fadeIn();
+               }
+        })
+    }
+</script>
+  

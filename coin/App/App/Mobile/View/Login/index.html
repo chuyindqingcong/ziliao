@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>{$Think.config.MAIL_FROMNAME}-</title>
+    <link rel="stylesheet" href="__PUBLIC__/new/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        .bottomtext{
+            margin-top: 1rem;
+        }
+        .bottomtext a{
+            color: #999;
+            padding: 1rem;
+        }
+        .form-horizontal .form-group{
+
+        }
+        .btn-warning{
+            border-color:white;
+        }
+        .form-horizontal .form-group input{
+            border-radius: 0px;
+        }
+        .form-horizontal .form-group input:focus{
+            border-radius: 0px;
+           border: 0.1rem solid #ccc;
+        }
+        #username{
+            padding-left: 3rem;
+            border-bottom: 0px;
+            -webkit-border-top-left-radius: 0.5rem;
+            -webkit-border-top-right-radius:0.5rem ;
+            background: url(__PUBLIC__/new/images/user.gif) no-repeat;
+            background-position: 7px 13px;
+            background-size: 20px auto;
+        }
+        #passwd{
+            padding-left: 3rem;
+            -webkit-border-bottom-left-radius: 0.5rem;
+            -webkit-border-bottom-right-radius:0.5rem ;
+            background: url(__PUBLIC__/new/images/passwd.gif) no-repeat;
+            background-position: 7px 13px;
+            background-size: 20px auto;
+        }
+        .form-horizontal .col-xs-12 b{
+            float: left;
+
+        }
+        </style>
+</head>
+<body>
+<div class="container">
+<div class="row">
+        <include file="Index:header" />
+    <div class="col-xs-12">
+        <div class="form-horizontal" >
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <b></b>
+                    <input type="text" name="" class="form-control input-lg " placeholder="用户名" id="username"/>
+                    <input type="password" name="" class="form-control col-xs-12 input-lg" placeholder="密码"  id="passwd" />
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-warning col-xs-12 btn-lg" style="background: #337cbf;">登录</button>
+        <div class="col-xs-12 text-center bottomtext">
+            <a href="{:U('Register/index')}">新用户注册</a>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/new/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/plugin/layer_mobile/layer.js"></script>
+<script>
+    var username=0;
+    var passwd=0;
+    var checkurl="__URL__/loginCheck";
+    $('.glyphicon-chevron-left').click(function () {
+        window.history.go(-1);
+    });
+     $("button").click(function () {
+         username=$("#username").val();
+         passwd=$("#passwd").val();
+         if(passwd==0)
+         {
+             return false;
+         }
+         if(passwd==0)
+         {
+             return false;
+         }
+         if(passwd && username)
+         {
+             sendlogin(passwd,username);
+         }
+    });
+    function sendlogin(passwd,username) {
+        $.post(checkurl,{email:username,pwd:passwd},function (d) {
+            if(d.code==0)
+            {
+                // window.history.back(-1);
+                window.location="{:U('Index/index')}";
+            }else{
+                $("#passwd").val("");
+                layer.open({
+                    content: d.error
+                    ,btn: '重试'
+                });
+            }
+        });
+    }
+</script>
+</body>
+</html>
+        
